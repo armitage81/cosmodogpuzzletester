@@ -1,11 +1,11 @@
-import java.nio.file.Path;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import model.*;
 import org.newdawn.slick.*;
 
 public class Starter extends BasicGame {
+
+    private long lastInputTime = 0;
 
     private Map map;
 
@@ -26,7 +26,43 @@ public class Starter extends BasicGame {
     }
 
     @Override
-    public void update(GameContainer gc, int i) throws SlickException {}
+    public void update(GameContainer gc, int i) throws SlickException {
+
+        long timestamp = System.currentTimeMillis();
+
+        Protagonist protagonist = map.getProtagonist();
+
+        Input input = gc.getInput();
+
+        boolean inputHappened = false;
+
+        if (input.isKeyPressed(Input.KEY_D)) {
+            protagonist.setDirection(Actor.DirectionType.EAST);
+            inputHappened = true;
+        } else if (input.isKeyPressed(Input.KEY_S)) {
+            protagonist.setDirection(Actor.DirectionType.SOUTH);
+            inputHappened = true;
+            lastInputTime = timestamp;
+        } else if (input.isKeyPressed(Input.KEY_A)) {
+            inputHappened = true;
+            protagonist.setDirection(Actor.DirectionType.WEST);
+            lastInputTime = timestamp;
+        } else if (input.isKeyPressed(Input.KEY_W)) {
+            inputHappened = true;
+            protagonist.setDirection(Actor.DirectionType.NORTH);
+            lastInputTime = timestamp;
+        }
+
+        if (inputHappened) {
+            if (map.protagonistCanGoStraight(protagonist)) {
+                protagonist.goToEnvisionedPosition();
+            }
+            lastInputTime = timestamp;
+        }
+
+        input.clearKeyPressedRecord();
+
+    }
 
     @Override
     public void render(GameContainer gc, Graphics g) throws SlickException {
@@ -35,10 +71,10 @@ public class Starter extends BasicGame {
 
         for (int i = 0 ; i < Constants.FIELD_WIDTH ; i++) {
             for (int j = 0 ; j < Constants.FIELD_HEIGHT ; j++) {
-                Tile.TileType tileType = map.tileAtPosition(i, j).type;
-                if (tileType == Tile.TileType.WALL) {
+                Tile tile = map.tileAtPosition(i, j);
+                if (tile instanceof Wall) {
                     RenderingUtils.renderWall(gc, g, i, j);
-                } else if (tileType == Tile.TileType.OBSTACLE) {
+                } else if (tile instanceof Obstacle) {
                     RenderingUtils.renderObstacle(gc, g, i, j);
                 } else {
                     RenderingUtils.renderDefaultTile(gc, g, i, j);
@@ -55,6 +91,10 @@ public class Starter extends BasicGame {
             }
 
         }
+
+        RenderingUtils.renderProtagonist(gc, g, map.getProtagonist().positionX, map.getProtagonist().positionY, map.getProtagonist());
+        RenderingUtils.renderRay(gc, g, map, map.getProtagonist());
+
 
         RenderingUtils.resetTranslation(gc, g);
     }

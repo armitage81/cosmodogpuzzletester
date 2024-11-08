@@ -1,5 +1,3 @@
-package model;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +7,16 @@ public class Switch extends DynamicPiece {
 
     public Switch(int x, int y) {
         super(x, y);
+    }
+
+    @Override
+    public boolean passable() {
+        return true;
+    }
+
+    @Override
+    public boolean penetrable() {
+        return true;
     }
 
     public void addSwitchable(Switchable switchable) {

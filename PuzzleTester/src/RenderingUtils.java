@@ -1,8 +1,8 @@
-import model.Door;
-import model.Switch;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+
+import java.util.List;
 
 public class RenderingUtils {
 
@@ -51,6 +51,31 @@ public class RenderingUtils {
         g.fillRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
         g.setColor(new Color(Color.lightGray));
         g.drawRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+    }
+
+    public static void renderProtagonist(GameContainer gc, Graphics g, int positionX, int positionY, Protagonist protagonist) {
+        long timestamp = System.currentTimeMillis() / 250;
+        boolean blinking = timestamp % 2 == 0;
+
+        if (blinking) {
+            g.setColor(new Color(Color.blue));
+            g.fillRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+            g.setColor(new Color(Color.lightGray));
+            g.drawRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+        }
+
+    }
+
+    public static void renderRay(GameContainer gc, Graphics g, Map map, Protagonist protagonist) {
+        List<Position> positions = map.rayPositions(protagonist);
+        for (Position position : positions) {
+            g.setColor(new Color(1, 1, 0, 0.33f));
+            g.fillRect(position.getX() * Constants.TILE_SIZE, position.getY() * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+        }
+
+        Position targetPosition = map.rayTargetPosition(protagonist);
+        g.setColor(new Color(1, 0, 0, 0.33f));
+        g.fillRect(targetPosition.getX() * Constants.TILE_SIZE, targetPosition.getY() * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
 }

@@ -1,5 +1,3 @@
-package model;
-
 public abstract class Element {
 
     public int positionX;
@@ -14,4 +12,9 @@ public abstract class Element {
     public String toString() {
         return positionX + "/" + positionY;
     }
+
+    public abstract boolean passable();
+
+    public abstract boolean penetrable();
+
 }

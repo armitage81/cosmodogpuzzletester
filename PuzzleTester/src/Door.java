@@ -1,5 +1,3 @@
-package model;
-
 public class Door extends DynamicPiece implements Switchable {
 
     public boolean open;
@@ -22,5 +20,15 @@ public class Door extends DynamicPiece implements Switchable {
     @Override
     public void switchToNextState() {
         open = !open;
+    }
+
+    @Override
+    public boolean passable() {
+        return open;
+    }
+
+    @Override
+    public boolean penetrable() {
+        return open;
     }
 }

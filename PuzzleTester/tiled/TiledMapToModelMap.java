@@ -1,8 +1,5 @@
-import model.*;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -22,13 +19,29 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
 
     @Override
     public Map apply(CustomTiledMap tiledMap) {
+
+        Protagonist protagonist = null;
         List<Tile> tiles = new ArrayList<>();
         List<Piece> pieces = new ArrayList<>();
 
         for (int y = 0; y < Constants.FIELD_HEIGHT; y++) {
             for (int x = 0; x < Constants.FIELD_WIDTH; x++) {
                 int tileId = tiledMap.getTileId(Position.fromCoordinates(x, y), Constants.LAYER_INDEX_TILES);
-                Tile tile = Tile.instance(x, y, Constants.TILE_ID_TO_TILE_TYPE.get(tileId));
+
+                Tile tile = null;
+
+                Class<? extends Tile> clazz = Constants.TILE_ID_TO_TILE_TYPE.get(tileId);
+
+                if (clazz == Wall.class) {
+                    tile = new Wall(x, y);
+                } else if (clazz == Floor.class) {
+                    tile = new Floor(x, y);
+                } else if (clazz == Obstacle.class) {
+                    tile = new Obstacle(x, y);
+                } else {
+                    throw new RuntimeException();
+                }
+
                 tiles.add(tile);
 
                 int dynamicPieceId = tiledMap.getTileId(Position.fromCoordinates(x, y), Constants.LAYER_INDEX_DYNAMIC_PIECES);
@@ -43,6 +56,13 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                     Switch aSwitch = new Switch(x, y);
                     pieces.add(aSwitch);
                 }
+
+                int protagonistTileId = tiledMap.getTileId(Position.fromCoordinates(x, y), Constants.LAYER_INDEX_ACTORS);
+
+                if (protagonistTileId == Constants.TILE_ID_PROTAGONIST) {
+                    protagonist = new Protagonist(x, y);
+                }
+
             }
         }
 
@@ -67,6 +87,6 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
             aSwitch.addSwitchable(switchable);
         }
 
-        return Map.instance(tiles, pieces);
+        return Map.instance(tiles, pieces, protagonist);
     }
 }
