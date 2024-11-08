@@ -19,6 +19,7 @@ public class Starter extends BasicGame {
         try {
             CustomTiledMap tiledMap = mapReader.readTiledMap("maps/map1.tmx");
             map = TiledMapToModelMap.instance().apply(tiledMap);
+            System.out.println(map.tileAtPosition(0, 19));
         } catch (TiledMapIoException e) {
             throw new RuntimeException(e);
         }

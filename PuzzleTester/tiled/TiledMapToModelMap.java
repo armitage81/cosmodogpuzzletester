@@ -26,19 +26,19 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
         List<Tile> tiles = new ArrayList<>();
         List<Piece> pieces = new ArrayList<>();
 
-        for (int i = 0; i < Constants.FIELD_WIDTH; i++) {
-            for (int j = 0; j < Constants.FIELD_HEIGHT; j++) {
-                int tileId = tiledMap.getTileId(Position.fromCoordinates(i, j), Constants.LAYER_INDEX_TILES);
-                Tile tile = Tile.instance(i, j, Constants.TILE_ID_TO_TILE_TYPE.get(tileId));
+        for (int y = 0; y < Constants.FIELD_HEIGHT; y++) {
+            for (int x = 0; x < Constants.FIELD_WIDTH; x++) {
+                int tileId = tiledMap.getTileId(Position.fromCoordinates(x, y), Constants.LAYER_INDEX_TILES);
+                Tile tile = Tile.instance(x, y, Constants.TILE_ID_TO_TILE_TYPE.get(tileId));
                 tiles.add(tile);
 
-                int dynamicPieceId = tiledMap.getTileId(Position.fromCoordinates(i, j), Constants.LAYER_INDEX_DYNAMIC_PIECES);
+                int dynamicPieceId = tiledMap.getTileId(Position.fromCoordinates(x, y), Constants.LAYER_INDEX_DYNAMIC_PIECES);
 
                 if (dynamicPieceId == Constants.TILE_ID_DOOR_OPEN) {
-                    Door door = new Door(i, j, true);
+                    Door door = new Door(x, y, true);
                     pieces.add(door);
                 } else if (dynamicPieceId == Constants.TILE_ID_DOOR_CLOSED) {
-                    Door door = new Door(i, j, false);
+                    Door door = new Door(x, y, false);
                     pieces.add(door);
                 }
             }
