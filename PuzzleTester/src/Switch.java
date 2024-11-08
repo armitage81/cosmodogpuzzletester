@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Switch extends DynamicPiece {
+public class Switch extends DynamicPiece implements Pressable {
 
     private final List<Switchable> switchables = new ArrayList<>();
 
@@ -25,5 +25,10 @@ public class Switch extends DynamicPiece {
 
     public List<Switchable> getSwitchables() {
         return switchables;
+    }
+
+    @Override
+    public void press(Protagonist protagonist) {
+        switchables.forEach(Switchable::switchToNextState);
     }
 }

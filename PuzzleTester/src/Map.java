@@ -23,6 +23,10 @@ public class Map {
         return tiles.get(x + y * Constants.FIELD_WIDTH);
     }
 
+
+    public Optional<Piece> pieceAtPosition(Position position) {
+        return pieceAtPosition((int)position.getX(), (int)position.getY());
+    }
     public Optional<Piece> pieceAtPosition(int x, int y) {
         return pieces.stream().filter(e -> e.positionX == x && e.positionY == y).findFirst();
     }

@@ -13,4 +13,5 @@ public class Protagonist extends Actor {
     public boolean penetrable() {
         return false;
     }
+
 }

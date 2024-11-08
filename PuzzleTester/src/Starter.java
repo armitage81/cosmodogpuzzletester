@@ -1,3 +1,6 @@
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,30 +37,68 @@ public class Starter extends BasicGame {
 
         Input input = gc.getInput();
 
-        boolean inputHappened = false;
+        boolean movementAttempt = false;
 
         if (input.isKeyPressed(Input.KEY_D)) {
             protagonist.setDirection(Actor.DirectionType.EAST);
-            inputHappened = true;
+            movementAttempt = true;
         } else if (input.isKeyPressed(Input.KEY_S)) {
             protagonist.setDirection(Actor.DirectionType.SOUTH);
-            inputHappened = true;
+            movementAttempt = true;
             lastInputTime = timestamp;
         } else if (input.isKeyPressed(Input.KEY_A)) {
-            inputHappened = true;
+            movementAttempt = true;
             protagonist.setDirection(Actor.DirectionType.WEST);
             lastInputTime = timestamp;
         } else if (input.isKeyPressed(Input.KEY_W)) {
-            inputHappened = true;
+            movementAttempt = true;
             protagonist.setDirection(Actor.DirectionType.NORTH);
             lastInputTime = timestamp;
         }
 
-        if (inputHappened) {
+        if (movementAttempt) {
             if (map.protagonistCanGoStraight(protagonist)) {
+
+                Position originalPosition = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
                 protagonist.goToEnvisionedPosition();
+                Position position = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
+
+                if (!position.equals(originalPosition)) {
+                    Optional<Piece> piece = map.pieceAtPosition(position);
+                    if (piece.isPresent() && piece.get() instanceof Pressable) {
+                        ((Pressable)piece.get()).press(protagonist);
+                    }
+                }
+
             }
             lastInputTime = timestamp;
+        }
+
+        if (input.isKeyPressed(Input.KEY_ENTER)) {
+            Position rayTargetPosition = map.rayTargetPosition(protagonist);
+            Optional<Piece> piece = map.pieceAtPosition(rayTargetPosition);
+            if (piece.isPresent() && piece.get() instanceof SmoothWall smoothWall) {
+                if (!smoothWall.hasPortal()) {
+                    List<SmoothWall> withPortals = map
+                            .pieces
+                            .stream()
+                            .filter(e -> e instanceof SmoothWall).map(e -> (SmoothWall)e)
+                            .filter(SmoothWall::hasPortal)
+                            .sorted(Comparator.comparingInt(SmoothWall::getPortalNumber))
+                            .toList();
+                    if (withPortals.size() == 2) {
+                        withPortals.get(0).setPortalNumber(0);
+                        withPortals.get(0).deactivatePortal();
+                        withPortals.get(1).setPortalNumber(1);
+                    }
+                    for (SmoothWall withPortal : withPortals) {
+                        withPortal.setPortalNumber(withPortal.getPortalNumber() - 1);
+                    }
+
+                    smoothWall.setPortalNumber((int)withPortals.stream().filter(SmoothWall::hasPortal).count() + 1);
+                    smoothWall.activatePortal();
+                }
+            }
         }
 
         input.clearKeyPressedRecord();
@@ -88,6 +129,8 @@ public class Starter extends BasicGame {
                 RenderingUtils.renderDoor(gc, g, piece.positionX, piece.positionY, (Door)piece);
             } else if (piece instanceof Switch) {
                 RenderingUtils.renderSwitch(gc, g, piece.positionX, piece.positionY, (Switch)piece);
+            } else if (piece instanceof SmoothWall) {
+                RenderingUtils.renderSmoothWall(gc, g, piece.positionX, piece.positionY, (SmoothWall)piece);
             }
 
         }

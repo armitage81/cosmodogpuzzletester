@@ -55,6 +55,9 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                 } else if (dynamicPieceId == Constants.TILE_ID_SWITCH) {
                     Switch aSwitch = new Switch(x, y);
                     pieces.add(aSwitch);
+                } else if (dynamicPieceId == Constants.TILE_ID_SMOOTH_WALL) {
+                    SmoothWall smoothWall = new SmoothWall(x, y);
+                    pieces.add(smoothWall);
                 }
 
                 int protagonistTileId = tiledMap.getTileId(Position.fromCoordinates(x, y), Constants.LAYER_INDEX_ACTORS);
