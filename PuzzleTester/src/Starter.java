@@ -2,7 +2,7 @@ import java.nio.file.Path;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import model.Tile;
+import model.*;
 import org.newdawn.slick.*;
 
 public class Starter extends BasicGame {
@@ -44,6 +44,16 @@ public class Starter extends BasicGame {
                     RenderingUtils.renderDefaultTile(gc, g, i, j);
                 }
             }
+        }
+
+        for (Piece piece : map.pieces) {
+
+            if (piece instanceof Door) {
+                RenderingUtils.renderDoor(gc, g, piece.positionX, piece.positionY, (Door)piece);
+            } else if (piece instanceof Switch) {
+                RenderingUtils.renderSwitch(gc, g, piece.positionX, piece.positionY, (Switch)piece);
+            }
+
         }
 
         RenderingUtils.resetTranslation(gc, g);

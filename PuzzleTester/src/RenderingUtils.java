@@ -1,7 +1,6 @@
-import jdk.jfr.consumer.RecordedObject;
 import model.Door;
+import model.Switch;
 import org.newdawn.slick.Color;
-import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 
@@ -42,6 +41,13 @@ public class RenderingUtils {
 
     public static void renderDoor(GameContainer gc, Graphics g, int positionX, int positionY, Door door) {
         g.setColor(new Color(door.open ? Color.green : Color.red));
+        g.fillRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+        g.setColor(new Color(Color.lightGray));
+        g.drawRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+    }
+
+    public static void renderSwitch(GameContainer gc, Graphics g, int positionX, int positionY, Switch aSwitch) {
+        g.setColor(new Color(Color.yellow));
         g.fillRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
         g.setColor(new Color(Color.lightGray));
         g.drawRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
