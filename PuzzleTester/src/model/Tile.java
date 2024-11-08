@@ -2,6 +2,11 @@ package model;
 
 public class Tile extends Element {
 
+    public Tile(int x, int y, TileType type) {
+        super(x, y);
+        this.type = type;
+    }
+
     public static enum TileType {
         EMPTY,
         WALL,
@@ -11,11 +16,11 @@ public class Tile extends Element {
     public TileType type;
 
     public static Tile instance(int positionX, int positionY, TileType type) {
-        Tile tile = new Tile();
-        tile.positionX = positionX;
-        tile.positionY = positionY;
-        tile.type = type;
-        return tile;
+        return new Tile(positionX, positionY, type);
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + ": " + type;
+    }
 }

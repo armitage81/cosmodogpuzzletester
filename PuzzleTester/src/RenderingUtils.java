@@ -1,5 +1,7 @@
+import jdk.jfr.consumer.RecordedObject;
 import model.Door;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 

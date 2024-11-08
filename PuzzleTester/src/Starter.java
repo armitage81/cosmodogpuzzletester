@@ -7,7 +7,7 @@ import org.newdawn.slick.*;
 
 public class Starter extends BasicGame {
 
-    private CustomTiledMap map;
+    private Map map;
 
     public Starter(String name) {
         super(name);
@@ -17,7 +17,8 @@ public class Starter extends BasicGame {
     public void init(GameContainer gc) throws SlickException {
         TiledMapReader mapReader = new XmlTiledMapReader();
         try {
-            map = mapReader.readTiledMap("maps/map1.tmx");
+            CustomTiledMap tiledMap = mapReader.readTiledMap("maps/map1.tmx");
+            map = TiledMapToModelMap.instance().apply(tiledMap);
         } catch (TiledMapIoException e) {
             throw new RuntimeException(e);
         }
@@ -33,16 +34,14 @@ public class Starter extends BasicGame {
 
         for (int i = 0 ; i < Constants.FIELD_WIDTH ; i++) {
             for (int j = 0 ; j < Constants.FIELD_HEIGHT ; j++) {
-                int tileId = map.getTileId(Position.fromCoordinates(i, j),0);
-                if (tileId == 1) {
+                Tile.TileType tileType = map.tileAtPosition(i, j).type;
+                if (tileType == Tile.TileType.WALL) {
                     RenderingUtils.renderWall(gc, g, i, j);
-                } else if (tileId == 3) {
+                } else if (tileType == Tile.TileType.OBSTACLE) {
                     RenderingUtils.renderObstacle(gc, g, i, j);
                 } else {
                     RenderingUtils.renderDefaultTile(gc, g, i, j);
                 }
-
-
             }
         }
 

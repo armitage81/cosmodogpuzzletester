@@ -3,6 +3,7 @@ import model.Tile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Map {
 
@@ -20,5 +21,8 @@ public class Map {
         return tiles.get(x + y * Constants.FIELD_WIDTH);
     }
 
+    public Optional<Piece> pieceAtPosition(int x, int y) {
+        return pieces.stream().filter(e -> e.positionX == x && e.positionY == y).findFirst();
+    }
 
 }
