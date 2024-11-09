@@ -1,12 +1,15 @@
+import com.google.common.collect.Lists;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class Map {
 
-    Protagonist protagonist;
-    List<Tile> tiles = new ArrayList<>();
-    List<Piece> pieces = new ArrayList<>();
+    private Protagonist protagonist;
+    private List<Tile> tiles = new ArrayList<>();
+    private List<Piece> pieces = new ArrayList<>();
+    private FixedSizeQueue<Portal> portals = new FixedSizeQueue<Portal>(2);
 
     public static Map instance(List<Tile> tiles, List<Piece> pieces, Protagonist protagonist) {
         Map map = new Map();
@@ -14,6 +17,27 @@ public class Map {
         map.pieces = pieces;
         map.protagonist = protagonist;
         return map;
+    }
+
+    public List<Piece> getPieces() {
+        return pieces;
+    }
+
+    public void createPortal(Portal portal) {
+        portals.offer(portal);
+    }
+
+    public List<Portal> portals() {
+        return Lists.newArrayList(portals.iterator());
+    }
+
+    public boolean portalExists(Position position, DirectionType directionType) {
+        for (Portal portal : portals) {
+            if (portal.position.equals(position) && portal.directionType == directionType) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Tile tileAtPosition(Position position) {
@@ -51,20 +75,20 @@ public class Map {
         List<Position> positionsWithRay = new ArrayList<>();
 
         Position nextPosition = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
-        Actor.DirectionType directionType = protagonist.getDirection();
-        if (directionType == Actor.DirectionType.EAST) {
+        DirectionType directionType = protagonist.getDirection();
+        if (directionType == DirectionType.EAST) {
             nextPosition = nextPosition.shifted(1, 0);
             while (positionPenetrable(nextPosition)) {
                 positionsWithRay.add(nextPosition);
                 nextPosition = nextPosition.shifted(1, 0);
             }
-        } else if (directionType == Actor.DirectionType.WEST) {
+        } else if (directionType == DirectionType.WEST) {
             nextPosition = nextPosition.shifted(-1, 0);
             while (positionPenetrable(nextPosition)) {
                 positionsWithRay.add(nextPosition);
                 nextPosition = nextPosition.shifted(-1, 0);
             }
-        } else if (directionType == Actor.DirectionType.NORTH) {
+        } else if (directionType == DirectionType.NORTH) {
             nextPosition = nextPosition.shifted(0, -1);
             while (positionPenetrable(nextPosition)) {
                 positionsWithRay.add(nextPosition);
@@ -83,18 +107,18 @@ public class Map {
     public Position rayTargetPosition(Protagonist protagonist) {
 
         Position nextPosition = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
-        Actor.DirectionType directionType = protagonist.getDirection();
-        if (directionType == Actor.DirectionType.EAST) {
+        DirectionType directionType = protagonist.getDirection();
+        if (directionType == DirectionType.EAST) {
             nextPosition = nextPosition.shifted(1, 0);
             while (positionPenetrable(nextPosition)) {
                 nextPosition = nextPosition.shifted(1, 0);
             }
-        } else if (directionType == Actor.DirectionType.WEST) {
+        } else if (directionType == DirectionType.WEST) {
             nextPosition = nextPosition.shifted(-1, 0);
             while (positionPenetrable(nextPosition)) {
                 nextPosition = nextPosition.shifted(-1, 0);
             }
-        } else if (directionType == Actor.DirectionType.NORTH) {
+        } else if (directionType == DirectionType.NORTH) {
             nextPosition = nextPosition.shifted(0, -1);
             while (positionPenetrable(nextPosition)) {
                 nextPosition = nextPosition.shifted(0, -1);

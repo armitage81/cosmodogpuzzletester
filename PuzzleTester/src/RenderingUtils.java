@@ -33,14 +33,25 @@ public class RenderingUtils {
         g.drawLine((positionX + 1) * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, positionX * Constants.TILE_SIZE, (positionY + 1) * Constants.TILE_SIZE);
     }
 
-    public static void renderSmoothWall(GameContainer gc, Graphics g, int positionX, int positionY, SmoothWall smoothWall) {
+    public static void renderSmoothWall(GameContainer gc, Graphics g, int positionX, int positionY, Map map) {
         g.setColor(new Color(Color.lightGray));
         g.fillRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
-        if (smoothWall.hasPortal()) {
-            long time = System.currentTimeMillis() / 250;
-            if (time % 2 == 0) {
-                g.setColor(new Color(Color.orange));
-                g.fillRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+
+        long time = System.currentTimeMillis() / 250;
+        if (time % 2 == 0) {
+            g.setColor(new Color(Color.orange));
+            Position position = Position.fromCoordinates(positionX, positionY);
+            if (map.portalExists(position, DirectionType.NORTH)) {
+                g.fillRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE / 2f);
+            }
+            if (map.portalExists(position, DirectionType.SOUTH)) {
+                g.fillRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE + Constants.TILE_SIZE / 2f, Constants.TILE_SIZE, Constants.TILE_SIZE / 2f);
+            }
+            if (map.portalExists(position, DirectionType.WEST)) {
+                g.fillRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE / 2f, Constants.TILE_SIZE);
+            }
+            if (map.portalExists(position, DirectionType.EAST)) {
+                g.fillRect(positionX * Constants.TILE_SIZE + Constants.TILE_SIZE / 2f, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE / 2f, Constants.TILE_SIZE);
             }
         }
         g.setColor(new Color(Color.black));

@@ -28,15 +28,15 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
             for (int x = 0; x < Constants.FIELD_WIDTH; x++) {
                 int tileId = tiledMap.getTileId(Position.fromCoordinates(x, y), Constants.LAYER_INDEX_TILES);
 
-                Tile tile = null;
+                Tile tile;
 
-                Class<? extends Tile> clazz = Constants.TILE_ID_TO_TILE_TYPE.get(tileId);
-
-                if (clazz == Wall.class) {
+                if (tileId == Constants.TILE_ID_WALL) {
                     tile = new Wall(x, y);
-                } else if (clazz == Floor.class) {
+                } else if (tileId == Constants.TILE_ID_SMOOTH_WALL) {
+                    tile = new SmoothWall(x, y);
+                }else if (tileId == Constants.TILE_ID_EMPTY) {
                     tile = new Floor(x, y);
-                } else if (clazz == Obstacle.class) {
+                } else if (tileId == Constants.TILE_ID_OBSTACLE) {
                     tile = new Obstacle(x, y);
                 } else {
                     throw new RuntimeException();
@@ -55,9 +55,6 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                 } else if (dynamicPieceId == Constants.TILE_ID_SWITCH) {
                     Switch aSwitch = new Switch(x, y);
                     pieces.add(aSwitch);
-                } else if (dynamicPieceId == Constants.TILE_ID_SMOOTH_WALL) {
-                    SmoothWall smoothWall = new SmoothWall(x, y);
-                    pieces.add(smoothWall);
                 }
 
                 int protagonistTileId = tiledMap.getTileId(Position.fromCoordinates(x, y), Constants.LAYER_INDEX_ACTORS);

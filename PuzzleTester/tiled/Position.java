@@ -96,5 +96,24 @@ public class Position implements Serializable {
 	public String toString() {
 		return x + "/" + y;
 	}
-	
+
+	public DirectionType facingDirection(Position reference) {
+		float deltaX = reference.x - this.x;
+		float deltaY = reference.y - this.y;
+		if (deltaX <= deltaY) {
+			return deltaY <= 0 ? DirectionType.NORTH : DirectionType.SOUTH;
+		} else {
+			return deltaX <= 0 ? DirectionType.WEST : DirectionType.EAST;
+		}
+	}
+
+	public static void main(String[] args) {
+		Position ref = Position.fromCoordinates(3, 3);
+		Position other;
+
+		other = Position.fromCoordinates(3, 3);
+		System.out.println(ref.facingDirection(other));
+
+	}
+
 }

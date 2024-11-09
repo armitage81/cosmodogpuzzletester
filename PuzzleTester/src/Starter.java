@@ -8,8 +8,6 @@ import org.newdawn.slick.*;
 
 public class Starter extends BasicGame {
 
-    private long lastInputTime = 0;
-
     private Map map;
 
     public Starter(String name) {
@@ -39,26 +37,22 @@ public class Starter extends BasicGame {
 
         boolean movementAttempt = false;
 
-        if (input.isKeyPressed(Input.KEY_D)) {
-            protagonist.setDirection(Actor.DirectionType.EAST);
+        if (input.isKeyPressed(Input.KEY_RIGHT)) {
+            protagonist.setDirection(DirectionType.EAST);
             movementAttempt = true;
-        } else if (input.isKeyPressed(Input.KEY_S)) {
-            protagonist.setDirection(Actor.DirectionType.SOUTH);
+        } else if (input.isKeyPressed(Input.KEY_DOWN)) {
+            protagonist.setDirection(DirectionType.SOUTH);
             movementAttempt = true;
-            lastInputTime = timestamp;
-        } else if (input.isKeyPressed(Input.KEY_A)) {
+        } else if (input.isKeyPressed(Input.KEY_LEFT)) {
             movementAttempt = true;
-            protagonist.setDirection(Actor.DirectionType.WEST);
-            lastInputTime = timestamp;
-        } else if (input.isKeyPressed(Input.KEY_W)) {
+            protagonist.setDirection(DirectionType.WEST);
+        } else if (input.isKeyPressed(Input.KEY_UP)) {
             movementAttempt = true;
-            protagonist.setDirection(Actor.DirectionType.NORTH);
-            lastInputTime = timestamp;
+            protagonist.setDirection(DirectionType.NORTH);
         }
 
         if (movementAttempt) {
             if (map.protagonistCanGoStraight(protagonist)) {
-
                 Position originalPosition = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
                 protagonist.goToEnvisionedPosition();
                 Position position = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
@@ -69,34 +63,17 @@ public class Starter extends BasicGame {
                         ((Pressable)piece.get()).press(protagonist);
                     }
                 }
-
             }
-            lastInputTime = timestamp;
         }
 
         if (input.isKeyPressed(Input.KEY_ENTER)) {
             Position rayTargetPosition = map.rayTargetPosition(protagonist);
-            Optional<Piece> piece = map.pieceAtPosition(rayTargetPosition);
-            if (piece.isPresent() && piece.get() instanceof SmoothWall smoothWall) {
-                if (!smoothWall.hasPortal()) {
-                    List<SmoothWall> withPortals = map
-                            .pieces
-                            .stream()
-                            .filter(e -> e instanceof SmoothWall).map(e -> (SmoothWall)e)
-                            .filter(SmoothWall::hasPortal)
-                            .sorted(Comparator.comparingInt(SmoothWall::getPortalNumber))
-                            .toList();
-                    if (withPortals.size() == 2) {
-                        withPortals.get(0).setPortalNumber(0);
-                        withPortals.get(0).deactivatePortal();
-                        withPortals.get(1).setPortalNumber(1);
-                    }
-                    for (SmoothWall withPortal : withPortals) {
-                        withPortal.setPortalNumber(withPortal.getPortalNumber() - 1);
-                    }
-
-                    smoothWall.setPortalNumber((int)withPortals.stream().filter(SmoothWall::hasPortal).count() + 1);
-                    smoothWall.activatePortal();
+            Tile tile = map.tileAtPosition(rayTargetPosition);
+            if (tile instanceof SmoothWall smoothWall) {
+                DirectionType directionFacingPlayer = DirectionType.reverse(protagonist.getDirection());
+                if (!map.portalExists(rayTargetPosition, directionFacingPlayer)) {
+                    Portal portal = new Portal(rayTargetPosition, directionFacingPlayer);
+                    map.createPortal(portal);
                 }
             }
         }
@@ -117,20 +94,20 @@ public class Starter extends BasicGame {
                     RenderingUtils.renderWall(gc, g, i, j);
                 } else if (tile instanceof Obstacle) {
                     RenderingUtils.renderObstacle(gc, g, i, j);
+                } else if (tile instanceof SmoothWall) {
+                    RenderingUtils.renderSmoothWall(gc, g, i, j, map);
                 } else {
                     RenderingUtils.renderDefaultTile(gc, g, i, j);
                 }
             }
         }
 
-        for (Piece piece : map.pieces) {
+        for (Piece piece : map.getPieces()) {
 
             if (piece instanceof Door) {
                 RenderingUtils.renderDoor(gc, g, piece.positionX, piece.positionY, (Door)piece);
             } else if (piece instanceof Switch) {
                 RenderingUtils.renderSwitch(gc, g, piece.positionX, piece.positionY, (Switch)piece);
-            } else if (piece instanceof SmoothWall) {
-                RenderingUtils.renderSmoothWall(gc, g, piece.positionX, piece.positionY, (SmoothWall)piece);
             }
 
         }

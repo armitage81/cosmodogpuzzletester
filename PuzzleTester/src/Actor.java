@@ -1,11 +1,6 @@
 public abstract class Actor extends Piece {
 
-    public static enum DirectionType {
-        NORTH,
-        EAST,
-        SOUTH,
-        WEST
-    }
+
 
     private DirectionType direction;
 
@@ -25,12 +20,12 @@ public abstract class Actor extends Piece {
 
     public Position envisionedPosition() {
         Position envisionedPosition = Position.fromCoordinates(positionX, positionY);
-        Actor.DirectionType direction = getDirection();
-        if (direction == Actor.DirectionType.EAST) {
+        DirectionType direction = getDirection();
+        if (direction == DirectionType.EAST) {
             envisionedPosition = envisionedPosition.shifted(1, 0);
-        } else if (direction == Actor.DirectionType.WEST) {
+        } else if (direction == DirectionType.WEST) {
             envisionedPosition = envisionedPosition.shifted(-1, 0);
-        } else if (direction == Actor.DirectionType.NORTH) {
+        } else if (direction == DirectionType.NORTH) {
             envisionedPosition = envisionedPosition.shifted(0, -1);
         } else {
             envisionedPosition = envisionedPosition.shifted(0, 1);
