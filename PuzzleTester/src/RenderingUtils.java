@@ -65,6 +65,15 @@ public class RenderingUtils {
         g.drawRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
+    public static void renderExit(GameContainer gc, Graphics g, int positionX, int positionY) {
+        renderDefaultTile(gc, g, positionX, positionY);
+        g.setColor(new Color(Color.red));
+        g.setLineWidth(3);
+        g.drawLine(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, (positionX + 1) * Constants.TILE_SIZE, (positionY + 1) * Constants.TILE_SIZE);
+        g.drawLine((positionX + 1) * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, positionX * Constants.TILE_SIZE, (positionY + 1) * Constants.TILE_SIZE);
+        g.setLineWidth(1);
+    }
+
     public static void renderDoor(GameContainer gc, Graphics g, int positionX, int positionY, Door door) {
         g.setColor(new Color(door.open ? Color.green : Color.red));
         g.fillRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);

@@ -14,6 +14,7 @@ public class Constants {
     public static final int TILE_ID_WALL = 1;
     public static final int TILE_ID_OBSTACLE = 3;
     public static final int TILE_ID_SMOOTH_WALL = 7;
+    public static final int TILE_ID_EXIT = 8;
 
     public static final int TILE_ID_DOOR_OPEN = 4;
     public static final int TILE_ID_DOOR_CLOSED = 2;

@@ -38,6 +38,8 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                     tile = new Floor(x, y);
                 } else if (tileId == Constants.TILE_ID_OBSTACLE) {
                     tile = new Obstacle(x, y);
+                } else if (tileId == Constants.TILE_ID_EXIT) {
+                    tile = new Exit(x, y);
                 } else {
                     throw new RuntimeException();
                 }

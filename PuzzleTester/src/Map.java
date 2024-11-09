@@ -132,8 +132,45 @@ public class Map {
         return nextPosition;
     }
 
+    public Position protagonistsEnvisionedPosition(Protagonist protagonist) {
+
+        Position envisionedPosition;
+
+        Position protagonistsPosition = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
+        DirectionType protagonistsDirection = protagonist.getDirection();
+
+        Position facedAdjacentPosition = DirectionType.facedAdjacentPosition(protagonistsPosition, protagonistsDirection);
+
+        DirectionType directionFacingProtagonist = DirectionType.reverse(protagonist.getDirection());
+
+        if (portalExists(facedAdjacentPosition, directionFacingProtagonist)) {
+            Optional<Portal> otherPortal = Optional.empty();
+            for (Portal portal : portals()) {
+                if (!portal.position.equals(facedAdjacentPosition) || portal.directionType != directionFacingProtagonist) {
+                    otherPortal = Optional.of(portal);
+                    break;
+                }
+            }
+            if (otherPortal.isPresent()) {
+                envisionedPosition = DirectionType.facedAdjacentPosition(otherPortal.get().position, otherPortal.get().directionType);
+            } else {
+                envisionedPosition = facedAdjacentPosition;
+            }
+        } else {
+            envisionedPosition = facedAdjacentPosition;
+        }
+
+        return envisionedPosition;
+    }
+
+    public void goToEnvisionedPosition(Protagonist protagonist) {
+        Position envisionedPosition = protagonistsEnvisionedPosition(protagonist);
+        protagonist.positionX = (int)envisionedPosition.getX();
+        protagonist.positionY = (int)envisionedPosition.getY();
+    }
+
     public boolean protagonistCanGoStraight(Protagonist protagonist) {
-        return positionPassable(protagonist.envisionedPosition());
+        return positionPassable(protagonistsEnvisionedPosition(protagonist));
     }
 
 }

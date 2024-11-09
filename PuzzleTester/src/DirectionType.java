@@ -16,4 +16,21 @@ public enum DirectionType {
         }
         throw new RuntimeException();
     }
+
+    public static Position facedAdjacentPosition(Position position, DirectionType direction) {
+
+        Position facedAdjacentPosition = position;
+
+        if (direction == DirectionType.EAST) {
+            facedAdjacentPosition = position.shifted(1, 0);
+        } else if (direction == DirectionType.WEST) {
+            facedAdjacentPosition = position.shifted(-1, 0);
+        } else if (direction == DirectionType.NORTH) {
+            facedAdjacentPosition = position.shifted(0, -1);
+        } else {
+            facedAdjacentPosition = position.shifted(0, 1);
+        }
+
+        return facedAdjacentPosition;
+    }
 }

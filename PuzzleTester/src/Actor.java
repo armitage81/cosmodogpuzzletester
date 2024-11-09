@@ -18,26 +18,4 @@ public abstract class Actor extends Piece {
         this.direction = direction;
     }
 
-    public Position envisionedPosition() {
-        Position envisionedPosition = Position.fromCoordinates(positionX, positionY);
-        DirectionType direction = getDirection();
-        if (direction == DirectionType.EAST) {
-            envisionedPosition = envisionedPosition.shifted(1, 0);
-        } else if (direction == DirectionType.WEST) {
-            envisionedPosition = envisionedPosition.shifted(-1, 0);
-        } else if (direction == DirectionType.NORTH) {
-            envisionedPosition = envisionedPosition.shifted(0, -1);
-        } else {
-            envisionedPosition = envisionedPosition.shifted(0, 1);
-        }
-        return envisionedPosition;
-    }
-
-    public void goToEnvisionedPosition() {
-        Position envisionedPosition = envisionedPosition();
-        this.positionX = (int)envisionedPosition.getX();
-        this.positionY = (int)envisionedPosition.getY();
-    }
-
-
 }

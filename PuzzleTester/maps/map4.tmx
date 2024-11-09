@@ -5,22 +5,22 @@
  </tileset>
  <layer id="1" name="tiles" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3WsQoAIAhFUdv6/y9udTEMB31xD7Q4XQJBMwBAxrq8CaIO+nLoq1Ho8/vK/r6hr0apbwfzTgr/N/k+AIBfHJAOir/AEgAA
+   H4sIAAAAAAAACu3SMQoAIAxDUcWh3v/E4ipVi2jr8B9kkUA6mBIA4EQ2JooYOty33h5TlLcos7/20303Oq9o29XQ8dK3ZZPI+wAAALw1joO7fsASAAA=
   </data>
  </layer>
  <layer id="2" name="pieces" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3OsQ0AAAQAMJH4/2U3WBi0FzQCAPbVdYC38joAAMBYA9vNlwjAEgAA
+   H4sIAAAAAAAACu3OMQkAAAgAMBHsX9kSiodbgkUA8FFdBxiX1wEAAFjSF8GjH8ASAAA=
   </data>
  </layer>
  <layer id="3" name="actors" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3OMQkAAAwDsF7zL3kySiFRkAQAWHDtAAAAlDzFkVRpwBIAAA==
+   H4sIAAAAAAAACu3OMQ0AAAgDsF34l4yIHSSkVdAEgM/mOgAAAFBazX4RqMASAAA=
   </data>
  </layer>
  <objectgroup id="5" name="connectors">
-  <object id="6" name="001" x="263.5" y="167.5">
-   <polyline points="0,0 -18,64.5"/>
+  <object id="6" x="391.409" y="151.239">
+   <polyline points="0,0 -48.7137,50.413"/>
   </object>
  </objectgroup>
 </map>

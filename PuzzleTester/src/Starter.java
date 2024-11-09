@@ -1,33 +1,49 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 import org.newdawn.slick.*;
 
 public class Starter extends BasicGame {
 
-    private Map map;
+    private List<Map> maps = new ArrayList<>();
 
     public Starter(String name) {
         super(name);
+        TiledMapReader mapReader = new XmlTiledMapReader();
+
+        Path mapDir = Path.of("maps");
+        try (Stream<Path> stream = Files.list(mapDir).filter(e -> e.getFileName().toString().endsWith(".tmx"))) {
+
+            List<Path> mapPaths = stream.toList();
+            for (Path mapPath : mapPaths) {
+                CustomTiledMap tiledMap = mapReader.readTiledMap(mapPath.toString());
+                Map map = TiledMapToModelMap.instance().apply(tiledMap);
+                maps.add(map);
+            }
+
+        } catch (IOException | TiledMapIoException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override
     public void init(GameContainer gc) throws SlickException {
-        TiledMapReader mapReader = new XmlTiledMapReader();
-        try {
-            CustomTiledMap tiledMap = mapReader.readTiledMap("maps/map1.tmx");
-            map = TiledMapToModelMap.instance().apply(tiledMap);
-            System.out.println(map.tileAtPosition(0, 19));
-        } catch (TiledMapIoException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     @Override
     public void update(GameContainer gc, int i) throws SlickException {
+        Map map = maps.getFirst();
 
         long timestamp = System.currentTimeMillis();
 
@@ -54,7 +70,7 @@ public class Starter extends BasicGame {
         if (movementAttempt) {
             if (map.protagonistCanGoStraight(protagonist)) {
                 Position originalPosition = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
-                protagonist.goToEnvisionedPosition();
+                map.goToEnvisionedPosition(protagonist);
                 Position position = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
 
                 if (!position.equals(originalPosition)) {
@@ -62,11 +78,19 @@ public class Starter extends BasicGame {
                     if (piece.isPresent() && piece.get() instanceof Pressable) {
                         ((Pressable)piece.get()).press(protagonist);
                     }
+                    Tile tile = map.tileAtPosition(protagonist.positionX, protagonist.positionY);
+                    if (tile instanceof Exit) {
+                        maps.removeFirst();
+                        if (maps.isEmpty()) {
+                            System.exit(0);
+                        }
+                        map = maps.getFirst();
+                    }
                 }
             }
         }
 
-        if (input.isKeyPressed(Input.KEY_ENTER)) {
+        if (input.isKeyPressed(Input.KEY_SPACE)) {
             Position rayTargetPosition = map.rayTargetPosition(protagonist);
             Tile tile = map.tileAtPosition(rayTargetPosition);
             if (tile instanceof SmoothWall smoothWall) {
@@ -84,6 +108,7 @@ public class Starter extends BasicGame {
 
     @Override
     public void render(GameContainer gc, Graphics g) throws SlickException {
+        Map map = maps.getFirst();
 
         RenderingUtils.translateToOffset(gc, g);
 
@@ -96,6 +121,8 @@ public class Starter extends BasicGame {
                     RenderingUtils.renderObstacle(gc, g, i, j);
                 } else if (tile instanceof SmoothWall) {
                     RenderingUtils.renderSmoothWall(gc, g, i, j, map);
+                } else if (tile instanceof Exit) {
+                    RenderingUtils.renderExit(gc, g, i, j);
                 } else {
                     RenderingUtils.renderDefaultTile(gc, g, i, j);
                 }
