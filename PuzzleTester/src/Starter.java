@@ -76,7 +76,7 @@ public class Starter extends BasicGame {
                 if (!position.equals(originalPosition)) {
                     Optional<Piece> piece = map.pieceAtPosition(position);
                     if (piece.isPresent() && piece.get() instanceof Pressable) {
-                        ((Pressable)piece.get()).press(protagonist);
+                        ((Pressable)piece.get()).press(map, protagonist);
                     }
                     Tile tile = map.tileAtPosition(protagonist.positionX, protagonist.positionY);
                     if (tile instanceof Exit) {
@@ -137,6 +137,8 @@ public class Starter extends BasicGame {
                 RenderingUtils.renderDoor(gc, g, piece.positionX, piece.positionY, (Door)piece);
             } else if (piece instanceof Switch) {
                 RenderingUtils.renderSwitch(gc, g, piece.positionX, piece.positionY, (Switch)piece);
+            } else if (piece instanceof Jammer) {
+                RenderingUtils.renderJammer(gc, g, piece.positionX, piece.positionY, (Jammer)piece);
             }
 
         }

@@ -20,6 +20,7 @@ public class Constants {
     public static final int TILE_ID_DOOR_OPEN = 4;
     public static final int TILE_ID_DOOR_CLOSED = 2;
     public static final int TILE_ID_SWITCH = 5;
+    public static final int TILE_ID_JAMMER = 19;
 
 
     public static final int TILE_ID_PROTAGONIST = 6;

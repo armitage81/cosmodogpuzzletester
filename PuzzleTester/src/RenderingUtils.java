@@ -96,6 +96,13 @@ public class RenderingUtils {
         g.drawRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
+    public static void renderJammer(GameContainer gc, Graphics g, int positionX, int positionY, Jammer jammer) {
+        g.setColor(new Color(Color.red));
+        g.fillOval(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+        g.setColor(new Color(Color.white));
+        g.fillRect(positionX * Constants.TILE_SIZE + 6, positionY * Constants.TILE_SIZE + 12, Constants.TILE_SIZE - 12, Constants.TILE_SIZE - 24);
+    }
+
     public static void renderProtagonist(GameContainer gc, Graphics g, int positionX, int positionY, Protagonist protagonist) {
         long timestamp = System.currentTimeMillis() / 250;
         boolean blinking = timestamp % 2 == 0;

@@ -28,7 +28,7 @@ public class Switch extends DynamicPiece implements Pressable {
     }
 
     @Override
-    public void press(Protagonist protagonist) {
+    public void press(Map map, Protagonist protagonist) {
         switchables.forEach(Switchable::switchToNextState);
     }
 }

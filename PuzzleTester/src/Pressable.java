@@ -1,5 +1,5 @@
 public interface Pressable {
 
-    void press(Protagonist protagonist);
+    void press(Map map, Protagonist protagonist);
 
 }

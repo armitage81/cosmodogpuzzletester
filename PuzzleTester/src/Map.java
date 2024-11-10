@@ -27,6 +27,10 @@ public class Map {
         portals.offer(portal);
     }
 
+    public void clearPortals() {
+        portals.clear();
+    }
+
     public List<Portal> portals() {
         return Lists.newArrayList(portals.iterator());
     }
