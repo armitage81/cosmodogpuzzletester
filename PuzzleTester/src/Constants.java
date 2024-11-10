@@ -3,7 +3,7 @@ import java.util.HashMap;
 public class Constants {
     public static final int FIELD_WIDTH = 40;
     public static final int FIELD_HEIGHT = 30;
-    public static final int TILE_SIZE = 20;
+    public static final int TILE_SIZE = 30;
 
     public static final int LAYER_INDEX_TILES = 0;
     public static final int LAYER_INDEX_DYNAMIC_PIECES = 1;
@@ -15,6 +15,7 @@ public class Constants {
     public static final int TILE_ID_OBSTACLE = 3;
     public static final int TILE_ID_SMOOTH_WALL = 7;
     public static final int TILE_ID_EXIT = 8;
+    public static final int TILE_ID_SMOKE = 9;
 
     public static final int TILE_ID_DOOR_OPEN = 4;
     public static final int TILE_ID_DOOR_CLOSED = 2;

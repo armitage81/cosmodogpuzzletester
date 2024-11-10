@@ -65,6 +65,14 @@ public class RenderingUtils {
         g.drawRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
+    public static void renderSmoke(GameContainer gc, Graphics g, int positionX, int positionY) {
+
+        long timestamp = System.currentTimeMillis() / 250;
+
+        g.setColor(new Color(timestamp % 2 == 0 ? Color.lightGray : Color.darkGray));
+        g.fillRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+    }
+
     public static void renderExit(GameContainer gc, Graphics g, int positionX, int positionY) {
         renderDefaultTile(gc, g, positionX, positionY);
         g.setColor(new Color(Color.red));

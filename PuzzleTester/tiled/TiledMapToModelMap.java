@@ -40,6 +40,8 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                     tile = new Obstacle(x, y);
                 } else if (tileId == Constants.TILE_ID_EXIT) {
                     tile = new Exit(x, y);
+                } else if (tileId == Constants.TILE_ID_SMOKE) {
+                    tile = new Smoke(x, y);
                 } else {
                     throw new RuntimeException();
                 }

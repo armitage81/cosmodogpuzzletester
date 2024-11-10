@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="9">
+ <editorsettings>
+  <export target="../../../../Users/User/Desktop/001..tmx" format="tmx"/>
+ </editorsettings>
+ <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="81" columns="9">
+  <image source="tiles.png" width="144" height="144"/>
+ </tileset>
+ <layer id="1" name="tiles" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu2T0QrAIAhFHT00//+Hx6BALtsq1tLBPSCE+HC4qQghhJAetsHy8Ptidhb0e0d0vzww65Vf6iwvPy2VSk9vet77d7rY/1boRfCzKPS8/Go+6Ie9kVuaBeYX8T4qrfwi+eH94uwqnvLLEsOvtXd2djX1Jne53j+LV36tyuZNyJ85AGyoRzfAEgAA
+  </data>
+ </layer>
+ <layer id="2" name="pieces" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3RMQoAIAwEwRDw/1+2SWlhlYjMlFsdXAQAAPxvTQ8oedk4e+VHAHptlm0Z38ASAAA=
+  </data>
+ </layer>
+ <layer id="3" name="actors" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3OMQkAAAwDsF7zL3kySiFRkAQAWHDtAAAAlDzFkVRpwBIAAA==
+  </data>
+ </layer>
+ <objectgroup id="5" name="connectors">
+  <object id="7" name="001" x="361.5" y="281.5">
+   <polyline points="0,0 -98.75,13.25"/>
+  </object>
+  <object id="8" name="002" x="263.75" y="328.5">
+   <polyline points="0,0 80.25,-31.75"/>
+  </object>
+ </objectgroup>
+</map>

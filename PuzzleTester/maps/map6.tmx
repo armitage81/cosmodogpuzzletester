@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="8">
+ <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="81" columns="9">
+  <image source="tiles.png" width="144" height="144"/>
+ </tileset>
+ <layer id="1" name="tiles" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACmNgGAWjYBSMgsEBGKmAae2+gdRPa/PZqeIK3GC4h9+o+wZWPzHmM1OA6RV+zEh8dgIYXT093UcsgKmnV/mCy30cOMSHSvjRw33sDIO3/h0Fo2AUjIJRMApAAAB54DoHwBIAAA==
+  </data>
+ </layer>
+ <layer id="2" name="pieces" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3BMQEAAADCoPVPbQ0PoAAAAADg1wAW4j6/wBIAAA==
+  </data>
+ </layer>
+ <layer id="3" name="actors" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3OMQ0AAAgDsF34l4yIHSSkVdAEgO/mOgAAAFBYaElks8ASAAA=
+  </data>
+ </layer>
+ <objectgroup id="5" name="connectors"/>
+</map>

@@ -81,7 +81,7 @@ public class Starter extends BasicGame {
                     Tile tile = map.tileAtPosition(protagonist.positionX, protagonist.positionY);
                     if (tile instanceof Exit) {
                         maps.removeFirst();
-                        if (maps.isEmpty()) {
+                        if (    maps.isEmpty()) {
                             System.exit(0);
                         }
                         map = maps.getFirst();
@@ -123,7 +123,9 @@ public class Starter extends BasicGame {
                     RenderingUtils.renderSmoothWall(gc, g, i, j, map);
                 } else if (tile instanceof Exit) {
                     RenderingUtils.renderExit(gc, g, i, j);
-                } else {
+                } else if (tile instanceof Smoke) {
+                    RenderingUtils.renderSmoke(gc, g, i, j);
+                }else {
                     RenderingUtils.renderDefaultTile(gc, g, i, j);
                 }
             }
@@ -151,7 +153,7 @@ public class Starter extends BasicGame {
         {
             AppGameContainer appgc;
             appgc = new AppGameContainer(new Starter("Application"));
-            appgc.setDisplayMode(1080, 720, false);
+            appgc.setDisplayMode(1600, 900, false);
             appgc.start();
         }
         catch (SlickException ex) {

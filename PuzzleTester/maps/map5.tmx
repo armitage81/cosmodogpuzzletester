@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="19">
+ <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="81" columns="9">
+  <image source="tiles.png" width="144" height="144"/>
+ </tileset>
+ <layer id="1" name="tiles" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3TSwoAIAhFURvZ/lfcKAjBPkQ/ugekqEEPSREAwK1CR2njfiV1zu37Xg7yjYvF/mT/8lr7Z7/nm5nbHfMLAADwkgQsy8CwwBIAAA==
+  </data>
+ </layer>
+ <layer id="2" name="pieces" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3RwQoAEBRE0Zf4/1+m7GywEOqcmv2tiQCAc8rtgOgNL3Ssym1pGHt++hsAgLkKDiKjAsASAAA=
+  </data>
+ </layer>
+ <layer id="3" name="actors" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3OMQEAAAwCIK/1j7wYekACEgCg6doBAAAY9yqaTtnAEgAA
+  </data>
+ </layer>
+ <objectgroup id="5" name="connectors">
+  <object id="9" name="010" x="167.5" y="168">
+   <polyline points="0,0 1,33.5"/>
+  </object>
+  <object id="10" name="009" x="172.5" y="165.5">
+   <polyline points="0,0 11.5,34"/>
+  </object>
+  <object id="11" name="008" x="136" y="232">
+   <polyline points="0,0 -0.875,-33.875"/>
+  </object>
+  <object id="12" name="007" x="139.5" y="236">
+   <polyline points="0,0 31.5,-32.5"/>
+  </object>
+  <object id="13" name="006" x="56" y="183.5">
+   <polyline points="0,0 60,19.5"/>
+  </object>
+  <object id="14" name="005" x="60" y="179.5">
+   <polyline points="0,0 94,21"/>
+  </object>
+  <object id="15" name="004" x="72" y="185">
+   <polyline points="0,0 66,20"/>
+  </object>
+  <object id="16" name="003" x="75.5" y="180">
+   <polyline points="0,0 47.5,18"/>
+  </object>
+ </objectgroup>
+</map>
