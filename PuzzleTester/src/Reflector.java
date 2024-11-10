@@ -14,7 +14,7 @@ public class Reflector extends DynamicPiece implements Switchable {
 
     @Override
     public boolean penetrable() {
-        return true;
+        return false;
     }
 
     @Override
