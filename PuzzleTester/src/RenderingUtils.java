@@ -2,6 +2,7 @@ import org.lwjgl.Sys;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SpriteSheet;
 
 import java.util.List;
 
@@ -102,6 +103,44 @@ public class RenderingUtils {
         g.setColor(new Color(Color.white));
         g.fillRect(positionX * Constants.TILE_SIZE + 6, positionY * Constants.TILE_SIZE + 12, Constants.TILE_SIZE - 12, Constants.TILE_SIZE - 24);
     }
+
+    public static void renderReflector(GameContainer gc, Graphics g, int positionX, int positionY, Reflector reflector) {
+        g.setColor(new Color(Color.black));
+
+        Position tl = Position.fromCoordinates(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE);
+        Position tr = Position.fromCoordinates(positionX * Constants.TILE_SIZE + Constants.TILE_SIZE, positionY * Constants.TILE_SIZE);
+        Position bl = Position.fromCoordinates(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE + Constants.TILE_SIZE);
+        Position br = Position.fromCoordinates(positionX * Constants.TILE_SIZE + Constants.TILE_SIZE, positionY * Constants.TILE_SIZE + Constants.TILE_SIZE);
+
+        g.setLineWidth(4);
+
+        if (reflector.getReflectionType() == ReflectionType.NORTH_WEST) {
+            g.drawLine(tr.getX(), tr.getY(), br.getX(), br.getY());
+            g.drawLine(br.getX(), br.getY(), bl.getX(), bl.getY());
+            g.drawLine(bl.getX(), bl.getY(), tr.getX(), tr.getY());
+        }
+
+        if (reflector.getReflectionType() == ReflectionType.NORTH_EAST) {
+            g.drawLine(tl.getX(), tl.getY(), bl.getX(), bl.getY());
+            g.drawLine(bl.getX(), bl.getY(), br.getX(), br.getY());
+            g.drawLine(br.getX(), br.getY(), tl.getX(), tl.getY());
+        }
+
+        if (reflector.getReflectionType() == ReflectionType.SOUTH_EAST) {
+            g.drawLine(tl.getX(), tl.getY(), tr.getX(), tr.getY());
+            g.drawLine(tr.getX(), tr.getY(), bl.getX(), bl.getY());
+            g.drawLine(bl.getX(), bl.getY(), tl.getX(), tl.getY());
+        }
+
+        if (reflector.getReflectionType() == ReflectionType.SOUTH_WEST) {
+            g.drawLine(tl.getX(), tl.getY(), tr.getX(), tr.getY());
+            g.drawLine(tr.getX(), tr.getY(), br.getX(), br.getY());
+            g.drawLine(br.getX(), br.getY(), tl.getX(), tl.getY());
+        }
+
+        g.setLineWidth(1);
+    }
+
 
     public static void renderProtagonist(GameContainer gc, Graphics g, int positionX, int positionY, Protagonist protagonist) {
         long timestamp = System.currentTimeMillis() / 250;

@@ -62,6 +62,18 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                 } else if (dynamicPieceId == Constants.TILE_ID_JAMMER) {
                     Jammer jammer = new Jammer(x, y);
                     pieces.add(jammer);
+                } else if (dynamicPieceId == Constants.TILE_ID_REFLECTOR_NORTH_WEST) {
+                    Reflector reflector = new Reflector(x, y, ReflectionType.NORTH_WEST);
+                    pieces.add(reflector);
+                } else if (dynamicPieceId == Constants.TILE_ID_REFLECTOR_NORTH_EAST) {
+                    Reflector reflector = new Reflector(x, y, ReflectionType.NORTH_EAST);
+                    pieces.add(reflector);
+                } else if (dynamicPieceId == Constants.TILE_ID_REFLECTOR_SOUTH_EAST) {
+                    Reflector reflector = new Reflector(x, y, ReflectionType.SOUTH_EAST);
+                    pieces.add(reflector);
+                } else if (dynamicPieceId == Constants.TILE_ID_REFLECTOR_SOUTH_WEST) {
+                    Reflector reflector = new Reflector(x, y, ReflectionType.SOUTH_WEST);
+                    pieces.add(reflector);
                 }
 
                 int protagonistTileId = tiledMap.getTileId(Position.fromCoordinates(x, y), Constants.LAYER_INDEX_ACTORS);
@@ -78,10 +90,10 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                 .filter(e -> e instanceof Switch)
                 .collect(Collectors.toMap(e -> Position.fromCoordinates(e.positionX, e.positionY), e -> (Switch)e));
 
-        java.util.Map<Position, Door> doors = pieces
+        java.util.Map<Position, Switchable> switchables = pieces
                 .stream()
-                .filter(e -> e instanceof Door)
-                .collect(Collectors.toMap(e -> Position.fromCoordinates(e.positionX, e.positionY), e -> (Door)e));
+                .filter(e -> e instanceof Switchable)
+                .collect(Collectors.toMap(e -> Position.fromCoordinates(e.positionX, e.positionY), e -> (Switchable) e));
 
         List<TiledLineObject> connectors = tiledMap.getObjectGroups().get("connectors").getObjects().values().stream().map(e -> (TiledLineObject)e).toList();
         for (TiledLineObject connector : connectors) {
@@ -90,7 +102,7 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
             Position startPosition = Position.fromCoordinates((float)((int)start.x / tiledMap.getTileWidth()), (float)((int)start.y / tiledMap.getTileHeight()));
             Position endPosition = Position.fromCoordinates((float)((int)end.x / tiledMap.getTileWidth()), (float)((int)end.y / tiledMap.getTileHeight()));
             Switch aSwitch = switches.get(startPosition);
-            Switchable switchable = doors.get(endPosition);
+            Switchable switchable = switchables.get(endPosition);
             aSwitch.addSwitchable(switchable);
         }
 

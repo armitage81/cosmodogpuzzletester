@@ -139,6 +139,8 @@ public class Starter extends BasicGame {
                 RenderingUtils.renderSwitch(gc, g, piece.positionX, piece.positionY, (Switch)piece);
             } else if (piece instanceof Jammer) {
                 RenderingUtils.renderJammer(gc, g, piece.positionX, piece.positionY, (Jammer)piece);
+            } else if (piece instanceof Reflector) {
+                RenderingUtils.renderReflector(gc, g, piece.positionX, piece.positionY, (Reflector) piece);
             }
 
         }
