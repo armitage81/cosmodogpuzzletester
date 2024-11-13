@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="14">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="14">
  <editorsettings>
   <export target="../../../../Users/User/Desktop/001..tmx" format="tmx"/>
  </editorsettings>
@@ -8,31 +8,31 @@
  </tileset>
  <layer id="1" name="tiles" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3TsQ0AMAgDQdh/6WwQUcQKxZ1E+3JDFQA3/eiS+zY0km37/jeS7fS+zf8LAMDMAeNzTp/AEgAA
+   H4sIAAAAAAAACu3VQQrAIAxEUYsLvf+Ji7siMaQ1VgP/QRAUxsGNKQEANJfTrOx3QsbKbPrtz7Bka/cUY4Y3qV9b84v5s1813Nefa287a/R+XzO8Rej3nCLs7fw/AACI5AZJ9ns+wBIAAA==
   </data>
  </layer>
  <layer id="2" name="pieces" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3OoREAIAwAsRq2oLD/lpj6Su4gMW8/AoDXzWpWV3VfeOE/oykAAHQOUVLyVsASAAA=
+   H4sIAAAAAAAACu3OuQkAIAADQBu38Nl/S0vBRhsR9a4JgRQJAYDXpaGXIy/4QV7Y1O0voIuTBADu0ACEgKf5wBIAAA==
   </data>
  </layer>
  <layer id="3" name="actors" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3OMQ0AAAgDsF34l4yLEZJWQRMA6JjrAAAA8NIClNrgksASAAA=
+   H4sIAAAAAAAACu3OQQkAAAgEsHvZP7IlDgTZEiwBAIA/5joAANQtVFc8UcASAAA=
   </data>
  </layer>
  <objectgroup id="5" name="connectors">
   <object id="10" name="004" x="304" y="208">
-   <polyline points="0,0 0,-64"/>
+   <polyline points="0,64 -80,0"/>
   </object>
   <object id="11" name="003" x="336" y="208">
-   <polyline points="0,0 0,-64"/>
+   <polyline points="0,64 -32,-64"/>
   </object>
   <object id="12" name="002" x="368" y="208">
-   <polyline points="0,0 0,-64"/>
+   <polyline points="0,64 0,-64"/>
   </object>
   <object id="13" name="001" x="400" y="208">
-   <polyline points="0,0 0,-64"/>
+   <polyline points="0,64 -32,0"/>
   </object>
  </objectgroup>
 </map>

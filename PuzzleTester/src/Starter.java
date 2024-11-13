@@ -1,9 +1,7 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -117,7 +115,7 @@ public class Starter extends BasicGame {
                 Tile tile = map.tileAtPosition(i, j);
                 if (tile instanceof Wall) {
                     RenderingUtils.renderWall(gc, g, i, j);
-                } else if (tile instanceof Obstacle) {
+                } else if (tile instanceof Glass) {
                     RenderingUtils.renderObstacle(gc, g, i, j);
                 } else if (tile instanceof SmoothWall) {
                     RenderingUtils.renderSmoothWall(gc, g, i, j, map);

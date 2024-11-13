@@ -1,3 +1,5 @@
+import java.util.Optional;
+
 public enum ReflectionType {
 
     NORTH_WEST,
@@ -24,6 +26,49 @@ public enum ReflectionType {
         }
 
         throw new RuntimeException();
+    }
+
+    public static Optional<DirectionType> reflectionDirection(ReflectionType reflectionType, DirectionType directionType) {
+
+        Optional<DirectionType> retVal = Optional.empty();
+
+        if (directionType == DirectionType.EAST) {
+            if (reflectionType == NORTH_WEST) {
+                retVal = Optional.of(DirectionType.NORTH);
+            }
+            if (reflectionType == SOUTH_WEST) {
+                retVal = Optional.of(DirectionType.SOUTH);
+            }
+        }
+
+        if (directionType == DirectionType.WEST) {
+            if (reflectionType == NORTH_EAST) {
+                retVal = Optional.of(DirectionType.NORTH);
+            }
+            if (reflectionType == SOUTH_EAST) {
+                retVal = Optional.of(DirectionType.SOUTH);
+            }
+        }
+
+        if (directionType == DirectionType.NORTH) {
+            if (reflectionType == SOUTH_EAST) {
+                retVal = Optional.of(DirectionType.EAST);
+            }
+            if (reflectionType == SOUTH_WEST) {
+                retVal = Optional.of(DirectionType.WEST);
+            }
+        }
+
+        if (directionType == DirectionType.SOUTH) {
+            if (reflectionType == NORTH_EAST) {
+                retVal = Optional.of(DirectionType.EAST);
+            }
+            if (reflectionType == NORTH_WEST) {
+                retVal = Optional.of(DirectionType.WEST);
+            }
+        }
+
+        return retVal;
     }
 
 }

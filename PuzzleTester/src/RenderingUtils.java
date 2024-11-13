@@ -112,8 +112,6 @@ public class RenderingUtils {
         Position bl = Position.fromCoordinates(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE + Constants.TILE_SIZE);
         Position br = Position.fromCoordinates(positionX * Constants.TILE_SIZE + Constants.TILE_SIZE, positionY * Constants.TILE_SIZE + Constants.TILE_SIZE);
 
-        g.setLineWidth(4);
-
         if (reflector.getReflectionType() == ReflectionType.NORTH_WEST) {
             g.drawLine(tr.getX(), tr.getY(), br.getX(), br.getY());
             g.drawLine(br.getX(), br.getY(), bl.getX(), bl.getY());
@@ -138,7 +136,6 @@ public class RenderingUtils {
             g.drawLine(br.getX(), br.getY(), tl.getX(), tl.getY());
         }
 
-        g.setLineWidth(1);
     }
 
 

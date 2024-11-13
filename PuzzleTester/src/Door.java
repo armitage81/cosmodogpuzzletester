@@ -28,7 +28,7 @@ public class Door extends DynamicPiece implements Switchable {
     }
 
     @Override
-    public boolean penetrable() {
+    public boolean transparent() {
         return open;
     }
 }

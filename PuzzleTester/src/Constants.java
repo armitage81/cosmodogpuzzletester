@@ -1,5 +1,3 @@
-import java.util.HashMap;
-
 public class Constants {
     public static final int FIELD_WIDTH = 40;
     public static final int FIELD_HEIGHT = 30;
@@ -12,7 +10,7 @@ public class Constants {
 
     public static final int TILE_ID_EMPTY = 0;
     public static final int TILE_ID_WALL = 1;
-    public static final int TILE_ID_OBSTACLE = 3;
+    public static final int TILE_ID_GLASS = 3;
     public static final int TILE_ID_SMOOTH_WALL = 7;
     public static final int TILE_ID_EXIT = 8;
     public static final int TILE_ID_SMOKE = 9;

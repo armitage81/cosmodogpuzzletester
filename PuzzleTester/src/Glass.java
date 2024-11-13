@@ -1,6 +1,6 @@
-public class Obstacle extends Tile {
+public class Glass extends Tile {
 
-    public Obstacle(int x, int y) {
+    public Glass(int x, int y) {
         super(x, y);
     }
 
@@ -10,7 +10,7 @@ public class Obstacle extends Tile {
     }
 
     @Override
-    public boolean penetrable() {
+    public boolean transparent() {
         return true;
     }
 }

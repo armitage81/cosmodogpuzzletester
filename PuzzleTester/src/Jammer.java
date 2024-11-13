@@ -10,7 +10,7 @@ public class Jammer extends DynamicPiece implements Pressable {
     }
 
     @Override
-    public boolean penetrable() {
+    public boolean transparent() {
         return true;
     }
 

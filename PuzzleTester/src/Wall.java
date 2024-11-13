@@ -10,7 +10,7 @@ public class Wall extends Tile {
     }
 
     @Override
-    public boolean penetrable() {
+    public boolean transparent() {
         return false;
     }
 }

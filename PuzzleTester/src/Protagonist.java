@@ -10,7 +10,7 @@ public class Protagonist extends Actor {
     }
 
     @Override
-    public boolean penetrable() {
+    public boolean transparent() {
         return false;
     }
 

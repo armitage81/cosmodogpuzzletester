@@ -15,6 +15,6 @@ public abstract class Element {
 
     public abstract boolean passable();
 
-    public abstract boolean penetrable();
+    public abstract boolean transparent();
 
 }

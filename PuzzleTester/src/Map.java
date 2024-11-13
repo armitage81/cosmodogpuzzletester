@@ -72,39 +72,46 @@ public class Map {
     public boolean positionPenetrable(Position position) {
         Tile tile = tileAtPosition((int)position.getX(), (int)position.getY());
         Optional<Piece> piece = pieceAtPosition((int)position.getX(), (int)position.getY());
-        return tile.penetrable() && (piece.isEmpty() || piece.get().penetrable());
+        return tile.transparent() && (piece.isEmpty() || piece.get().transparent());
     }
 
     public List<Position> rayPositions(Protagonist protagonist) {
+
         List<Position> positionsWithRay = new ArrayList<>();
 
-        Position nextPosition = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
+        Position protagonistsPosition = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
         DirectionType directionType = protagonist.getDirection();
-        if (directionType == DirectionType.EAST) {
-            nextPosition = nextPosition.shifted(1, 0);
-            while (positionPenetrable(nextPosition)) {
-                positionsWithRay.add(nextPosition);
-                nextPosition = nextPosition.shifted(1, 0);
+
+
+        boolean finished = false;
+        Position lookAheadPosition = DirectionType.facedAdjacentPosition(protagonistsPosition, directionType);
+        do {
+            if (positionsWithRay.contains(lookAheadPosition)) {
+                finished = true;
+            } else {
+                if (positionPenetrable(lookAheadPosition)) {
+                    positionsWithRay.add(lookAheadPosition);
+                    lookAheadPosition = DirectionType.facedAdjacentPosition(lookAheadPosition, directionType);
+                } else {
+                    Optional<Piece> pieceAtLookAheadPosition = pieceAtPosition(lookAheadPosition);
+                    if (pieceAtLookAheadPosition.isPresent() && pieceAtLookAheadPosition.get() instanceof Reflector) {
+                        Optional<DirectionType> reflectionDirection = ReflectionType.reflectionDirection(((Reflector) pieceAtLookAheadPosition.get()).getReflectionType(), directionType);
+                        if (reflectionDirection.isPresent()) {
+                            positionsWithRay.add(lookAheadPosition);
+                            directionType = reflectionDirection.get();
+                            lookAheadPosition = DirectionType.facedAdjacentPosition(lookAheadPosition, directionType);
+                        } else {
+                            finished = true;
+                        }
+                    } else {
+                        finished = true;
+                    }
+                }
             }
-        } else if (directionType == DirectionType.WEST) {
-            nextPosition = nextPosition.shifted(-1, 0);
-            while (positionPenetrable(nextPosition)) {
-                positionsWithRay.add(nextPosition);
-                nextPosition = nextPosition.shifted(-1, 0);
-            }
-        } else if (directionType == DirectionType.NORTH) {
-            nextPosition = nextPosition.shifted(0, -1);
-            while (positionPenetrable(nextPosition)) {
-                positionsWithRay.add(nextPosition);
-                nextPosition = nextPosition.shifted(0, -1);
-            }
-        } else {
-            nextPosition = nextPosition.shifted(0, 1);
-            while (positionPenetrable(nextPosition)) {
-                positionsWithRay.add(nextPosition);
-                nextPosition = nextPosition.shifted(0, 1);
-            }
-        }
+
+
+        } while (!finished);
+
         return positionsWithRay;
     }
 
