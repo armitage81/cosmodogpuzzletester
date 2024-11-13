@@ -5,6 +5,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SpriteSheet;
 
 import java.util.List;
+import java.util.Optional;
 
 public class RenderingUtils {
 
@@ -153,15 +154,21 @@ public class RenderingUtils {
     }
 
     public static void renderRay(GameContainer gc, Graphics g, Map map, Protagonist protagonist) {
-        List<Position> positions = map.rayPositions(protagonist);
+
+        Ray ray = Ray.create(map);
+
+        List<Position> positions = ray.getRayPositions();
         for (Position position : positions) {
             g.setColor(new Color(1, 1, 0, 0.33f));
             g.fillRect(position.getX() * Constants.TILE_SIZE, position.getY() * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
         }
 
-        Position targetPosition = map.rayTargetPosition(protagonist);
-        g.setColor(new Color(1, 0, 0, 0.33f));
-        g.fillRect(targetPosition.getX() * Constants.TILE_SIZE, targetPosition.getY() * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+        Optional<Position> targetPosition = ray.getTargetPosition();
+        if (targetPosition.isPresent()) {
+            g.setColor(new Color(1, 0, 0, 0.33f));
+            g.fillRect(targetPosition.get().getX() * Constants.TILE_SIZE, targetPosition.get().getY() * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+        }
+
     }
 
 }

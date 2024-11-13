@@ -51,6 +51,12 @@ public class Map {
         return tiles.get(x + y * Constants.FIELD_WIDTH);
     }
 
+    public void setTileAtPosition(int x, int y, Tile tile) {
+        setTileAtPosition(Position.fromCoordinates(x, y), tile);
+    }
+    public void setTileAtPosition(Position position, Tile tile) {
+        tiles.set((int)position.getX() + (int)position.getY() * Constants.FIELD_WIDTH, tile);
+    }
 
     public Optional<Piece> pieceAtPosition(Position position) {
         return pieceAtPosition((int)position.getX(), (int)position.getY());
@@ -59,8 +65,16 @@ public class Map {
         return pieces.stream().filter(e -> e.positionX == x && e.positionY == y).findFirst();
     }
 
+    public void addPiece(Piece piece) {
+        pieces.add(piece);
+    }
+
     public Protagonist getProtagonist() {
         return protagonist;
+    }
+
+    public void setProtagonist(Protagonist protagonist) {
+        this.protagonist = protagonist;
     }
 
     public boolean positionPassable(Position position) {
@@ -73,74 +87,6 @@ public class Map {
         Tile tile = tileAtPosition((int)position.getX(), (int)position.getY());
         Optional<Piece> piece = pieceAtPosition((int)position.getX(), (int)position.getY());
         return tile.transparent() && (piece.isEmpty() || piece.get().transparent());
-    }
-
-    public List<Position> rayPositions(Protagonist protagonist) {
-
-        List<Position> positionsWithRay = new ArrayList<>();
-
-        Position protagonistsPosition = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
-        DirectionType directionType = protagonist.getDirection();
-
-
-        boolean finished = false;
-        Position lookAheadPosition = DirectionType.facedAdjacentPosition(protagonistsPosition, directionType);
-        do {
-            if (positionsWithRay.contains(lookAheadPosition)) {
-                finished = true;
-            } else {
-                if (positionPenetrable(lookAheadPosition)) {
-                    positionsWithRay.add(lookAheadPosition);
-                    lookAheadPosition = DirectionType.facedAdjacentPosition(lookAheadPosition, directionType);
-                } else {
-                    Optional<Piece> pieceAtLookAheadPosition = pieceAtPosition(lookAheadPosition);
-                    if (pieceAtLookAheadPosition.isPresent() && pieceAtLookAheadPosition.get() instanceof Reflector) {
-                        Optional<DirectionType> reflectionDirection = ReflectionType.reflectionDirection(((Reflector) pieceAtLookAheadPosition.get()).getReflectionType(), directionType);
-                        if (reflectionDirection.isPresent()) {
-                            positionsWithRay.add(lookAheadPosition);
-                            directionType = reflectionDirection.get();
-                            lookAheadPosition = DirectionType.facedAdjacentPosition(lookAheadPosition, directionType);
-                        } else {
-                            finished = true;
-                        }
-                    } else {
-                        finished = true;
-                    }
-                }
-            }
-
-
-        } while (!finished);
-
-        return positionsWithRay;
-    }
-
-    public Position rayTargetPosition(Protagonist protagonist) {
-
-        Position nextPosition = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
-        DirectionType directionType = protagonist.getDirection();
-        if (directionType == DirectionType.EAST) {
-            nextPosition = nextPosition.shifted(1, 0);
-            while (positionPenetrable(nextPosition)) {
-                nextPosition = nextPosition.shifted(1, 0);
-            }
-        } else if (directionType == DirectionType.WEST) {
-            nextPosition = nextPosition.shifted(-1, 0);
-            while (positionPenetrable(nextPosition)) {
-                nextPosition = nextPosition.shifted(-1, 0);
-            }
-        } else if (directionType == DirectionType.NORTH) {
-            nextPosition = nextPosition.shifted(0, -1);
-            while (positionPenetrable(nextPosition)) {
-                nextPosition = nextPosition.shifted(0, -1);
-            }
-        } else {
-            nextPosition = nextPosition.shifted(0, 1);
-            while (positionPenetrable(nextPosition)) {
-                nextPosition = nextPosition.shifted(0, 1);
-            }
-        }
-        return nextPosition;
     }
 
     public Position protagonistsEnvisionedPosition(Protagonist protagonist) {

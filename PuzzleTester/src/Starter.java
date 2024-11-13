@@ -89,13 +89,16 @@ public class Starter extends BasicGame {
         }
 
         if (input.isKeyPressed(Input.KEY_SPACE)) {
-            Position rayTargetPosition = map.rayTargetPosition(protagonist);
-            Tile tile = map.tileAtPosition(rayTargetPosition);
-            if (tile instanceof SmoothWall smoothWall) {
-                DirectionType directionFacingPlayer = DirectionType.reverse(protagonist.getDirection());
-                if (!map.portalExists(rayTargetPosition, directionFacingPlayer)) {
-                    Portal portal = new Portal(rayTargetPosition, directionFacingPlayer);
-                    map.createPortal(portal);
+            Ray ray = Ray.create(map);
+            Optional<Position> rayTargetPosition = ray.getTargetPosition();
+            if (rayTargetPosition.isPresent()) {
+                Tile tile = map.tileAtPosition(rayTargetPosition.get());
+                if (tile instanceof SmoothWall smoothWall) {
+                    DirectionType directionFacingPlayer = DirectionType.reverse(ray.getLastDirection());
+                    if (!map.portalExists(rayTargetPosition.get(), directionFacingPlayer)) {
+                        Portal portal = new Portal(rayTargetPosition.get(), directionFacingPlayer);
+                        map.createPortal(portal);
+                    }
                 }
             }
         }
