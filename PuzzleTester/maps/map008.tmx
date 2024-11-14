@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="9">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="11">
  <editorsettings>
   <export target="../../../../Users/User/Desktop/001..tmx" format="tmx"/>
  </editorsettings>
@@ -8,18 +8,25 @@
  </tileset>
  <layer id="1" name="tiles" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3V0QqAMAgFUKUH6/9/uB4aRM00NpuDe+C+DGGXgUUEAAAefESc4UH9ImZ7Qb822p2s5G9v/a6y7UftPFO/pZJs/e4ksojC6rc6ZiN9eb9s/cq/z5qNZPVjx2ykWfe3dbYXz53bmaz9ilHfPytCz10BmNEOYV7lx8ASAAA=
+   H4sIAAAAAAAACu2W0QrAIAhFGz20/f8Pbw8JIhr2YDq4ByRsghctV2sAAAA8XJ+NuXosQx9fPbEn2cmJ+uk5tfPF97ry/RRjrt3Y535mf6U+TUt2f4luWGZ/ObKW5Gux0Vj1I27mV5l/pOcRfiV99N8j34qNZqVP3u1K+qrc31VOz0yMprq+1UyroM/zJuXvVwD+zAsvhNwAwBIAAA==
   </data>
  </layer>
  <layer id="2" name="pieces" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3OsQkAIAwAwThD9t/VVkIgdiLcwfcfAQD8IJvWEQDcytcDA39AtQEZGf9iwBIAAA==
+   H4sIAAAAAAAACu3TOQoAIAwEQBF8Qf7/VxsrQdDGixnYJtXCkpQAYJ98usAnooV5ZfF+ys3b+l94UwxyM/2AXgV9GK6cwBIAAA==
   </data>
  </layer>
  <layer id="3" name="actors" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3OMQ0AAAgDsF34l4yLEZJWQRMA6JjrAAAA8NIClNrgksASAAA=
+   H4sIAAAAAAAACu3OMQ0AAAgDsF34l4yLEZJWQRMA6JvrAAAA8MYCygszLsASAAA=
   </data>
  </layer>
- <objectgroup id="5" name="connectors"/>
+ <objectgroup id="5" name="connectors">
+  <object id="9" name="001" x="360" y="357.667">
+   <polyline points="-47.6667,-124.333 -125.333,-94"/>
+  </object>
+  <object id="10" name="002" x="214.667" y="231.667">
+   <polyline points="0,0 15.3333,-63"/>
+  </object>
+ </objectgroup>
 </map>
