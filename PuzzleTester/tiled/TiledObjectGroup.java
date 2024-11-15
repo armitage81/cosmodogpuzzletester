@@ -36,7 +36,7 @@ public class TiledObjectGroup implements Serializable {
 	public void setObjects(List<TiledObject> objects) {
 		
 		for (TiledObject object : objects) {
-			this.objects.put(object.getName(), object);
+			this.objects.put("" + object.getId(), object);
 		}
 	}
 	

@@ -184,7 +184,7 @@ public class XmlTiledMapReader implements TiledMapReader {
 		List<Element> objectElements = element.getChildren("object");
 		for (Element objectElement : objectElements) {
 			TiledObject tiledObject = fromObjectElement(objectElement);
-			tiledObjectGroup.getObjects().put(tiledObject.getName(), tiledObject);
+			tiledObjectGroup.getObjects().put("" + tiledObject.getId(), tiledObject);
 		}
 		return tiledObjectGroup;
 	}
