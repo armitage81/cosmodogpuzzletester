@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="7">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="7">
  <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="81" columns="9">
   <image source="tiles.png" width="144" height="144"/>
  </tileset>
  <layer id="1" name="tiles" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu2W0QqAIAxFjR7W/39xLw1Ccm3u4iLugWHE1IPOsjVCCCEetmSIIyeDXO0eCAnkrvCL+PS5aD99N+vzNBbSLxpvfVfWn7WuMnhG+vXze32q1+9eQ9F9rvi+VPpZriOsc4/2Q9ScxgH2854Pr6f++1B+2brT8ZD7+/X7ASGE/IUTHe8K0sASAAA=
+   H4sIAAAAAAAACu2W0QqAIAxFlR7W/39xLw2GqG15cRH3wGjIsoPNrBRCCCEe6mKIo2YFua9HICRQu8Mv4tPWov107K1Pby6kXzSe7t3Zf7N1lUGO9Guf7/XJXj/bQ9H3nPF9yfKrJh859Jjte/T6IXpO4wT7effHaLyYubQuo/9q42Rz9Pnx9f8DQgj5CxclX6wewBIAAA==
   </data>
  </layer>
  <layer id="2" name="pieces" width="40" height="30">

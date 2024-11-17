@@ -158,9 +158,57 @@ public class RenderingUtils {
         Ray ray = Ray.create(map);
 
         List<Position> positions = ray.getRayPositions();
-        for (Position position : positions) {
-            g.setColor(new Color(1, 1, 0, 0.33f));
-            g.fillRect(position.getX() * Constants.TILE_SIZE, position.getY() * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+        for (int i = 0; i < positions.size(); i++) {
+
+            Position lookBehindPosition = i == 0 ? Position.fromCoordinates(protagonist.positionX, protagonist.positionY) : positions.get(i - 1);
+            Position position = positions.get(i);
+            Optional<Position> lookAheadPosition = i == positions.size() - 1 ? Optional.empty() : Optional.of(positions.get(i + 1));
+
+            DirectionType startDirection = DirectionType.direction(lookBehindPosition, position);
+            DirectionType endDirection = lookAheadPosition.isPresent() ? DirectionType.direction(position, lookAheadPosition.get()) : startDirection;
+
+            g.setLineWidth(3);
+            g.setColor(Color.black);
+
+            float x1;
+            float y1;
+            float x2;
+            float y2;
+
+            if (startDirection == DirectionType.NORTH || endDirection == DirectionType.SOUTH) {
+                x1 = position.getX() * Constants.TILE_SIZE + Constants.TILE_SIZE / 2f;
+                x2 = x1;
+                y1 = position.getY() * Constants.TILE_SIZE + Constants.TILE_SIZE;
+                y2 = position.getY() * Constants.TILE_SIZE + Constants.TILE_SIZE / 2f;
+                g.drawLine(x1, y1, x2, y2);
+            }
+
+            if (startDirection == DirectionType.SOUTH || endDirection == DirectionType.NORTH) {
+                x1 = position.getX() * Constants.TILE_SIZE + Constants.TILE_SIZE / 2f;
+                x2 = x1;
+                y1 = position.getY() * Constants.TILE_SIZE;
+                y2 = position.getY() * Constants.TILE_SIZE + Constants.TILE_SIZE / 2f;
+                g.drawLine(x1, y1, x2, y2);
+            }
+
+            if (startDirection == DirectionType.EAST || endDirection == DirectionType.WEST) {
+                x1 = position.getX() * Constants.TILE_SIZE;
+                x2 = position.getX() * Constants.TILE_SIZE + Constants.TILE_SIZE / 2f;
+                y1 = position.getY() * Constants.TILE_SIZE + Constants.TILE_SIZE / 2f;
+                y2 = y1;
+                g.drawLine(x1, y1, x2, y2);
+            }
+
+            if (startDirection == DirectionType.WEST || endDirection == DirectionType.EAST) {
+                x1 = position.getX() * Constants.TILE_SIZE + Constants.TILE_SIZE / 2f;
+                x2 = position.getX() * Constants.TILE_SIZE + Constants.TILE_SIZE;
+                y1 = position.getY() * Constants.TILE_SIZE + Constants.TILE_SIZE / 2f;
+                y2 = y1;
+                g.drawLine(x1, y1, x2, y2);
+            }
+
+            g.setLineWidth(1);
+
         }
 
         Optional<Position> targetPosition = ray.getTargetPosition();
