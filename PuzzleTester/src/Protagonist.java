@@ -5,7 +5,7 @@ public class Protagonist extends Actor {
     }
 
     @Override
-    public boolean passable() {
+    public boolean passable(DirectionType directionType) {
         return false;
     }
 

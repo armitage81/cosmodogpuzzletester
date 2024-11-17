@@ -77,10 +77,12 @@ public class Map {
         this.protagonist = protagonist;
     }
 
-    public boolean positionPassable(Position position) {
+    public boolean positionPassable(Entrance entrance) {
+        Position position = entrance.getPosition();
+        DirectionType entranceDirection = entrance.getEntranceDirection();
         Tile tile = tileAtPosition((int)position.getX(), (int)position.getY());
         Optional<Piece> piece = pieceAtPosition((int)position.getX(), (int)position.getY());
-        return tile.passable() && (piece.isEmpty() || piece.get().passable());
+        return tile.passable(entranceDirection) && (piece.isEmpty() || piece.get().passable(entranceDirection));
     }
 
     public boolean positionPenetrable(Position position) {
@@ -89,9 +91,10 @@ public class Map {
         return tile.transparent() && (piece.isEmpty() || piece.get().transparent());
     }
 
-    public Position protagonistsEnvisionedPosition(Protagonist protagonist) {
+    public Entrance protagonistsEnvisionedPositionEntrance(Protagonist protagonist) {
 
         Position envisionedPosition;
+        DirectionType envisionedPositionEntrance = protagonist.getDirection();
 
         Position protagonistsPosition = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
         DirectionType protagonistsDirection = protagonist.getDirection();
@@ -110,6 +113,7 @@ public class Map {
             }
             if (otherPortal.isPresent()) {
                 envisionedPosition = DirectionType.facedAdjacentPosition(otherPortal.get().position, otherPortal.get().directionType);
+                envisionedPositionEntrance = otherPortal.get().directionType;
             } else {
                 envisionedPosition = facedAdjacentPosition;
             }
@@ -117,17 +121,17 @@ public class Map {
             envisionedPosition = facedAdjacentPosition;
         }
 
-        return envisionedPosition;
+        return Entrance.instance(envisionedPosition, envisionedPositionEntrance);
     }
 
     public void goToEnvisionedPosition(Protagonist protagonist) {
-        Position envisionedPosition = protagonistsEnvisionedPosition(protagonist);
+        Position envisionedPosition = protagonistsEnvisionedPositionEntrance(protagonist).getPosition();
         protagonist.positionX = (int)envisionedPosition.getX();
         protagonist.positionY = (int)envisionedPosition.getY();
     }
 
     public boolean protagonistCanGoStraight(Protagonist protagonist) {
-        return positionPassable(protagonistsEnvisionedPosition(protagonist));
+        return positionPassable(protagonistsEnvisionedPositionEntrance(protagonist));
     }
 
 }

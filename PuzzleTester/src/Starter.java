@@ -142,6 +142,8 @@ public class Starter extends BasicGame {
                 RenderingUtils.renderJammer(gc, g, piece.positionX, piece.positionY, (Jammer)piece);
             } else if (piece instanceof Reflector) {
                 RenderingUtils.renderReflector(gc, g, piece.positionX, piece.positionY, (Reflector) piece);
+            } else if (piece instanceof Conveyor) {
+                RenderingUtils.renderConveyor(gc, g, piece.positionX, piece.positionY, (Conveyor) piece);
             }
 
         }

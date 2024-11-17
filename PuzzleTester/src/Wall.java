@@ -5,7 +5,7 @@ public class Wall extends Tile {
     }
 
     @Override
-    public boolean passable() {
+    public boolean passable(DirectionType directionType) {
         return false;
     }
 

@@ -10,7 +10,7 @@ public class Switch extends DynamicPiece implements Pressable {
     }
 
     @Override
-    public boolean passable() {
+    public boolean passable(DirectionType directionType) {
         return true;
     }
 

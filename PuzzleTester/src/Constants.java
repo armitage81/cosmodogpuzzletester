@@ -24,6 +24,11 @@ public class Constants {
     public static final int TILE_ID_REFLECTOR_SOUTH_EAST = 30;
     public static final int TILE_ID_REFLECTOR_SOUTH_WEST = 31;
 
+    public static final int TILE_ID_CONVEYOR_WEST = 32;
+    public static final int TILE_ID_CONVEYOR_NORTH = 33;
+    public static final int TILE_ID_CONVEYOR_EAST = 34;
+    public static final int TILE_ID_CONVEYOR_SOUTH = 35;
+
 
     public static final int TILE_ID_PROTAGONIST = 6;
 

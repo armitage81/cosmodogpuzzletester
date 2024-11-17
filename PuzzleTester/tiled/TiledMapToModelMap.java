@@ -74,6 +74,18 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                 } else if (dynamicPieceId == Constants.TILE_ID_REFLECTOR_SOUTH_WEST) {
                     Reflector reflector = new Reflector(x, y, ReflectionType.SOUTH_WEST);
                     pieces.add(reflector);
+                } else if (dynamicPieceId == Constants.TILE_ID_CONVEYOR_WEST) {
+                    Conveyor conveyor = new Conveyor(x, y, DirectionType.WEST);
+                    pieces.add(conveyor);
+                } else if (dynamicPieceId == Constants.TILE_ID_CONVEYOR_NORTH) {
+                    Conveyor conveyor = new Conveyor(x, y, DirectionType.NORTH);
+                    pieces.add(conveyor);
+                } else if (dynamicPieceId == Constants.TILE_ID_CONVEYOR_EAST) {
+                    Conveyor conveyor = new Conveyor(x, y, DirectionType.EAST);
+                    pieces.add(conveyor);
+                } else if (dynamicPieceId == Constants.TILE_ID_CONVEYOR_SOUTH) {
+                    Conveyor conveyor = new Conveyor(x, y, DirectionType.SOUTH);
+                    pieces.add(conveyor);
                 }
 
                 int protagonistTileId = tiledMap.getTileId(Position.fromCoordinates(x, y), Constants.LAYER_INDEX_ACTORS);

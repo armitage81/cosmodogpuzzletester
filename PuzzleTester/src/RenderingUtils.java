@@ -139,6 +139,39 @@ public class RenderingUtils {
 
     }
 
+    public static void renderConveyor(GameContainer gc, Graphics g, int positionX, int positionY, Conveyor conveyor) {
+        g.translate(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE);
+        g.setColor(Color.magenta);
+        g.fillRect(0, 0, Constants.TILE_SIZE, Constants.TILE_SIZE);
+        g.setColor(Color.black);
+        if (conveyor.getDirectionType() == DirectionType.NORTH || conveyor.getDirectionType() == DirectionType.SOUTH) {
+            g.drawLine(0, 0, 0, Constants.TILE_SIZE);
+            g.drawLine(Constants.TILE_SIZE, 0, Constants.TILE_SIZE, Constants.TILE_SIZE);
+            if (conveyor.getDirectionType() == DirectionType.NORTH) {
+                g.drawLine(0, Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawLine(0, Constants.TILE_SIZE, Constants.TILE_SIZE / 2f, 0);
+                g.drawLine(Constants.TILE_SIZE / 2f, 0, Constants.TILE_SIZE, Constants.TILE_SIZE);
+            } else {
+                g.drawLine(0, 0, Constants.TILE_SIZE, 0);
+                g.drawLine(0, 0, Constants.TILE_SIZE / 2f, Constants.TILE_SIZE);
+                g.drawLine(Constants.TILE_SIZE / 2f, Constants.TILE_SIZE, Constants.TILE_SIZE, 0);
+            }
+        } else if (conveyor.getDirectionType() == DirectionType.WEST || conveyor.getDirectionType() == DirectionType.EAST) {
+            g.drawLine(0, 0, Constants.TILE_SIZE, 0);
+            g.drawLine(0, Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+            if (conveyor.getDirectionType() == DirectionType.WEST) {
+                g.drawLine(Constants.TILE_SIZE, 0, Constants.TILE_SIZE, Constants.TILE_SIZE);
+                g.drawLine(Constants.TILE_SIZE, Constants.TILE_SIZE, 0, Constants.TILE_SIZE / 2f);
+                g.drawLine(0, Constants.TILE_SIZE / 2f, Constants.TILE_SIZE, 0);
+            } else {
+                g.drawLine(0, 0, 0, Constants.TILE_SIZE);
+                g.drawLine(0, 0, Constants.TILE_SIZE, Constants.TILE_SIZE / 2f);
+                g.drawLine(0, Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE / 2f);
+            }
+        }
+        g.translate(-positionX * Constants.TILE_SIZE, -positionY * Constants.TILE_SIZE);
+    }
+
 
     public static void renderProtagonist(GameContainer gc, Graphics g, int positionX, int positionY, Protagonist protagonist) {
         long timestamp = System.currentTimeMillis() / 250;
@@ -155,6 +188,10 @@ public class RenderingUtils {
 
     public static void renderRay(GameContainer gc, Graphics g, Map map, Protagonist protagonist) {
 
+        long timestamp = System.currentTimeMillis() / 250;
+        Color color = timestamp % 2 == 0 ? Color.red : Color.blue;
+        g.setColor(color);
+
         Ray ray = Ray.create(map);
 
         List<Position> positions = ray.getRayPositions();
@@ -168,7 +205,6 @@ public class RenderingUtils {
             DirectionType endDirection = lookAheadPosition.isPresent() ? DirectionType.direction(position, lookAheadPosition.get()) : startDirection;
 
             g.setLineWidth(3);
-            g.setColor(Color.black);
 
             float x1;
             float y1;

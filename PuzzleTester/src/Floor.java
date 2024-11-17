@@ -5,7 +5,7 @@ public class Floor extends Tile {
     }
 
     @Override
-    public boolean passable() {
+    public boolean passable(DirectionType directionType) {
         return true;
     }
 

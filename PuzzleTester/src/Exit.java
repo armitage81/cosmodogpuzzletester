@@ -5,7 +5,7 @@ public class Exit extends Tile {
     }
 
     @Override
-    public boolean passable() {
+    public boolean passable(DirectionType directionType) {
         return true;
     }
 
