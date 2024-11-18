@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="12">
+ <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="81" columns="9">
+  <image source="tiles.png" width="144" height="144"/>
+ </tileset>
+ <layer id="1" name="tiles" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu2W3QrAIAiFCy/a3v+F10XCkDLpnzgfyMacp4OE5RwA4FZ8jJCeM2KEv1r+LeTo9577Z5U/CXshl/fF32b4ezL51v6FVlNifWteetjRP4nWg1P3H0NKzqJtwad1WucHKbG7fz21VkZozNSuzfvT+wd/fRrw16ehzeDafF59/o6stWK5n2q1HCUNAMC9fFiP0jHAEgAA
+  </data>
+ </layer>
+ <layer id="2" name="pieces" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3UQQrAIAxEUSl4gm5te/9b2i6yCQStINPKfxCIuHDQYEoAsIbzrksdokMRndu6H1WuFnWuI+jVuYxlKm7t2X6eGwcvRG/12Ab2Zv5/u6u/yx09Yn4eVpoNAMB3VVkq6A7AEgAA
+  </data>
+ </layer>
+ <layer id="3" name="actors" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3OMQ0AAAgDsF34l4yIHSSkVdAEAOCvuQ4AAFBbQyGet8ASAAA=
+  </data>
+ </layer>
+ <objectgroup id="5" name="connectors">
+  <object id="7" x="390.843" y="278.688">
+   <polyline points="0,0 62.3082,-127.449"/>
+  </object>
+  <object id="8" x="488.27" y="282.086">
+   <polyline points="0,0 -95.7281,-97.4274"/>
+  </object>
+  <object id="9" x="491.102" y="199.953">
+   <polyline points="0,0 -113.854,47.5808"/>
+  </object>
+  <object id="10" x="486.571" y="195.421">
+   <polyline points="0,0 -226.009,52.1123"/>
+  </object>
+  <object id="11" x="440.123" y="279.821">
+   <polyline points="0,0 -142.176,-99.1267"/>
+  </object>
+ </objectgroup>
+</map>
