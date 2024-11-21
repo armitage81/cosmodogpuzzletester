@@ -79,7 +79,7 @@ public class Starter extends BasicGame {
                     Tile tile = map.tileAtPosition(protagonist.positionX, protagonist.positionY);
                     if (tile instanceof Exit) {
                         maps.removeFirst();
-                        if (    maps.isEmpty()) {
+                        if (maps.isEmpty()) {
                             System.exit(0);
                         }
                         map = maps.getFirst();
@@ -87,7 +87,13 @@ public class Starter extends BasicGame {
                 }
             }
         }
-
+        if (input.isKeyPressed(Input.KEY_ESCAPE)) {
+            maps.removeFirst();
+            if (maps.isEmpty()) {
+                System.exit(0);
+            }
+            map = maps.getFirst();
+        }
         if (input.isKeyPressed(Input.KEY_SPACE)) {
             Ray ray = Ray.create(map);
             Optional<Position> rayTargetPosition = ray.getTargetPosition();

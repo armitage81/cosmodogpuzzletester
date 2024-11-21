@@ -194,14 +194,54 @@ public class RenderingUtils {
 
         Ray ray = Ray.create(map);
 
+        /*
+        When drawing the ray, following must be considered.
+        - The ray always starts at the position adjacent to the player in the facing direction, with one exception:
+        - The exception being when the player is facing an adjacent non-transparent tile, in which case the ray covers no positions.
+        - In the simplest case, the ray is a straight line covering one or multiple positions which ends at an non-transparent tile.
+        - The ray can be bent though. When the ray hits a reflector, the ray is bent in the direction of the reflector.
+        - A bent ray can hit itself (like in the Snake game), in which case the ray ends.
+        - A bent ray can also hit the protagonist, in which case the ray also ends.
+        - A ray that hits either itself or protagonist does not have a target position.
+        - A ray that ends before a non-transparent tile has a target position, which is this tile's position.
+        - When drawing a ray, we look at all it's positions and draw the ray's segment for each of those positions.
+        - Each position refers to the previous position and to the next position.
+        - For the very first position, the previous position is the protagonist's position.
+        - For the very last position, the next position is the target position (if it exists)
+        - or the position adjacent to the last position in the direction of the last direction.
+        - Each segment of the ray is drawn in two steps.
+        - The first half is drawn depending on the direction of the previous position.
+        - The second half is drawn depending on the direction of the next position.
+        - Each half of the segment can be a straight line or an L-shape.
+        - If the target position does exist, it is drawn at the end.
+
+         */
+
         List<Position> positions = ray.getRayPositions();
         for (int i = 0; i < positions.size(); i++) {
 
-            Position lookBehindPosition = i == 0 ? Position.fromCoordinates(protagonist.positionX, protagonist.positionY) : positions.get(i - 1);
-            Position position = positions.get(i);
-            Optional<Position> lookAheadPosition = i == positions.size() - 1 ? Optional.empty() : Optional.of(positions.get(i + 1));
+            Position lookBehindPosition;
+            if (i == 0) {
+                lookBehindPosition = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
+            } else {
+                lookBehindPosition = positions.get(i - 1);
+            }
 
+            Position position = positions.get(i);
             DirectionType startDirection = DirectionType.direction(lookBehindPosition, position);
+
+            Optional<Position> lookAheadPosition;
+
+            if (i < positions.size() - 1) {
+                lookAheadPosition = Optional.of(positions.get(i + 1));
+            } else {
+                if (ray.getTargetPosition().isPresent()) {
+                    lookAheadPosition = ray.getTargetPosition();
+                } else {
+                    lookAheadPosition = Optional.of(DirectionType.facedAdjacentPosition(position, startDirection));
+                }
+            }
+
             DirectionType endDirection = lookAheadPosition.isPresent() ? DirectionType.direction(position, lookAheadPosition.get()) : startDirection;
 
             g.setLineWidth(3);
