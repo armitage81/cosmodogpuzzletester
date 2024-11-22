@@ -1,3 +1,5 @@
+import org.newdawn.slick.Image;
+
 public class Floor extends Tile {
 
     public Floor(int x, int y) {
@@ -12,5 +14,10 @@ public class Floor extends Tile {
     @Override
     public boolean transparent() {
         return true;
+    }
+
+    @Override
+    public Image getImage() {
+        return Constants.SPRITE_SHEET.getSprite(0, 10);
     }
 }

@@ -1,3 +1,6 @@
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
+
 public class Constants {
     public static final int FIELD_WIDTH = 40;
     public static final int FIELD_HEIGHT = 30;
@@ -32,5 +35,15 @@ public class Constants {
 
     public static final int TILE_ID_PROTAGONIST = 6;
 
+
+    public static SpriteSheet SPRITE_SHEET;
+
+    static {
+        try {
+            SPRITE_SHEET = new SpriteSheet("maps/tiles.png", 16, 16);
+        } catch (SlickException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

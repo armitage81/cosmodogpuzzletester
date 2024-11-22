@@ -1,3 +1,5 @@
+import org.newdawn.slick.Image;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,5 +32,9 @@ public class Switch extends DynamicPiece implements Pressable {
     @Override
     public void press(Map map, Protagonist protagonist) {
         switchables.forEach(Switchable::switchToNextState);
+    }
+
+    public Image getImage() {
+        return Constants.SPRITE_SHEET.getSprite(4, 0);
     }
 }

@@ -1,3 +1,5 @@
+import org.newdawn.slick.Image;
+
 public class SmoothWall extends Tile {
 
     public SmoothWall(int x, int y) {
@@ -14,4 +16,8 @@ public class SmoothWall extends Tile {
         return false;
     }
 
+    @Override
+    public Image getImage() {
+        return Constants.SPRITE_SHEET.getSprite(6, 0);
+    }
 }

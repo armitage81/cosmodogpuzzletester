@@ -1,3 +1,5 @@
+import org.newdawn.slick.Image;
+
 public class Door extends DynamicPiece implements Switchable {
 
     public boolean open;
@@ -30,5 +32,15 @@ public class Door extends DynamicPiece implements Switchable {
     @Override
     public boolean transparent() {
         return open;
+    }
+
+    @Override
+    public Image getImage() {
+        if (open) {
+            return Constants.SPRITE_SHEET.getSprite(3, 0);
+        } else {
+            return Constants.SPRITE_SHEET.getSprite(1, 0);
+        }
+
     }
 }

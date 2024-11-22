@@ -26,18 +26,13 @@ public class RenderingUtils {
         g.drawRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
-    public static void renderWall(GameContainer gc, Graphics g, int positionX, int positionY) {
-        g.setColor(new Color(Color.darkGray));
-        g.fillRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
-        g.setColor(new Color(Color.black));
-        g.drawRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
-        g.drawLine(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, (positionX + 1) * Constants.TILE_SIZE, (positionY + 1) * Constants.TILE_SIZE);
-        g.drawLine((positionX + 1) * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, positionX * Constants.TILE_SIZE, (positionY + 1) * Constants.TILE_SIZE);
+    public static void renderWall(GameContainer gc, Graphics g, int positionX, int positionY, Wall wall) {
+        wall.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
-    public static void renderSmoothWall(GameContainer gc, Graphics g, int positionX, int positionY, Map map) {
-        g.setColor(new Color(Color.lightGray));
-        g.fillRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+    public static void renderSmoothWall(GameContainer gc, Graphics g, int positionX, int positionY, Map map, SmoothWall smoothWall) {
+
+        smoothWall.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
 
         long time = System.currentTimeMillis() / 250;
         if (time % 2 == 0) {
@@ -56,120 +51,42 @@ public class RenderingUtils {
                 g.fillRect(positionX * Constants.TILE_SIZE + Constants.TILE_SIZE / 2f, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE / 2f, Constants.TILE_SIZE);
             }
         }
-        g.setColor(new Color(Color.black));
-        g.drawRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
-    public static void renderObstacle(GameContainer gc, Graphics g, int positionX, int positionY) {
-        g.setColor(new Color(Color.cyan));
-        g.fillRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
-        g.setColor(new Color(Color.lightGray));
-        g.drawRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+    public static void renderGlass(GameContainer gc, Graphics g, int positionX, int positionY, Glass glass) {
+        glass.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
-    public static void renderSmoke(GameContainer gc, Graphics g, int positionX, int positionY) {
-
+    public static void renderSmoke(GameContainer gc, Graphics g, int positionX, int positionY, Smoke smoke) {
         long timestamp = System.currentTimeMillis() / 250;
+        renderDefaultTile(gc, g, positionX, positionY);
+        smoke.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
 
-        g.setColor(new Color(timestamp % 2 == 0 ? Color.lightGray : Color.darkGray));
-        g.fillRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
-    public static void renderExit(GameContainer gc, Graphics g, int positionX, int positionY) {
+    public static void renderExit(GameContainer gc, Graphics g, int positionX, int positionY, Exit exit) {
         renderDefaultTile(gc, g, positionX, positionY);
-        g.setColor(new Color(Color.red));
-        g.setLineWidth(3);
-        g.drawLine(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, (positionX + 1) * Constants.TILE_SIZE, (positionY + 1) * Constants.TILE_SIZE);
-        g.drawLine((positionX + 1) * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, positionX * Constants.TILE_SIZE, (positionY + 1) * Constants.TILE_SIZE);
-        g.setLineWidth(1);
+        exit.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
     public static void renderDoor(GameContainer gc, Graphics g, int positionX, int positionY, Door door) {
-        g.setColor(new Color(door.open ? Color.green : Color.red));
-        g.fillRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
-        g.setColor(new Color(Color.lightGray));
-        g.drawRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+        door.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
     public static void renderSwitch(GameContainer gc, Graphics g, int positionX, int positionY, Switch aSwitch) {
-        g.setColor(new Color(Color.yellow));
-        g.fillRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
-        g.setColor(new Color(Color.lightGray));
-        g.drawRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+        aSwitch.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
     public static void renderJammer(GameContainer gc, Graphics g, int positionX, int positionY, Jammer jammer) {
-        g.setColor(new Color(Color.red));
-        g.fillOval(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
-        g.setColor(new Color(Color.white));
-        g.fillRect(positionX * Constants.TILE_SIZE + 6, positionY * Constants.TILE_SIZE + 12, Constants.TILE_SIZE - 12, Constants.TILE_SIZE - 24);
+        jammer.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
     public static void renderReflector(GameContainer gc, Graphics g, int positionX, int positionY, Reflector reflector) {
-        g.setColor(new Color(Color.black));
-
-        Position tl = Position.fromCoordinates(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE);
-        Position tr = Position.fromCoordinates(positionX * Constants.TILE_SIZE + Constants.TILE_SIZE, positionY * Constants.TILE_SIZE);
-        Position bl = Position.fromCoordinates(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE + Constants.TILE_SIZE);
-        Position br = Position.fromCoordinates(positionX * Constants.TILE_SIZE + Constants.TILE_SIZE, positionY * Constants.TILE_SIZE + Constants.TILE_SIZE);
-
-        if (reflector.getReflectionType() == ReflectionType.NORTH_WEST) {
-            g.drawLine(tr.getX(), tr.getY(), br.getX(), br.getY());
-            g.drawLine(br.getX(), br.getY(), bl.getX(), bl.getY());
-            g.drawLine(bl.getX(), bl.getY(), tr.getX(), tr.getY());
-        }
-
-        if (reflector.getReflectionType() == ReflectionType.NORTH_EAST) {
-            g.drawLine(tl.getX(), tl.getY(), bl.getX(), bl.getY());
-            g.drawLine(bl.getX(), bl.getY(), br.getX(), br.getY());
-            g.drawLine(br.getX(), br.getY(), tl.getX(), tl.getY());
-        }
-
-        if (reflector.getReflectionType() == ReflectionType.SOUTH_EAST) {
-            g.drawLine(tl.getX(), tl.getY(), tr.getX(), tr.getY());
-            g.drawLine(tr.getX(), tr.getY(), bl.getX(), bl.getY());
-            g.drawLine(bl.getX(), bl.getY(), tl.getX(), tl.getY());
-        }
-
-        if (reflector.getReflectionType() == ReflectionType.SOUTH_WEST) {
-            g.drawLine(tl.getX(), tl.getY(), tr.getX(), tr.getY());
-            g.drawLine(tr.getX(), tr.getY(), br.getX(), br.getY());
-            g.drawLine(br.getX(), br.getY(), tl.getX(), tl.getY());
-        }
-
+        reflector.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
     public static void renderConveyor(GameContainer gc, Graphics g, int positionX, int positionY, Conveyor conveyor) {
-        g.translate(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE);
-        g.setColor(Color.magenta);
-        g.fillRect(0, 0, Constants.TILE_SIZE, Constants.TILE_SIZE);
-        g.setColor(Color.black);
-        if (conveyor.getDirectionType() == DirectionType.NORTH || conveyor.getDirectionType() == DirectionType.SOUTH) {
-            g.drawLine(0, 0, 0, Constants.TILE_SIZE);
-            g.drawLine(Constants.TILE_SIZE, 0, Constants.TILE_SIZE, Constants.TILE_SIZE);
-            if (conveyor.getDirectionType() == DirectionType.NORTH) {
-                g.drawLine(0, Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
-                g.drawLine(0, Constants.TILE_SIZE, Constants.TILE_SIZE / 2f, 0);
-                g.drawLine(Constants.TILE_SIZE / 2f, 0, Constants.TILE_SIZE, Constants.TILE_SIZE);
-            } else {
-                g.drawLine(0, 0, Constants.TILE_SIZE, 0);
-                g.drawLine(0, 0, Constants.TILE_SIZE / 2f, Constants.TILE_SIZE);
-                g.drawLine(Constants.TILE_SIZE / 2f, Constants.TILE_SIZE, Constants.TILE_SIZE, 0);
-            }
-        } else if (conveyor.getDirectionType() == DirectionType.WEST || conveyor.getDirectionType() == DirectionType.EAST) {
-            g.drawLine(0, 0, Constants.TILE_SIZE, 0);
-            g.drawLine(0, Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
-            if (conveyor.getDirectionType() == DirectionType.WEST) {
-                g.drawLine(Constants.TILE_SIZE, 0, Constants.TILE_SIZE, Constants.TILE_SIZE);
-                g.drawLine(Constants.TILE_SIZE, Constants.TILE_SIZE, 0, Constants.TILE_SIZE / 2f);
-                g.drawLine(0, Constants.TILE_SIZE / 2f, Constants.TILE_SIZE, 0);
-            } else {
-                g.drawLine(0, 0, 0, Constants.TILE_SIZE);
-                g.drawLine(0, 0, Constants.TILE_SIZE, Constants.TILE_SIZE / 2f);
-                g.drawLine(0, Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE / 2f);
-            }
-        }
-        g.translate(-positionX * Constants.TILE_SIZE, -positionY * Constants.TILE_SIZE);
+        conveyor.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
 
@@ -178,10 +95,7 @@ public class RenderingUtils {
         boolean blinking = timestamp % 2 == 0;
 
         if (blinking) {
-            g.setColor(new Color(Color.blue));
-            g.fillRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
-            g.setColor(new Color(Color.lightGray));
-            g.drawRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+            protagonist.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
         }
 
     }
