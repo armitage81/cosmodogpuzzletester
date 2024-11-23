@@ -96,6 +96,7 @@ public class Starter extends BasicGame {
             }
             map = maps.getFirst();
         }
+
         if (input.isKeyPressed(Input.KEY_SPACE)) {
             Ray ray = Ray.create(map);
             Optional<Position> rayTargetPosition = ray.getTargetPosition();
