@@ -9,8 +9,8 @@ public class RayTest {
 
     @Test
     public void testStraightRay() {
-        Tile tile_0_0 = new Floor(0, 0);
-        Tile tile_1_0 = new Floor(1, 0);
+        Tile tile_0_0 = new RoughFloor(0, 0);
+        Tile tile_1_0 = new RoughFloor(1, 0);
         Tile tile_2_0 = new Wall(2, 0);
 
         Protagonist protagonist = new Protagonist(0, 0);
@@ -33,7 +33,7 @@ public class RayTest {
 
     @Test
     public void testShortestRay() {
-        Tile tile_0_0 = new Floor(0, 0);
+        Tile tile_0_0 = new RoughFloor(0, 0);
         Tile tile_1_0 = new Wall(1, 0);
 
         Protagonist protagonist = new Protagonist(0, 0);
@@ -152,7 +152,7 @@ public class RayTest {
     private Map emptyMap() {
         List<Tile> tiles = new ArrayList<>();
         for (int i = 0; i < Constants.FIELD_WIDTH * Constants.FIELD_HEIGHT; i++) {
-            tiles.add(new Floor(i % Constants.FIELD_WIDTH, i / Constants.FIELD_WIDTH));
+            tiles.add(new RoughFloor(i % Constants.FIELD_WIDTH, i / Constants.FIELD_WIDTH));
         }
         return Map.instance(tiles, new ArrayList<>(), new Protagonist(0, 0));
     }

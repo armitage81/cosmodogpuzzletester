@@ -1,16 +1,17 @@
-public class Floor extends Tile {
+public class Panel extends Tile {
 
-    public Floor(int x, int y) {
+    public Panel(int x, int y) {
         super(x, y);
     }
 
     @Override
     public boolean passable(DirectionType directionType) {
-        return true;
+        return false;
     }
 
     @Override
     public boolean transparent() {
-        return true;
+        return false;
     }
+
 }

@@ -99,7 +99,7 @@ public class Starter extends BasicGame {
             Optional<Position> rayTargetPosition = ray.getTargetPosition();
             if (rayTargetPosition.isPresent()) {
                 Tile tile = map.tileAtPosition(rayTargetPosition.get());
-                if (tile instanceof SmoothWall smoothWall) {
+                if (tile instanceof Panel panel) {
                     DirectionType directionFacingPlayer = DirectionType.reverse(ray.getLastDirection());
                     if (!map.portalExists(rayTargetPosition.get(), directionFacingPlayer)) {
                         Portal portal = new Portal(rayTargetPosition.get(), directionFacingPlayer);
@@ -126,7 +126,7 @@ public class Starter extends BasicGame {
                     RenderingUtils.renderWall(gc, g, i, j);
                 } else if (tile instanceof Glass) {
                     RenderingUtils.renderObstacle(gc, g, i, j);
-                } else if (tile instanceof SmoothWall) {
+                } else if (tile instanceof Panel) {
                     RenderingUtils.renderSmoothWall(gc, g, i, j, map);
                 } else if (tile instanceof Exit) {
                     RenderingUtils.renderExit(gc, g, i, j);

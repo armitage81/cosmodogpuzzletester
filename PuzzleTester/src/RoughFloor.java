@@ -1,17 +1,16 @@
-public class SmoothWall extends Tile {
+public class RoughFloor extends Tile {
 
-    public SmoothWall(int x, int y) {
+    public RoughFloor(int x, int y) {
         super(x, y);
     }
 
     @Override
     public boolean passable(DirectionType directionType) {
-        return false;
+        return true;
     }
 
     @Override
     public boolean transparent() {
-        return false;
+        return true;
     }
-
 }

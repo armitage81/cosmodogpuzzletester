@@ -33,9 +33,9 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                 if (tileId == Constants.TILE_ID_WALL) {
                     tile = new Wall(x, y);
                 } else if (tileId == Constants.TILE_ID_SMOOTH_WALL) {
-                    tile = new SmoothWall(x, y);
+                    tile = new Panel(x, y);
                 }else if (tileId == Constants.TILE_ID_EMPTY) {
-                    tile = new Floor(x, y);
+                    tile = new RoughFloor(x, y);
                 } else if (tileId == Constants.TILE_ID_GLASS) {
                     tile = new Glass(x, y);
                 } else if (tileId == Constants.TILE_ID_EXIT) {
