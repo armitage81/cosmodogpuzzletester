@@ -1,3 +1,5 @@
+import org.newdawn.slick.Image;
+
 public class RoughFloor extends Tile {
 
     public RoughFloor(int x, int y) {

@@ -30,9 +30,9 @@ public class RenderingUtils {
         wall.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
-    public static void renderSmoothWall(GameContainer gc, Graphics g, int positionX, int positionY, Map map, SmoothWall smoothWall) {
+    public static void renderPanel(GameContainer gc, Graphics g, int positionX, int positionY, Map map, Panel panel) {
 
-        smoothWall.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+        panel.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
 
         long time = System.currentTimeMillis() / 250;
         if (time % 2 == 0) {

@@ -10,8 +10,6 @@ import java.util.stream.Stream;
 
 import org.newdawn.slick.*;
 
-import static com.badlogic.gdx.scenes.scene2d.InputEvent.Type.exit;
-
 public class Starter extends BasicGame {
 
     private List<Map> maps = new ArrayList<>();
@@ -128,9 +126,9 @@ public class Starter extends BasicGame {
                 if (tile instanceof Wall) {
                     RenderingUtils.renderWall(gc, g, i, j, (Wall)tile);
                 } else if (tile instanceof Glass) {
-                    RenderingUtils.renderObstacle(gc, g, i, j);
+                    RenderingUtils.renderGlass(gc, g, i, j, (Glass) tile);
                 } else if (tile instanceof Panel) {
-                    RenderingUtils.renderSmoothWall(gc, g, i, j, map);
+                    RenderingUtils.renderPanel(gc, g, i, j, map, (Panel) tile);
                 } else if (tile instanceof Exit) {
                     RenderingUtils.renderExit(gc, g, i, j, (Exit) tile);
                 } else if (tile instanceof Smoke) {

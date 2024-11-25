@@ -1,3 +1,5 @@
+import org.newdawn.slick.Image;
+
 public class Panel extends Tile {
 
     public Panel(int x, int y) {
