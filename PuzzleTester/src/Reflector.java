@@ -1,3 +1,5 @@
+import org.newdawn.slick.Image;
+
 public class Reflector extends DynamicPiece implements Switchable {
 
     private ReflectionType reflectionType;
@@ -34,5 +36,21 @@ public class Reflector extends DynamicPiece implements Switchable {
 
     public ReflectionType getReflectionType() {
         return reflectionType;
+    }
+
+    @Override
+    public Image getImage() {
+
+        if (getReflectionType() == ReflectionType.NORTH_WEST) {
+            return Constants.SPRITE_SHEET.getSprite(0, 3);
+        } else if (getReflectionType() == ReflectionType.NORTH_EAST) {
+            return Constants.SPRITE_SHEET.getSprite(1, 3);
+        } else if (getReflectionType() == ReflectionType.SOUTH_EAST) {
+            return Constants.SPRITE_SHEET.getSprite(2, 3);
+        } else  {
+            return Constants.SPRITE_SHEET.getSprite(3, 3);
+        }
+
+
     }
 }

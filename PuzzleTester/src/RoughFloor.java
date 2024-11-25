@@ -13,4 +13,9 @@ public class RoughFloor extends Tile {
     public boolean transparent() {
         return true;
     }
+
+    @Override
+    public Image getImage() {
+        return Constants.SPRITE_SHEET.getSprite(0, 10);
+    }
 }

@@ -10,11 +10,13 @@ import java.util.stream.Stream;
 
 import org.newdawn.slick.*;
 
+import static com.badlogic.gdx.scenes.scene2d.InputEvent.Type.exit;
+
 public class Starter extends BasicGame {
 
     private List<Map> maps = new ArrayList<>();
 
-    public Starter(String name) {
+    public Starter(String name) throws SlickException {
         super(name);
         TiledMapReader mapReader = new XmlTiledMapReader();
 
@@ -94,6 +96,7 @@ public class Starter extends BasicGame {
             }
             map = maps.getFirst();
         }
+
         if (input.isKeyPressed(Input.KEY_SPACE)) {
             Ray ray = Ray.create(map);
             Optional<Position> rayTargetPosition = ray.getTargetPosition();
@@ -123,15 +126,15 @@ public class Starter extends BasicGame {
             for (int j = 0 ; j < Constants.FIELD_HEIGHT ; j++) {
                 Tile tile = map.tileAtPosition(i, j);
                 if (tile instanceof Wall) {
-                    RenderingUtils.renderWall(gc, g, i, j);
+                    RenderingUtils.renderWall(gc, g, i, j, (Wall)tile);
                 } else if (tile instanceof Glass) {
                     RenderingUtils.renderObstacle(gc, g, i, j);
                 } else if (tile instanceof Panel) {
                     RenderingUtils.renderSmoothWall(gc, g, i, j, map);
                 } else if (tile instanceof Exit) {
-                    RenderingUtils.renderExit(gc, g, i, j);
+                    RenderingUtils.renderExit(gc, g, i, j, (Exit) tile);
                 } else if (tile instanceof Smoke) {
-                    RenderingUtils.renderSmoke(gc, g, i, j);
+                    RenderingUtils.renderSmoke(gc, g, i, j, (Smoke) tile);
                 }else {
                     RenderingUtils.renderDefaultTile(gc, g, i, j);
                 }

@@ -14,4 +14,8 @@ public class Panel extends Tile {
         return false;
     }
 
+    @Override
+    public Image getImage() {
+        return Constants.SPRITE_SHEET.getSprite(6, 0);
+    }
 }

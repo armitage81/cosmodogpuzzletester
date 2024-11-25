@@ -1,3 +1,5 @@
+import org.newdawn.slick.Image;
+
 public class Smoke extends Tile {
 
     public Smoke(int x, int y) {
@@ -12,5 +14,10 @@ public class Smoke extends Tile {
     @Override
     public boolean transparent() {
         return false;
+    }
+
+    @Override
+    public Image getImage() {
+        return Constants.SPRITE_SHEET.getSprite(8, 0);
     }
 }

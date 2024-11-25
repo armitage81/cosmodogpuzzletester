@@ -1,3 +1,5 @@
+import org.newdawn.slick.Image;
+
 public class Conveyor extends DynamicPiece implements Switchable {
 
     private DirectionType directionType;
@@ -34,5 +36,18 @@ public class Conveyor extends DynamicPiece implements Switchable {
     @Override
     public void switchToNextState() {
         directionType = DirectionType.reverse(directionType);
+    }
+
+    @Override
+    public Image getImage() {
+        if (getDirectionType() == DirectionType.WEST) {
+            return Constants.SPRITE_SHEET.getSprite(4, 3);
+        } else if (getDirectionType() == DirectionType.NORTH) {
+            return Constants.SPRITE_SHEET.getSprite(5, 3);
+        } else if (getDirectionType() == DirectionType.EAST) {
+            return Constants.SPRITE_SHEET.getSprite(6, 3);
+        } else {
+            return Constants.SPRITE_SHEET.getSprite(7, 3);
+        }
     }
 }

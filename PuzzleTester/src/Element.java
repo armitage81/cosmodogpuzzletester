@@ -1,3 +1,5 @@
+import org.newdawn.slick.Image;
+
 public abstract class Element {
 
     public int positionX;
@@ -16,5 +18,7 @@ public abstract class Element {
     public abstract boolean passable(DirectionType directionType);
 
     public abstract boolean transparent();
+
+    public abstract Image getImage();
 
 }
