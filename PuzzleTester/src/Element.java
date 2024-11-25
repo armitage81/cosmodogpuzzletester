@@ -1,3 +1,5 @@
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 public abstract class Element {
@@ -20,5 +22,7 @@ public abstract class Element {
     public abstract boolean transparent();
 
     public abstract Image getImage();
+
+    public abstract void render(GameContainer gc, Graphics g, Map map);
 
 }

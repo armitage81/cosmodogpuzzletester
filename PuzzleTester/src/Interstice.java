@@ -1,3 +1,5 @@
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 public class Interstice extends Tile {
@@ -19,5 +21,10 @@ public class Interstice extends Tile {
     @Override
     public Image getImage() {
         return Constants.SPRITE_SHEET.getSprite(0, 10);
+    }
+
+    @Override
+    public void render(GameContainer gc, Graphics g, Map map) {
+
     }
 }

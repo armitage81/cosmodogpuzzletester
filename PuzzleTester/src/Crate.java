@@ -1,3 +1,6 @@
+import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 public class Crate extends Actor {
@@ -19,5 +22,11 @@ public class Crate extends Actor {
     @Override
     public Image getImage() {
         return null;
+    }
+
+    @Override
+    public void render(GameContainer gc, Graphics g, Map map) {
+        g.setColor(Color.magenta);
+        g.fillRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 }

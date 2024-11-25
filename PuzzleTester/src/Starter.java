@@ -123,40 +123,18 @@ public class Starter extends BasicGame {
         for (int i = 0 ; i < Constants.FIELD_WIDTH ; i++) {
             for (int j = 0 ; j < Constants.FIELD_HEIGHT ; j++) {
                 Tile tile = map.tileAtPosition(i, j);
-                if (tile instanceof Hardware) {
-                    RenderingUtils.renderWall(gc, g, i, j, (Hardware)tile);
-                } else if (tile instanceof Glass) {
-                    RenderingUtils.renderGlass(gc, g, i, j, (Glass) tile);
-                } else if (tile instanceof Hull) {
-                    RenderingUtils.renderPanel(gc, g, i, j, map, (Hull) tile);
-                } else if (tile instanceof Exit) {
-                    RenderingUtils.renderExit(gc, g, i, j, (Exit) tile);
-                } else if (tile instanceof Smoke) {
-                    RenderingUtils.renderSmoke(gc, g, i, j, (Smoke) tile);
-                }else {
-                    RenderingUtils.renderDefaultTile(gc, g, i, j);
-                }
+                tile.render(gc, g, map);
             }
         }
 
         for (Piece piece : map.getPieces()) {
-
-            if (piece instanceof Hatch) {
-                RenderingUtils.renderDoor(gc, g, piece.positionX, piece.positionY, (Hatch)piece);
-            } else if (piece instanceof Switch) {
-                RenderingUtils.renderSwitch(gc, g, piece.positionX, piece.positionY, (Switch)piece);
-            } else if (piece instanceof Jammer) {
-                RenderingUtils.renderJammer(gc, g, piece.positionX, piece.positionY, (Jammer)piece);
-            } else if (piece instanceof Reflector) {
-                RenderingUtils.renderReflector(gc, g, piece.positionX, piece.positionY, (Reflector) piece);
-            } else if (piece instanceof Current) {
-                RenderingUtils.renderConveyor(gc, g, piece.positionX, piece.positionY, (Current) piece);
-            }
-
+            piece.render(gc, g, map);
         }
 
-        RenderingUtils.renderProtagonist(gc, g, map.getProtagonist().positionX, map.getProtagonist().positionY, map.getProtagonist());
-        RenderingUtils.renderRay(gc, g, map, map.getProtagonist());
+        map.getProtagonist().render(gc, g, map);
+
+        Ray ray = Ray.create(map);
+        ray.render(gc, g, map);
 
 
         RenderingUtils.resetTranslation(gc, g);
