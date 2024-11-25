@@ -1,10 +1,10 @@
 import org.newdawn.slick.Image;
 
-public class Door extends DynamicPiece implements Switchable {
+public class Hatch extends DynamicPiece implements Switchable {
 
     public boolean open;
 
-    public Door(int x, int y, boolean open) {
+    public Hatch(int x, int y, boolean open) {
         super(x, y);
         this.open = open;
     }

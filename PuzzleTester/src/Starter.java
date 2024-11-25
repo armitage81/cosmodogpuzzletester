@@ -100,7 +100,7 @@ public class Starter extends BasicGame {
             Optional<Position> rayTargetPosition = ray.getTargetPosition();
             if (rayTargetPosition.isPresent()) {
                 Tile tile = map.tileAtPosition(rayTargetPosition.get());
-                if (tile instanceof Panel panel) {
+                if (tile instanceof Hull hull) {
                     DirectionType directionFacingPlayer = DirectionType.reverse(ray.getLastDirection());
                     if (!map.portalExists(rayTargetPosition.get(), directionFacingPlayer)) {
                         Portal portal = new Portal(rayTargetPosition.get(), directionFacingPlayer);
@@ -123,12 +123,12 @@ public class Starter extends BasicGame {
         for (int i = 0 ; i < Constants.FIELD_WIDTH ; i++) {
             for (int j = 0 ; j < Constants.FIELD_HEIGHT ; j++) {
                 Tile tile = map.tileAtPosition(i, j);
-                if (tile instanceof Wall) {
-                    RenderingUtils.renderWall(gc, g, i, j, (Wall)tile);
+                if (tile instanceof Hardware) {
+                    RenderingUtils.renderWall(gc, g, i, j, (Hardware)tile);
                 } else if (tile instanceof Glass) {
                     RenderingUtils.renderGlass(gc, g, i, j, (Glass) tile);
-                } else if (tile instanceof Panel) {
-                    RenderingUtils.renderPanel(gc, g, i, j, map, (Panel) tile);
+                } else if (tile instanceof Hull) {
+                    RenderingUtils.renderPanel(gc, g, i, j, map, (Hull) tile);
                 } else if (tile instanceof Exit) {
                     RenderingUtils.renderExit(gc, g, i, j, (Exit) tile);
                 } else if (tile instanceof Smoke) {
@@ -141,16 +141,16 @@ public class Starter extends BasicGame {
 
         for (Piece piece : map.getPieces()) {
 
-            if (piece instanceof Door) {
-                RenderingUtils.renderDoor(gc, g, piece.positionX, piece.positionY, (Door)piece);
+            if (piece instanceof Hatch) {
+                RenderingUtils.renderDoor(gc, g, piece.positionX, piece.positionY, (Hatch)piece);
             } else if (piece instanceof Switch) {
                 RenderingUtils.renderSwitch(gc, g, piece.positionX, piece.positionY, (Switch)piece);
             } else if (piece instanceof Jammer) {
                 RenderingUtils.renderJammer(gc, g, piece.positionX, piece.positionY, (Jammer)piece);
             } else if (piece instanceof Reflector) {
                 RenderingUtils.renderReflector(gc, g, piece.positionX, piece.positionY, (Reflector) piece);
-            } else if (piece instanceof Conveyor) {
-                RenderingUtils.renderConveyor(gc, g, piece.positionX, piece.positionY, (Conveyor) piece);
+            } else if (piece instanceof Current) {
+                RenderingUtils.renderConveyor(gc, g, piece.positionX, piece.positionY, (Current) piece);
             }
 
         }

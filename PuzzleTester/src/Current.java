@@ -1,10 +1,10 @@
 import org.newdawn.slick.Image;
 
-public class Conveyor extends DynamicPiece implements Switchable {
+public class Current extends DynamicPiece implements Switchable {
 
     private DirectionType directionType;
 
-    public Conveyor(int x, int y, DirectionType directionType) {
+    public Current(int x, int y, DirectionType directionType) {
         super(x, y);
         this.directionType = directionType;
     }

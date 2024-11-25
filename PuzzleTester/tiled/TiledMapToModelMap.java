@@ -31,11 +31,11 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                 Tile tile;
 
                 if (tileId == Constants.TILE_ID_WALL) {
-                    tile = new Wall(x, y);
+                    tile = new Hardware(x, y);
                 } else if (tileId == Constants.TILE_ID_SMOOTH_WALL) {
-                    tile = new Panel(x, y);
+                    tile = new Hull(x, y);
                 }else if (tileId == Constants.TILE_ID_EMPTY) {
-                    tile = new RoughFloor(x, y);
+                    tile = new Space(x, y);
                 } else if (tileId == Constants.TILE_ID_GLASS) {
                     tile = new Glass(x, y);
                 } else if (tileId == Constants.TILE_ID_EXIT) {
@@ -51,11 +51,11 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                 int dynamicPieceId = tiledMap.getTileId(Position.fromCoordinates(x, y), Constants.LAYER_INDEX_DYNAMIC_PIECES);
 
                 if (dynamicPieceId == Constants.TILE_ID_DOOR_OPEN) {
-                    Door door = new Door(x, y, true);
-                    pieces.add(door);
+                    Hatch hatch = new Hatch(x, y, true);
+                    pieces.add(hatch);
                 } else if (dynamicPieceId == Constants.TILE_ID_DOOR_CLOSED) {
-                    Door door = new Door(x, y, false);
-                    pieces.add(door);
+                    Hatch hatch = new Hatch(x, y, false);
+                    pieces.add(hatch);
                 } else if (dynamicPieceId == Constants.TILE_ID_SWITCH) {
                     Switch aSwitch = new Switch(x, y);
                     pieces.add(aSwitch);
@@ -75,17 +75,17 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                     Reflector reflector = new Reflector(x, y, ReflectionType.SOUTH_WEST);
                     pieces.add(reflector);
                 } else if (dynamicPieceId == Constants.TILE_ID_CONVEYOR_WEST) {
-                    Conveyor conveyor = new Conveyor(x, y, DirectionType.WEST);
-                    pieces.add(conveyor);
+                    Current current = new Current(x, y, DirectionType.WEST);
+                    pieces.add(current);
                 } else if (dynamicPieceId == Constants.TILE_ID_CONVEYOR_NORTH) {
-                    Conveyor conveyor = new Conveyor(x, y, DirectionType.NORTH);
-                    pieces.add(conveyor);
+                    Current current = new Current(x, y, DirectionType.NORTH);
+                    pieces.add(current);
                 } else if (dynamicPieceId == Constants.TILE_ID_CONVEYOR_EAST) {
-                    Conveyor conveyor = new Conveyor(x, y, DirectionType.EAST);
-                    pieces.add(conveyor);
+                    Current current = new Current(x, y, DirectionType.EAST);
+                    pieces.add(current);
                 } else if (dynamicPieceId == Constants.TILE_ID_CONVEYOR_SOUTH) {
-                    Conveyor conveyor = new Conveyor(x, y, DirectionType.SOUTH);
-                    pieces.add(conveyor);
+                    Current current = new Current(x, y, DirectionType.SOUTH);
+                    pieces.add(current);
                 }
 
                 int protagonistTileId = tiledMap.getTileId(Position.fromCoordinates(x, y), Constants.LAYER_INDEX_ACTORS);

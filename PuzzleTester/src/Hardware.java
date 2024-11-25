@@ -1,8 +1,8 @@
 import org.newdawn.slick.Image;
 
-public class Panel extends Tile {
+public class Hardware extends Tile {
 
-    public Panel(int x, int y) {
+    public Hardware(int x, int y) {
         super(x, y);
     }
 
@@ -18,6 +18,6 @@ public class Panel extends Tile {
 
     @Override
     public Image getImage() {
-        return Constants.SPRITE_SHEET.getSprite(6, 0);
+        return Constants.SPRITE_SHEET.getSprite(0, 0);
     }
 }

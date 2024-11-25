@@ -1,8 +1,6 @@
-import org.lwjgl.Sys;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SpriteSheet;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,13 +24,13 @@ public class RenderingUtils {
         g.drawRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
-    public static void renderWall(GameContainer gc, Graphics g, int positionX, int positionY, Wall wall) {
-        wall.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+    public static void renderWall(GameContainer gc, Graphics g, int positionX, int positionY, Hardware hardware) {
+        hardware.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
-    public static void renderPanel(GameContainer gc, Graphics g, int positionX, int positionY, Map map, Panel panel) {
+    public static void renderPanel(GameContainer gc, Graphics g, int positionX, int positionY, Map map, Hull hull) {
 
-        panel.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+        hull.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
 
         long time = System.currentTimeMillis() / 250;
         if (time % 2 == 0) {
@@ -69,8 +67,8 @@ public class RenderingUtils {
         exit.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
-    public static void renderDoor(GameContainer gc, Graphics g, int positionX, int positionY, Door door) {
-        door.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+    public static void renderDoor(GameContainer gc, Graphics g, int positionX, int positionY, Hatch hatch) {
+        hatch.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
     public static void renderSwitch(GameContainer gc, Graphics g, int positionX, int positionY, Switch aSwitch) {
@@ -85,8 +83,8 @@ public class RenderingUtils {
         reflector.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
-    public static void renderConveyor(GameContainer gc, Graphics g, int positionX, int positionY, Conveyor conveyor) {
-        conveyor.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+    public static void renderConveyor(GameContainer gc, Graphics g, int positionX, int positionY, Current current) {
+        current.getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
 

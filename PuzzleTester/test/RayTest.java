@@ -9,9 +9,9 @@ public class RayTest {
 
     @Test
     public void testStraightRay() {
-        Tile tile_0_0 = new RoughFloor(0, 0);
-        Tile tile_1_0 = new RoughFloor(1, 0);
-        Tile tile_2_0 = new Wall(2, 0);
+        Tile tile_0_0 = new Space(0, 0);
+        Tile tile_1_0 = new Space(1, 0);
+        Tile tile_2_0 = new Hardware(2, 0);
 
         Protagonist protagonist = new Protagonist(0, 0);
         protagonist.setDirection(DirectionType.EAST);
@@ -33,8 +33,8 @@ public class RayTest {
 
     @Test
     public void testShortestRay() {
-        Tile tile_0_0 = new RoughFloor(0, 0);
-        Tile tile_1_0 = new Wall(1, 0);
+        Tile tile_0_0 = new Space(0, 0);
+        Tile tile_1_0 = new Hardware(1, 0);
 
         Protagonist protagonist = new Protagonist(0, 0);
         protagonist.setDirection(DirectionType.EAST);
@@ -57,7 +57,7 @@ public class RayTest {
     public void testLRay() {
 
         Map map = emptyMap();
-        Tile tile_2_2 = new Wall(2, 2);
+        Tile tile_2_2 = new Hardware(2, 2);
 
         Protagonist protagonist = new Protagonist(0, 0);
         protagonist.setDirection(DirectionType.EAST);
@@ -80,7 +80,7 @@ public class RayTest {
     public void testURay() {
 
         Map map = emptyMap();
-        Tile tile_0_2 = new Wall(0, 2);
+        Tile tile_0_2 = new Hardware(0, 2);
 
         Protagonist protagonist = new Protagonist(0, 0);
         protagonist.setDirection(DirectionType.EAST);
@@ -152,7 +152,7 @@ public class RayTest {
     private Map emptyMap() {
         List<Tile> tiles = new ArrayList<>();
         for (int i = 0; i < Constants.FIELD_WIDTH * Constants.FIELD_HEIGHT; i++) {
-            tiles.add(new RoughFloor(i % Constants.FIELD_WIDTH, i / Constants.FIELD_WIDTH));
+            tiles.add(new Space(i % Constants.FIELD_WIDTH, i / Constants.FIELD_WIDTH));
         }
         return Map.instance(tiles, new ArrayList<>(), new Protagonist(0, 0));
     }

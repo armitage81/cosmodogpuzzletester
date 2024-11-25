@@ -1,23 +1,23 @@
 import org.newdawn.slick.Image;
 
-public class RoughFloor extends Tile {
+public class Crate extends Actor {
 
-    public RoughFloor(int x, int y) {
+    public Crate(int x, int y) {
         super(x, y);
     }
 
     @Override
     public boolean passable(DirectionType directionType) {
-        return true;
+        return false;
     }
 
     @Override
     public boolean transparent() {
-        return true;
+        return false;
     }
 
     @Override
     public Image getImage() {
-        return Constants.SPRITE_SHEET.getSprite(0, 10);
+        return null;
     }
 }
