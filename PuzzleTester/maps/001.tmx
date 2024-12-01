@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="7">
+ <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="81" columns="9">
+  <image source="tiles.png" width="144" height="144"/>
+ </tileset>
+ <layer id="1" name="tiles" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3WQQoAEBBG4bFzAfe/quws0Ejxj95Xs5nVSxQzAIBHWoyC1lEGo9bXo88vSp/y/evfq+L73dnfRt+ZSH15sn8pwvkp/w8A4BcVGE1E/sASAAA=
+  </data>
+ </layer>
+ <layer id="2" name="pieces" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3OwQkAIAwEsFJwA/ef1Rn8eFSSCVIFAO+tdGConQ58oNMBAACuHbXT+eDAEgAA
+  </data>
+ </layer>
+ <layer id="3" name="actors" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3OMQkAAAwDsF7zL3kySiFRkAQAWHDtAAAAlDzFkVRpwBIAAA==
+  </data>
+ </layer>
+ <objectgroup id="5" name="connectors">
+  <object id="6" name="001" x="263.5" y="167.5">
+   <polyline points="0,0 -18,64.5"/>
+  </object>
+ </objectgroup>
+</map>

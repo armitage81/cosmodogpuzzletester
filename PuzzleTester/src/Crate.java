@@ -3,7 +3,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
-public class Crate extends Actor {
+public class Crate extends DynamicPiece {
 
     public Crate(int x, int y) {
         super(x, y);
@@ -21,12 +21,11 @@ public class Crate extends Actor {
 
     @Override
     public Image getImage() {
-        return null;
+        return Constants.SPRITE_SHEET.getSprite(1, 2);
     }
 
     @Override
     public void render(GameContainer gc, Graphics g, Map map) {
-        g.setColor(Color.magenta);
-        g.fillRect(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+        getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 }

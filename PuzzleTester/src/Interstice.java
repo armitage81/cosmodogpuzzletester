@@ -20,11 +20,11 @@ public class Interstice extends Tile {
 
     @Override
     public Image getImage() {
-        return Constants.SPRITE_SHEET.getSprite(0, 10);
+        return Constants.SPRITE_SHEET.getSprite(2, 2);
     }
 
     @Override
     public void render(GameContainer gc, Graphics g, Map map) {
-
+        getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 }

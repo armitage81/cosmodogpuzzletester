@@ -30,9 +30,9 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
 
                 Tile tile;
 
-                if (tileId == Constants.TILE_ID_WALL) {
+                if (tileId == Constants.TILE_ID_HARDWARE) {
                     tile = new Hardware(x, y);
-                } else if (tileId == Constants.TILE_ID_SMOOTH_WALL) {
+                } else if (tileId == Constants.TILE_ID_HULL) {
                     tile = new Hull(x, y);
                 }else if (tileId == Constants.TILE_ID_EMPTY) {
                     tile = new Space(x, y);
@@ -42,6 +42,8 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                     tile = new Exit(x, y);
                 } else if (tileId == Constants.TILE_ID_SMOKE) {
                     tile = new Smoke(x, y);
+                } else if (tileId == Constants.TILE_ID_INTERSTICE) {
+                    tile = new Interstice(x, y);
                 } else {
                     throw new RuntimeException();
                 }
@@ -50,10 +52,10 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
 
                 int dynamicPieceId = tiledMap.getTileId(Position.fromCoordinates(x, y), Constants.LAYER_INDEX_DYNAMIC_PIECES);
 
-                if (dynamicPieceId == Constants.TILE_ID_DOOR_OPEN) {
+                if (dynamicPieceId == Constants.TILE_ID_HATCH_OPEN) {
                     Hatch hatch = new Hatch(x, y, true);
                     pieces.add(hatch);
-                } else if (dynamicPieceId == Constants.TILE_ID_DOOR_CLOSED) {
+                } else if (dynamicPieceId == Constants.TILE_ID_HATCH_CLOSED) {
                     Hatch hatch = new Hatch(x, y, false);
                     pieces.add(hatch);
                 } else if (dynamicPieceId == Constants.TILE_ID_SWITCH) {
@@ -86,6 +88,9 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                 } else if (dynamicPieceId == Constants.TILE_ID_CONVEYOR_SOUTH) {
                     Current current = new Current(x, y, DirectionType.SOUTH);
                     pieces.add(current);
+                } else if (dynamicPieceId == Constants.TILE_ID_CRATE) {
+                    Crate crate = new Crate(x, y);
+                    pieces.add(crate);
                 }
 
                 int protagonistTileId = tiledMap.getTileId(Position.fromCoordinates(x, y), Constants.LAYER_INDEX_ACTORS);

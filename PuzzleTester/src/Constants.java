@@ -12,14 +12,15 @@ public class Constants {
 
 
     public static final int TILE_ID_EMPTY = 0;
-    public static final int TILE_ID_WALL = 1;
+    public static final int TILE_ID_HARDWARE = 1;
     public static final int TILE_ID_GLASS = 3;
-    public static final int TILE_ID_SMOOTH_WALL = 7;
+    public static final int TILE_ID_HULL = 7;
     public static final int TILE_ID_EXIT = 8;
     public static final int TILE_ID_SMOKE = 9;
+    public static final int TILE_ID_INTERSTICE = 21;
 
-    public static final int TILE_ID_DOOR_OPEN = 4;
-    public static final int TILE_ID_DOOR_CLOSED = 2;
+    public static final int TILE_ID_HATCH_OPEN = 4;
+    public static final int TILE_ID_HATCH_CLOSED = 2;
     public static final int TILE_ID_SWITCH = 5;
     public static final int TILE_ID_JAMMER = 19;
     public static final int TILE_ID_REFLECTOR_NORTH_WEST = 28;
@@ -32,6 +33,7 @@ public class Constants {
     public static final int TILE_ID_CONVEYOR_EAST = 34;
     public static final int TILE_ID_CONVEYOR_SOUTH = 35;
 
+    public static final int TILE_ID_CRATE = 20;
 
     public static final int TILE_ID_PROTAGONIST = 6;
 
