@@ -16,7 +16,7 @@ public class Current extends DynamicPiece implements Switchable {
     }
 
     @Override
-    public boolean passable(DirectionType directionType) {
+    public boolean passable(Actor actor, DirectionType directionType) {
         return this.directionType == directionType;
     }
 

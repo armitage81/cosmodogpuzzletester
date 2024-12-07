@@ -66,9 +66,8 @@ public class Starter extends BasicGame {
         }
 
         if (movementAttempt) {
-            if (map.protagonistCanGoStraight(protagonist)) {
                 Position originalPosition = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
-                map.goToEnvisionedPosition(protagonist);
+                map.moveProtagonist();
                 Position position = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
 
                 if (!position.equals(originalPosition)) {
@@ -85,7 +84,6 @@ public class Starter extends BasicGame {
                         map = maps.getFirst();
                     }
                 }
-            }
         }
         if (input.isKeyPressed(Input.KEY_ESCAPE)) {
             maps.removeFirst();

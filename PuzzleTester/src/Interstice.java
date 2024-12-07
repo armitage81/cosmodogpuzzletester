@@ -9,8 +9,8 @@ public class Interstice extends Tile {
     }
 
     @Override
-    public boolean passable(DirectionType directionType) {
-        return true;
+    public boolean passable(Actor actor, DirectionType directionType) {
+        return actor instanceof Protagonist;
     }
 
     @Override

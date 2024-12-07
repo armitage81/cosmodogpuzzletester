@@ -9,7 +9,7 @@ public class Hardware extends Tile {
     }
 
     @Override
-    public boolean passable(DirectionType directionType) {
+    public boolean passable(Actor actor, DirectionType directionType) {
         return false;
     }
 

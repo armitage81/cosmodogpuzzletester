@@ -1,5 +1,6 @@
 import com.google.common.collect.Lists;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -77,31 +78,54 @@ public class Map {
         this.protagonist = protagonist;
     }
 
-    public boolean positionPassable(Entrance entrance) {
-        Position position = entrance.getPosition();
-        DirectionType entranceDirection = entrance.getEntranceDirection();
-        Tile tile = tileAtPosition((int)position.getX(), (int)position.getY());
-        Optional<Piece> piece = pieceAtPosition((int)position.getX(), (int)position.getY());
-        return tile.passable(entranceDirection) && (piece.isEmpty() || piece.get().passable(entranceDirection));
-    }
-
     public boolean positionPenetrable(Position position) {
         Tile tile = tileAtPosition((int)position.getX(), (int)position.getY());
         Optional<Piece> piece = pieceAtPosition((int)position.getX(), (int)position.getY());
         return tile.transparent() && (piece.isEmpty() || piece.get().transparent());
     }
 
-    public Entrance protagonistsEnvisionedPositionEntrance(Protagonist protagonist) {
+    public void moveProtagonist() {
+        Entrance protagonistsTargetEntrance = protagonistsTargetEntrance();
+        Optional<Crate> optCrate = crate(protagonistsTargetEntrance.getPosition());
+        if (optCrate.isPresent()) {
+            Crate crate = optCrate.get();
+            Entrance cratesTargetEntrance = cratesTargetEntrance(crate, protagonistsTargetEntrance.getEntranceDirection());
+            boolean cratesTargetEntrancePassable = passable(crate, cratesTargetEntrance);
+            if (cratesTargetEntrancePassable) {
+                crate.positionX = (int)cratesTargetEntrance.getPosition().getX();
+                crate.positionY = (int)cratesTargetEntrance.getPosition().getY();
+                protagonist.positionX = (int)protagonistsTargetEntrance.getPosition().getX();
+                protagonist.positionY = (int)protagonistsTargetEntrance.getPosition().getY();
+            }
+        } else {
+            boolean protagonistsTargetEntrancePassable = passable(protagonist, protagonistsTargetEntrance);
+            if (protagonistsTargetEntrancePassable) {
+                protagonist.positionX = (int)protagonistsTargetEntrance.getPosition().getX();
+                protagonist.positionY = (int)protagonistsTargetEntrance.getPosition().getY();
+            }
+        }
+
+    }
+
+    private Entrance protagonistsTargetEntrance() {
+        return targetEntrance(protagonist, protagonist.getDirection());
+    }
+
+    private Entrance cratesTargetEntrance(Crate crate, DirectionType directionType) {
+        return targetEntrance(crate, directionType);
+    }
+
+    private Entrance targetEntrance(Actor actor, DirectionType directionType) {
 
         Position envisionedPosition;
-        DirectionType envisionedPositionEntrance = protagonist.getDirection();
+        DirectionType envisionedPositionEntrance = directionType;
 
-        Position protagonistsPosition = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
-        DirectionType protagonistsDirection = protagonist.getDirection();
+        Position protagonistsPosition = Position.fromCoordinates(actor.positionX, actor.positionY);
+        DirectionType protagonistsDirection = directionType;
 
         Position facedAdjacentPosition = DirectionType.facedAdjacentPosition(protagonistsPosition, protagonistsDirection);
 
-        DirectionType directionFacingProtagonist = DirectionType.reverse(protagonist.getDirection());
+        DirectionType directionFacingProtagonist = DirectionType.reverse(directionType);
 
         if (portalExists(facedAdjacentPosition, directionFacingProtagonist)) {
             Optional<Portal> otherPortal = Optional.empty();
@@ -124,14 +148,21 @@ public class Map {
         return Entrance.instance(envisionedPosition, envisionedPositionEntrance);
     }
 
-    public void goToEnvisionedPosition(Protagonist protagonist) {
-        Position envisionedPosition = protagonistsEnvisionedPositionEntrance(protagonist).getPosition();
-        protagonist.positionX = (int)envisionedPosition.getX();
-        protagonist.positionY = (int)envisionedPosition.getY();
+    private Optional<Crate> crate(Position position) {
+        Optional<Piece> piece = pieceAtPosition((int)position.getX(), (int)position.getY());
+        if (piece.isPresent() && piece.get() instanceof Crate crate) {
+            return Optional.of(crate);
+        } else {
+            return Optional.empty();
+        }
     }
 
-    public boolean protagonistCanGoStraight(Protagonist protagonist) {
-        return positionPassable(protagonistsEnvisionedPositionEntrance(protagonist));
+    public boolean passable(Actor actor, Entrance entrance) {
+        Position position = entrance.getPosition();
+        DirectionType entranceDirection = entrance.getEntranceDirection();
+        Tile tile = tileAtPosition((int)position.getX(), (int)position.getY());
+        Optional<Piece> piece = pieceAtPosition((int)position.getX(), (int)position.getY());
+        return tile.passable(actor, entranceDirection) && (piece.isEmpty() || piece.get().passable(actor, entranceDirection));
     }
 
 }

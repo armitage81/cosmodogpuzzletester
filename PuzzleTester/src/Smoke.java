@@ -10,7 +10,7 @@ public class Smoke extends Tile {
     }
 
     @Override
-    public boolean passable(DirectionType directionType) {
+    public boolean passable(Actor actor, DirectionType directionType) {
         return true;
     }
 

@@ -14,8 +14,8 @@ public class Switch extends DynamicPiece implements Pressable {
     }
 
     @Override
-    public boolean passable(DirectionType directionType) {
-        return true;
+    public boolean passable(Actor actor, DirectionType directionType) {
+        return actor instanceof Protagonist;
     }
 
     @Override

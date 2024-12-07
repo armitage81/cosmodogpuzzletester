@@ -27,7 +27,7 @@ public class Hatch extends DynamicPiece implements Switchable {
     }
 
     @Override
-    public boolean passable(DirectionType directionType) {
+    public boolean passable(Actor actor, DirectionType directionType) {
         return open;
     }
 

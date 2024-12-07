@@ -9,7 +9,7 @@ public class Jammer extends DynamicPiece implements Pressable {
     }
 
     @Override
-    public boolean passable(DirectionType directionType) {
+    public boolean passable(Actor actor, DirectionType directionType) {
         return true;
     }
 

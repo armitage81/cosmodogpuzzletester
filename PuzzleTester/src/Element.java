@@ -17,7 +17,7 @@ public abstract class Element {
         return positionX + "/" + positionY;
     }
 
-    public abstract boolean passable(DirectionType directionType);
+    public abstract boolean passable(Actor actor, DirectionType directionType);
 
     public abstract boolean transparent();
 

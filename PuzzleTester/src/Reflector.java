@@ -12,7 +12,7 @@ public class Reflector extends DynamicPiece implements Switchable {
     }
 
     @Override
-    public boolean passable(DirectionType directionType) {
+    public boolean passable(Actor actor, DirectionType directionType) {
         return false;
     }
 

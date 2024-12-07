@@ -1,17 +1,16 @@
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
-public class Crate extends DynamicPiece {
+public class Crate extends Actor {
 
     public Crate(int x, int y) {
         super(x, y);
     }
 
     @Override
-    public boolean passable(DirectionType directionType) {
-        return false;
+    public boolean passable(Actor actor, DirectionType directionType) {
+        return !(actor instanceof Crate);
     }
 
     @Override

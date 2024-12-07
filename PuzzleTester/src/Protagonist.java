@@ -12,7 +12,7 @@ public class Protagonist extends Actor implements Rotational {
     }
 
     @Override
-    public boolean passable(DirectionType directionType) {
+    public boolean passable(Actor actor, DirectionType directionType) {
         return false;
     }
 
