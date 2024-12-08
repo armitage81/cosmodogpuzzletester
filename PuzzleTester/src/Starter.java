@@ -12,7 +12,7 @@ import org.newdawn.slick.*;
 
 public class Starter extends BasicGame {
 
-    private List<Map> maps = new ArrayList<>();
+    private final List<Map> maps = new ArrayList<>();
 
     public Starter(String name) throws SlickException {
         super(name);
@@ -71,9 +71,13 @@ public class Starter extends BasicGame {
                 Position position = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
 
                 if (!position.equals(originalPosition)) {
-                    Optional<Piece> piece = map.pieceAtPosition(position);
-                    if (piece.isPresent() && piece.get() instanceof Pressable) {
-                        ((Pressable)piece.get()).press(map, protagonist);
+                    Optional<Pressable> pressable = map.piecesAtPosition(position)
+                            .stream()
+                            .filter(p -> p instanceof  Pressable)
+                            .map(p -> (Pressable)p)
+                            .findFirst();
+                    if (pressable.isPresent()) {
+                        pressable.get().press(map, protagonist);
                     }
                     Tile tile = map.tileAtPosition(protagonist.positionX, protagonist.positionY);
                     if (tile instanceof Exit) {
@@ -94,20 +98,26 @@ public class Starter extends BasicGame {
         }
 
         if (input.isKeyPressed(Input.KEY_SPACE)) {
-            Ray ray = Ray.create(map);
-            Optional<Position> rayTargetPosition = ray.getTargetPosition();
-            if (rayTargetPosition.isPresent()) {
-                Tile tile = map.tileAtPosition(rayTargetPosition.get());
-                if (tile instanceof Hull hull) {
-                    DirectionType directionFacingPlayer = DirectionType.reverse(ray.getLastDirection());
-                    if (!map.portalExists(rayTargetPosition.get(), directionFacingPlayer)) {
-                        Portal portal = new Portal(rayTargetPosition.get(), directionFacingPlayer);
-                        map.createPortal(portal);
+
+            boolean onEmpField = map.piecesAtPosition(protagonist.positionX, protagonist.positionY)
+                    .stream()
+                    .anyMatch(p -> p instanceof Emp);
+
+            if (!onEmpField) {
+                Ray ray = Ray.create(map);
+                Optional<Position> rayTargetPosition = ray.getTargetPosition();
+                if (rayTargetPosition.isPresent()) {
+                    Tile tile = map.tileAtPosition(rayTargetPosition.get());
+                    if (tile instanceof Hull hull) {
+                        DirectionType directionFacingPlayer = DirectionType.reverse(ray.getLastDirection());
+                        if (!map.portalExists(rayTargetPosition.get(), directionFacingPlayer)) {
+                            Portal portal = new Portal(rayTargetPosition.get(), directionFacingPlayer);
+                            map.createPortal(portal);
+                        }
                     }
                 }
             }
         }
-
         input.clearKeyPressedRecord();
 
     }

@@ -2,9 +2,9 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
-public class Jammer extends DynamicPiece implements Pressable {
+public class Emp extends DynamicPiece {
 
-    public Jammer(int x, int y) {
+    public Emp(int x, int y) {
         super(x, y);
     }
 
@@ -19,13 +19,8 @@ public class Jammer extends DynamicPiece implements Pressable {
     }
 
     @Override
-    public void press(Map map, Protagonist protagonist) {
-        map.clearPortals();
-    }
-
-    @Override
     public Image getImage() {
-        return Constants.SPRITE_SHEET.getSprite(0, 2);
+        return Constants.SPRITE_SHEET.getSprite(4, 2);
     }
 
     @Override
@@ -35,5 +30,6 @@ public class Jammer extends DynamicPiece implements Pressable {
         if (phase <= 2) {
             getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
         }
+
     }
 }

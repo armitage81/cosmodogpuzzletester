@@ -7,8 +7,10 @@ public class Constants {
     public static final int TILE_SIZE = 30;
 
     public static final int LAYER_INDEX_TILES = 0;
-    public static final int LAYER_INDEX_DYNAMIC_PIECES = 1;
-    public static final int LAYER_INDEX_ACTORS = 2;
+    public static final int LAYER_INDEX_DYNAMIC_PIECES_1 = 1;
+    public static final int LAYER_INDEX_DYNAMIC_PIECES_2 = 2;
+    public static final int LAYER_INDEX_DYNAMIC_PIECES_3 = 3;
+    public static final int LAYER_INDEX_ACTORS = 4;
 
 
     public static final int TILE_ID_EMPTY = 0;
@@ -27,6 +29,7 @@ public class Constants {
     public static final int TILE_ID_REFLECTOR_NORTH_EAST = 29;
     public static final int TILE_ID_REFLECTOR_SOUTH_EAST = 30;
     public static final int TILE_ID_REFLECTOR_SOUTH_WEST = 31;
+    public static final int TILE_ID_EMP = 23;
 
     public static final int TILE_ID_CONVEYOR_WEST = 32;
     public static final int TILE_ID_CONVEYOR_NORTH = 33;

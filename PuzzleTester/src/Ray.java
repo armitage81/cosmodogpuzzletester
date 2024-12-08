@@ -36,12 +36,6 @@ public class Ray {
         return targetPosition;
     }
 
-    public boolean positionTransparent(Map map, Position position) {
-        Tile tile = map.tileAtPosition((int)position.getX(), (int)position.getY());
-        Optional<Piece> piece = map.pieceAtPosition((int)position.getX(), (int)position.getY());
-        return tile.transparent() && (piece.isEmpty() || piece.get().transparent());
-    }
-
     public static Ray create(Map map) {
 
         Protagonist protagonist = map.getProtagonist();
@@ -58,13 +52,13 @@ public class Ray {
             } else if (lookAheadPosition.equals(protagonistsPosition)) {
                 finished = true;
             } else {
-                if (ray.positionTransparent(map, lookAheadPosition)) {
+                if (map.positionPenetrable(lookAheadPosition)) {
                     ray.addPosition(lookAheadPosition);
                     lookAheadPosition = DirectionType.facedAdjacentPosition(lookAheadPosition, directionType);
                 } else {
-                    Optional<Piece> pieceAtLookAheadPosition = map.pieceAtPosition(lookAheadPosition);
-                    if (pieceAtLookAheadPosition.isPresent() && pieceAtLookAheadPosition.get() instanceof Reflector) {
-                        Optional<DirectionType> reflectionDirection = ReflectionType.reflectionDirection(((Reflector) pieceAtLookAheadPosition.get()).getReflectionType(), directionType);
+                    Optional<Reflector> reflectorAtLookAheadPosition = map.piece(lookAheadPosition, Reflector.class);
+                    if (reflectorAtLookAheadPosition.isPresent()) {
+                        Optional<DirectionType> reflectionDirection = ReflectionType.reflectionDirection(((Reflector) reflectorAtLookAheadPosition.get()).getReflectionType(), directionType);
                         if (reflectionDirection.isPresent()) {
                             ray.addPosition(lookAheadPosition);
                             directionType = reflectionDirection.get();
@@ -94,6 +88,7 @@ public class Ray {
 
         /*
         When drawing the ray, following must be considered.
+        - If the player stands on a field with an EMP piece, there is no ray.
         - The ray always starts at the position adjacent to the player in the facing direction, with one exception:
         - The exception being when the player is facing an adjacent non-transparent tile, in which case the ray covers no positions.
         - In the simplest case, the ray is a straight line covering one or multiple positions which ends at an non-transparent tile.
@@ -116,6 +111,11 @@ public class Ray {
          */
 
         Protagonist protagonist = map.getProtagonist();
+
+        Optional<Emp> emp = map.piece(protagonist.positionX, protagonist.positionY, Emp.class);
+        if (emp.isPresent()) {
+            return;
+        }
 
         List<Position> positions = getRayPositions();
         for (int i = 0; i < positions.size(); i++) {

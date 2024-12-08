@@ -4,6 +4,8 @@ import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Map {
 
@@ -59,11 +61,11 @@ public class Map {
         tiles.set((int)position.getX() + (int)position.getY() * Constants.FIELD_WIDTH, tile);
     }
 
-    public Optional<Piece> pieceAtPosition(Position position) {
-        return pieceAtPosition((int)position.getX(), (int)position.getY());
+    public Set<Piece> piecesAtPosition(Position position) {
+        return piecesAtPosition((int)position.getX(), (int)position.getY());
     }
-    public Optional<Piece> pieceAtPosition(int x, int y) {
-        return pieces.stream().filter(e -> e.positionX == x && e.positionY == y).findFirst();
+    public Set<Piece> piecesAtPosition(int x, int y) {
+        return pieces.stream().filter(e -> e.positionX == x && e.positionY == y).collect(Collectors.toSet());
     }
 
     public void addPiece(Piece piece) {
@@ -80,13 +82,16 @@ public class Map {
 
     public boolean positionPenetrable(Position position) {
         Tile tile = tileAtPosition((int)position.getX(), (int)position.getY());
-        Optional<Piece> piece = pieceAtPosition((int)position.getX(), (int)position.getY());
-        return tile.transparent() && (piece.isEmpty() || piece.get().transparent());
+        boolean impenetrablePiece =
+                piecesAtPosition((int)position.getX(), (int)position.getY())
+                        .stream()
+                        .anyMatch(p -> !p.transparent());
+        return tile.transparent() && !impenetrablePiece;
     }
 
     public void moveProtagonist() {
         Entrance protagonistsTargetEntrance = protagonistsTargetEntrance();
-        Optional<Crate> optCrate = crate(protagonistsTargetEntrance.getPosition());
+        Optional<Crate> optCrate = piece(protagonistsTargetEntrance.getPosition(), Crate.class);
         if (optCrate.isPresent()) {
             Crate crate = optCrate.get();
             Entrance cratesTargetEntrance = cratesTargetEntrance(crate, protagonistsTargetEntrance.getEntranceDirection());
@@ -148,21 +153,24 @@ public class Map {
         return Entrance.instance(envisionedPosition, envisionedPositionEntrance);
     }
 
-    private Optional<Crate> crate(Position position) {
-        Optional<Piece> piece = pieceAtPosition((int)position.getX(), (int)position.getY());
-        if (piece.isPresent() && piece.get() instanceof Crate crate) {
-            return Optional.of(crate);
-        } else {
-            return Optional.empty();
-        }
+    public <T extends Piece> Optional<T> piece(int x, int y, Class<T> clazz) {
+        return piece(Position.fromCoordinates(x, y), clazz);
+    }
+
+    public <T extends Piece> Optional<T> piece(Position position, Class<T> clazz) {
+        Set<Piece> pieces = piecesAtPosition((int)position.getX(), (int)position.getY());
+        return pieces.stream().filter(p -> p.getClass() == clazz).map(p -> (T)p).findFirst();
     }
 
     public boolean passable(Actor actor, Entrance entrance) {
         Position position = entrance.getPosition();
         DirectionType entranceDirection = entrance.getEntranceDirection();
         Tile tile = tileAtPosition((int)position.getX(), (int)position.getY());
-        Optional<Piece> piece = pieceAtPosition((int)position.getX(), (int)position.getY());
-        return tile.passable(actor, entranceDirection) && (piece.isEmpty() || piece.get().passable(actor, entranceDirection));
+        boolean impassablePiece =
+                piecesAtPosition((int)position.getX(), (int)position.getY())
+                        .stream()
+                        .anyMatch(p -> !p.passable(actor, entranceDirection));
+        return tile.passable(actor, entranceDirection) && !impassablePiece;
     }
 
 }

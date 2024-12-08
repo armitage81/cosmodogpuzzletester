@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="6">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="7">
  <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="81" columns="9">
   <image source="tiles.png" width="144" height="144"/>
  </tileset>
  <layer id="1" name="tiles" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3WsQoAIAhFUZ3q/7+4Rhs0JQiHe+BNDT6kIBEAQIbuDCca5Ge/6hn93mZ16ddlf/bOZ94B+8vNot8d/d7YWTPZg/2ds6J4/wYAQM0CiroXxcASAAA=
+   H4sIAAAAAAAACu2VQQrAIAwEIx5sH9D/f7W9LKSiDSVS15KBvViWDBKpSBAEfyAZKUasPuLxeyJfORrBtxEzPN3aD2fIiBmebvj5ur39O2QNvyT3+8zqXL/vWX4jZni6rf1j9Kth9dN3yObHvH8aRr9V3i+zH2D10/8EVj+E0a+3f9sEv/2Fn0Vx+n2RIAAnG7bilsASAAA=
   </data>
  </layer>
  <layer id="2" name="pieces" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3OQQ0AIAwEsIUw/5b5Y+BgaRW0CgDe0unAZacDn1npAAAA4xxK+D/jwBIAAA==
+   H4sIAAAAAAAACu3WOQ6AMAxE0dwBSpb735KKBgk8QQ4epP8kqgTkLBPSGgCg19zRdx9WxXtLdQEix7mrMt08+I8taH86V77I7Jr4LdfsXseYWWe0vifl/+F8RjvXNpKSD/Vu4JiPzPxH1KxE2Is17wOVDoHm+53AEgAA
   </data>
  </layer>
  <layer id="6" name="pieces2" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3BMQEAAADCoPVPbQ0PoAAAAADg1wAW4j6/wBIAAA==
+   H4sIAAAAAAAACu3RwQkAIBADwevC/ju1AQUhgifMQP4LqQIA4KWxWRf6Mvoy+jKrHn3nfvm3ax/cNAHJ5lwHwBIAAA==
   </data>
  </layer>
  <layer id="7" name="pieces3" width="40" height="30">
@@ -25,15 +25,8 @@
  </layer>
  <layer id="3" name="actors" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3OMQkAAAwDsF7zL3kySiFRkAQAWHDtAAAAlDzFkVRpwBIAAA==
+   H4sIAAAAAAAACu3OIQEAAAgDsCv6R6bCHYItwRIAWnMdAAAAeGgB8k/LmsASAAA=
   </data>
  </layer>
- <objectgroup id="5" name="connectors">
-  <object id="2" name="003" x="381" y="171">
-   <polyline points="0,0 -132.75,45.5"/>
-  </object>
-  <object id="5" name="001" x="381" y="203">
-   <polyline points="-6.54545,-39.8182 -73.6591,-23.9545"/>
-  </object>
- </objectgroup>
+ <objectgroup id="5" name="connectors"/>
 </map>

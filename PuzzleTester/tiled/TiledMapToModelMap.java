@@ -50,47 +50,57 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
 
                 tiles.add(tile);
 
-                int dynamicPieceId = tiledMap.getTileId(Position.fromCoordinates(x, y), Constants.LAYER_INDEX_DYNAMIC_PIECES);
+                int[] dynamicPieceIds = new int[] {
+                        tiledMap.getTileId(Position.fromCoordinates(x, y), Constants.LAYER_INDEX_DYNAMIC_PIECES_1),
+                        tiledMap.getTileId(Position.fromCoordinates(x, y), Constants.LAYER_INDEX_DYNAMIC_PIECES_2),
+                        tiledMap.getTileId(Position.fromCoordinates(x, y), Constants.LAYER_INDEX_DYNAMIC_PIECES_3)
+                };
 
-                if (dynamicPieceId == Constants.TILE_ID_HATCH_OPEN) {
-                    Hatch hatch = new Hatch(x, y, true);
-                    pieces.add(hatch);
-                } else if (dynamicPieceId == Constants.TILE_ID_HATCH_CLOSED) {
-                    Hatch hatch = new Hatch(x, y, false);
-                    pieces.add(hatch);
-                } else if (dynamicPieceId == Constants.TILE_ID_SWITCH) {
-                    Switch aSwitch = new Switch(x, y);
-                    pieces.add(aSwitch);
-                } else if (dynamicPieceId == Constants.TILE_ID_JAMMER) {
-                    Jammer jammer = new Jammer(x, y);
-                    pieces.add(jammer);
-                } else if (dynamicPieceId == Constants.TILE_ID_REFLECTOR_NORTH_WEST) {
-                    Reflector reflector = new Reflector(x, y, ReflectionType.NORTH_WEST);
-                    pieces.add(reflector);
-                } else if (dynamicPieceId == Constants.TILE_ID_REFLECTOR_NORTH_EAST) {
-                    Reflector reflector = new Reflector(x, y, ReflectionType.NORTH_EAST);
-                    pieces.add(reflector);
-                } else if (dynamicPieceId == Constants.TILE_ID_REFLECTOR_SOUTH_EAST) {
-                    Reflector reflector = new Reflector(x, y, ReflectionType.SOUTH_EAST);
-                    pieces.add(reflector);
-                } else if (dynamicPieceId == Constants.TILE_ID_REFLECTOR_SOUTH_WEST) {
-                    Reflector reflector = new Reflector(x, y, ReflectionType.SOUTH_WEST);
-                    pieces.add(reflector);
-                } else if (dynamicPieceId == Constants.TILE_ID_CONVEYOR_WEST) {
-                    Current current = new Current(x, y, DirectionType.WEST);
-                    pieces.add(current);
-                } else if (dynamicPieceId == Constants.TILE_ID_CONVEYOR_NORTH) {
-                    Current current = new Current(x, y, DirectionType.NORTH);
-                    pieces.add(current);
-                } else if (dynamicPieceId == Constants.TILE_ID_CONVEYOR_EAST) {
-                    Current current = new Current(x, y, DirectionType.EAST);
-                    pieces.add(current);
-                } else if (dynamicPieceId == Constants.TILE_ID_CONVEYOR_SOUTH) {
-                    Current current = new Current(x, y, DirectionType.SOUTH);
-                    pieces.add(current);
-                } else if (dynamicPieceId == Constants.TILE_ID_CRATE) {
-                    Crate crate = new Crate(x, y);
-                    pieces.add(crate);
+                for (int dynamicPieceId : dynamicPieceIds) {
+
+                    if (dynamicPieceId == Constants.TILE_ID_HATCH_OPEN) {
+                        Hatch hatch = new Hatch(x, y, true);
+                        pieces.add(hatch);
+                    } else if (dynamicPieceId == Constants.TILE_ID_HATCH_CLOSED) {
+                        Hatch hatch = new Hatch(x, y, false);
+                        pieces.add(hatch);
+                    } else if (dynamicPieceId == Constants.TILE_ID_SWITCH) {
+                        Switch aSwitch = new Switch(x, y);
+                        pieces.add(aSwitch);
+                    } else if (dynamicPieceId == Constants.TILE_ID_JAMMER) {
+                        Jammer jammer = new Jammer(x, y);
+                        pieces.add(jammer);
+                    } else if (dynamicPieceId == Constants.TILE_ID_REFLECTOR_NORTH_WEST) {
+                        Reflector reflector = new Reflector(x, y, ReflectionType.NORTH_WEST);
+                        pieces.add(reflector);
+                    } else if (dynamicPieceId == Constants.TILE_ID_REFLECTOR_NORTH_EAST) {
+                        Reflector reflector = new Reflector(x, y, ReflectionType.NORTH_EAST);
+                        pieces.add(reflector);
+                    } else if (dynamicPieceId == Constants.TILE_ID_REFLECTOR_SOUTH_EAST) {
+                        Reflector reflector = new Reflector(x, y, ReflectionType.SOUTH_EAST);
+                        pieces.add(reflector);
+                    } else if (dynamicPieceId == Constants.TILE_ID_REFLECTOR_SOUTH_WEST) {
+                        Reflector reflector = new Reflector(x, y, ReflectionType.SOUTH_WEST);
+                        pieces.add(reflector);
+                    } else if (dynamicPieceId == Constants.TILE_ID_CONVEYOR_WEST) {
+                        Current current = new Current(x, y, DirectionType.WEST);
+                        pieces.add(current);
+                    } else if (dynamicPieceId == Constants.TILE_ID_CONVEYOR_NORTH) {
+                        Current current = new Current(x, y, DirectionType.NORTH);
+                        pieces.add(current);
+                    } else if (dynamicPieceId == Constants.TILE_ID_CONVEYOR_EAST) {
+                        Current current = new Current(x, y, DirectionType.EAST);
+                        pieces.add(current);
+                    } else if (dynamicPieceId == Constants.TILE_ID_CONVEYOR_SOUTH) {
+                        Current current = new Current(x, y, DirectionType.SOUTH);
+                        pieces.add(current);
+                    } else if (dynamicPieceId == Constants.TILE_ID_CRATE) {
+                        Crate crate = new Crate(x, y);
+                        pieces.add(crate);
+                    } else if (dynamicPieceId == Constants.TILE_ID_EMP) {
+                        Emp emp = new Emp(x, y);
+                        pieces.add(emp);
+                    }
                 }
 
                 int protagonistTileId = tiledMap.getTileId(Position.fromCoordinates(x, y), Constants.LAYER_INDEX_ACTORS);
