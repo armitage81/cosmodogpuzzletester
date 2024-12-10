@@ -71,6 +71,23 @@ public class Starter extends BasicGame {
                 Position position = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
 
                 if (!position.equals(originalPosition)) {
+
+                    //Go through all presence detectors and update their activatables.
+                    List<Actor> actors = new ArrayList<>(map.getPieces().stream().filter(p -> p instanceof Crate).map(p -> (Actor) p).toList());
+                    actors.add(protagonist);
+
+                    List<Piece> presenceDetectors = map.getPieces().stream().filter(p -> p instanceof PresenceDetector).toList();
+
+                    for (Piece presenceDetectorAsPiece : presenceDetectors) {
+                        boolean presenceDetected = actors.stream().anyMatch(p -> p.positionX == presenceDetectorAsPiece.positionX && p.positionY == presenceDetectorAsPiece.positionY);
+                        ActivatableHolder activatableHolder = (ActivatableHolder) presenceDetectorAsPiece;
+                        if (presenceDetected) {
+                            activatableHolder.getActivatables().forEach(Activatable::activate);
+                        } else {
+                            activatableHolder.getActivatables().forEach(Activatable::deactivate);
+                        }
+                    }
+
                     Optional<Pressable> pressable = map.piecesAtPosition(position)
                             .stream()
                             .filter(p -> p instanceof  Pressable)
