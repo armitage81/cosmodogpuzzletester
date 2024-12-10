@@ -30,6 +30,7 @@ public class Constants {
     public static final int TILE_ID_REFLECTOR_SOUTH_EAST = 30;
     public static final int TILE_ID_REFLECTOR_SOUTH_WEST = 31;
     public static final int TILE_ID_EMP = 23;
+    public static final int TILE_ID_SENSOR = 24;
 
     public static final int TILE_ID_CONVEYOR_WEST = 32;
     public static final int TILE_ID_CONVEYOR_NORTH = 33;

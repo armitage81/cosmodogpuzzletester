@@ -2,7 +2,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
-public class Hatch extends DynamicPiece implements Switchable {
+public class Hatch extends DynamicPiece implements Switchable, Activatable {
 
     public boolean open;
 
@@ -49,5 +49,20 @@ public class Hatch extends DynamicPiece implements Switchable {
     @Override
     public void render(GameContainer gc, Graphics g, Map map) {
         getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+    }
+
+    @Override
+    public void activate() {
+        this.open = true;
+    }
+
+    @Override
+    public void deactivate() {
+        this.open = false;
+    }
+
+    @Override
+    public boolean isActive() {
+        return false;
     }
 }

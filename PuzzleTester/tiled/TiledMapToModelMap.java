@@ -100,6 +100,9 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                     } else if (dynamicPieceId == Constants.TILE_ID_EMP) {
                         Emp emp = new Emp(x, y);
                         pieces.add(emp);
+                    } else if (dynamicPieceId == Constants.TILE_ID_SENSOR) {
+                        Sensor sensor = new Sensor(x, y);
+                        pieces.add(sensor);
                     }
                 }
 
@@ -112,15 +115,25 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
             }
         }
 
-        java.util.Map<Position, Switch> switches = pieces
+        java.util.Map<Position, SwitchableHolder> switchableHolders = pieces
                 .stream()
-                .filter(e -> e instanceof Switch)
-                .collect(Collectors.toMap(e -> Position.fromCoordinates(e.positionX, e.positionY), e -> (Switch)e));
+                .filter(e -> e instanceof SwitchableHolder)
+                .collect(Collectors.toMap(e -> Position.fromCoordinates(e.positionX, e.positionY), e -> (SwitchableHolder) e));
+
+        java.util.Map<Position, ActivatableHolder> activatableHolders = pieces
+                .stream()
+                .filter(e -> e instanceof ActivatableHolder)
+                .collect(Collectors.toMap(e -> Position.fromCoordinates(e.positionX, e.positionY), e -> (ActivatableHolder) e));
 
         java.util.Map<Position, Switchable> switchables = pieces
                 .stream()
                 .filter(e -> e instanceof Switchable)
                 .collect(Collectors.toMap(e -> Position.fromCoordinates(e.positionX, e.positionY), e -> (Switchable) e));
+
+        java.util.Map<Position, Activatable> activatables = pieces
+                .stream()
+                .filter(e -> e instanceof Activatable)
+                .collect(Collectors.toMap(e -> Position.fromCoordinates(e.positionX, e.positionY), e -> (Activatable) e));
 
         List<TiledLineObject> connectors = tiledMap.getObjectGroups().get("connectors").getObjects().values().stream().map(e -> (TiledLineObject)e).toList();
         for (TiledLineObject connector : connectors) {
@@ -128,9 +141,16 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
             TiledLineObject.Point end = connector.getPoints().get(1);
             Position startPosition = Position.fromCoordinates((float)((int)start.x / tiledMap.getTileWidth()), (float)((int)start.y / tiledMap.getTileHeight()));
             Position endPosition = Position.fromCoordinates((float)((int)end.x / tiledMap.getTileWidth()), (float)((int)end.y / tiledMap.getTileHeight()));
-            Switch aSwitch = switches.get(startPosition);
-            Switchable switchable = switchables.get(endPosition);
-            aSwitch.addSwitchable(switchable);
+            SwitchableHolder switchableHolder = switchableHolders.get(startPosition);
+            if (switchableHolder != null) {
+                Switchable switchable = switchables.get(endPosition);
+                switchableHolder.addSwitchable(switchable);
+            } else {
+                ActivatableHolder activatableHolder = activatableHolders.get(startPosition);
+                Activatable activatable = activatables.get(endPosition);
+                activatableHolder.addActivatable(activatable);
+            }
+
         }
 
         return Map.instance(tiles, pieces, protagonist);

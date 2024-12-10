@@ -5,7 +5,7 @@ import org.newdawn.slick.Image;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Switch extends DynamicPiece implements Pressable {
+public class Switch extends DynamicPiece implements Pressable, SwitchableHolder {
 
     private final List<Switchable> switchables = new ArrayList<>();
 
