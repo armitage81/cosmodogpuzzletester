@@ -5,7 +5,7 @@
  </tileset>
  <layer id="1" name="tiles" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3XwQbAQAxF0VQW+YL+/69W6COLbtox3PIuYZaHCWMinHOO2/EwpNpzjrHvXX/x6Uz2VXB9uluyj7x/9n1LO0f21X2m+mSi+jry/XZUn3Yvg+mTp33U9y3HEH3k7FuL/j/a2QVNR+ZewBIAAA==
+   H4sIAAAAAAAACu3XwQbAMBBF0aks8gX5/1+NoY8sqiRRueVdhnR3yBCNcM45btfDkEpPG8a+uf7i05nsq8H16W7JPvL+2beWdo7sq/eZ6pOJ6svI95tRfdq9EkyfPOmjvm9lGKLv7ft09u1F/z/6sg43A7BawBIAAA==
   </data>
  </layer>
  <layer id="2" name="pieces" width="40" height="30">
