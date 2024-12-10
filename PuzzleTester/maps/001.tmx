@@ -25,7 +25,7 @@
  </layer>
  <layer id="3" name="actors" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3RwQkAAAjEsHu5/8guIQiaTFBoAsB1tR3ACB8BAPiqAbs6DmXAEgAA
+   H4sIAAAAAAAACu3OMQ0AAAgDsF34l4yIHSSkVdAEgO/mOgAAAFBYaElks8ASAAA=
   </data>
  </layer>
  <objectgroup id="5" name="connectors"/>
