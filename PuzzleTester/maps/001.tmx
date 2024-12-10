@@ -5,12 +5,12 @@
  </tileset>
  <layer id="1" name="tiles" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3XQQYAIBRF0Z8GraD9bzXRo0GTStx4l0/DQ58U4Zxz3NJiSHVPnca+vX7x6Uz2leD6dLdkH3n/7DtLO0f2lXGm+mSi+uj7R/Zp93IwffJ0H/V9y9MQfeTsu4v+P3pZA4zGO5fAEgAA
+   H4sIAAAAAAAACu3XwQbAQAxF0VQW+YL+/69W6COLbtox3PIuYZaHCWMinHOO2/EwpNpzjrHvXX/x6Uz2VXB9uluyj7x/9n1LO0f21X2m+mSi+jry/XZUn3Yvg+mTp33U9y3HEH3k7FuL/j/a2QVNR+ZewBIAAA==
   </data>
  </layer>
  <layer id="2" name="pieces" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3OoQ0AIAwAwe4AAsP+a2JRdaQhvUvefwQAkJnVA7Q1rgA6WdUDPLerB/jOAcWPw3zAEgAA
+   H4sIAAAAAAAACu3UoQ0AIBRDwb8DCAz7r4lF4UhDuEvqn2oVAHDS0wF8q22DBP9HykgHcN1MB/CcBUltaevAEgAA
   </data>
  </layer>
  <layer id="6" name="pieces2" width="40" height="30">
