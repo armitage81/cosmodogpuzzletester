@@ -92,7 +92,7 @@ public class SoundTest extends BasicGame {
 		g.setColor(Color.blue);
 		g.drawString("Global Sound Volume Level: " + container.getSoundVolume(), 150, 390);
 		g.drawString("Global Music Volume Level: " + container.getMusicVolume(), 150, 420);
-		g.drawString("Current Music Volume Level: " + music.getVolume(), 150, 450);
+		g.drawString("puzzletester.main.Current Music Volume Level: " + music.getVolume(), 150, 450);
 	}
 
 	/**

@@ -195,7 +195,7 @@ public class TTFFile {
     }
 
     /**
-     * Position inputstream to position indicated
+     * tiled.Position inputstream to position indicated
      * in the dirtab offset + offset
      * 
      * @param in The reader to read the tables from

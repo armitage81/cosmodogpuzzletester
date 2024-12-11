@@ -90,7 +90,7 @@ public class GeomAccuracyTest extends BasicGame {
 		g.drawString("Press T to toggle overlay", 200, 55);
 		g.drawString("Press N to switch tests", 200, 35);
 		g.drawString("Press C to cycle drawing colors", 200, 15);
-		g.drawString("Current Test:", 400, 35);
+		g.drawString("puzzletester.main.Current Test:", 400, 35);
 		g.setColor(Color.blue);
 		g.drawString(text, 485, 35);
 		
