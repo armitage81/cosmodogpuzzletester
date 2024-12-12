@@ -93,7 +93,7 @@ public class Starter extends BasicGame {
                 if (!position.equals(originalPosition)) {
 
                     //Go through all presence detectors and update their activatables.
-                    List<Actor> actors = new ArrayList<>(map.getPieces().stream().filter(p -> p instanceof Crate).map(p -> (Actor) p).toList());
+                    List<Actor> actors = new ArrayList<>(map.getPieces().stream().filter(p -> p instanceof MoveableActor).map(p -> (Actor) p).toList());
                     actors.add(protagonist);
 
                     List<Piece> presenceDetectors = map.getPieces().stream().filter(p -> p instanceof PresenceDetector).toList();

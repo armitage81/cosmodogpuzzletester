@@ -101,14 +101,14 @@ public class Map {
 
     public void moveProtagonist() {
         Entrance protagonistsTargetEntrance = protagonistsTargetEntrance();
-        Optional<Crate> optCrate = piece(protagonistsTargetEntrance.getPosition(), Crate.class);
-        if (optCrate.isPresent()) {
-            Crate crate = optCrate.get();
-            Entrance cratesTargetEntrance = cratesTargetEntrance(crate, protagonistsTargetEntrance.getEntranceDirection());
-            boolean cratesTargetEntrancePassable = passable(crate, cratesTargetEntrance);
-            if (cratesTargetEntrancePassable) {
-                crate.positionX = (int)cratesTargetEntrance.getPosition().getX();
-                crate.positionY = (int)cratesTargetEntrance.getPosition().getY();
+        Optional<MoveableActor> optMoveableActor = piece(protagonistsTargetEntrance.getPosition(), MoveableActor.class);
+        if (optMoveableActor.isPresent()) {
+            MoveableActor moveableActor = optMoveableActor.get();
+            Entrance moveableActorsTargetEntrance = moveableActorsTargetEntrance(moveableActor, protagonistsTargetEntrance.getEntranceDirection());
+            boolean moveableActorsTargetEntrancePassable = passable(moveableActor, moveableActorsTargetEntrance);
+            if (moveableActorsTargetEntrancePassable) {
+                moveableActor.positionX = (int)moveableActorsTargetEntrance.getPosition().getX();
+                moveableActor.positionY = (int)moveableActorsTargetEntrance.getPosition().getY();
                 protagonist.positionX = (int)protagonistsTargetEntrance.getPosition().getX();
                 protagonist.positionY = (int)protagonistsTargetEntrance.getPosition().getY();
             }
@@ -126,8 +126,8 @@ public class Map {
         return targetEntrance(protagonist, protagonist.getDirection());
     }
 
-    private Entrance cratesTargetEntrance(Crate crate, DirectionType directionType) {
-        return targetEntrance(crate, directionType);
+    private Entrance moveableActorsTargetEntrance(MoveableActor moveableActor, DirectionType directionType) {
+        return targetEntrance(moveableActor, directionType);
     }
 
     private Entrance targetEntrance(Actor actor, DirectionType directionType) {
@@ -169,7 +169,7 @@ public class Map {
 
     public <T extends Piece> Optional<T> piece(Position position, Class<T> clazz) {
         Set<Piece> pieces = piecesAtPosition((int)position.getX(), (int)position.getY());
-        return pieces.stream().filter(p -> p.getClass() == clazz).map(p -> (T)p).findFirst();
+        return pieces.stream().filter(p -> clazz.isAssignableFrom(p.getClass())).map(p -> (T)p).findFirst();
     }
 
     public boolean passable(Actor actor, Entrance entrance) {

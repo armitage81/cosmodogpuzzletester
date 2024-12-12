@@ -9,9 +9,9 @@ import puzzletester.model.Map;
 import puzzletester.model.elements.Actor;
 import puzzletester.model.elements.MoveableActor;
 
-public class Crate extends MoveableActor {
+public class GlassTank extends MoveableActor {
 
-    public Crate(int x, int y) {
+    public GlassTank(int x, int y) {
         super(x, y);
     }
 
@@ -22,12 +22,12 @@ public class Crate extends MoveableActor {
 
     @Override
     public boolean transparent() {
-        return false;
+        return true;
     }
 
     @Override
     public Image getImage() {
-        return Constants.SPRITE_SHEET.getSprite(1, 2);
+        return Constants.SPRITE_SHEET.getSprite(6, 2);
     }
 
     @Override

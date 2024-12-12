@@ -8,6 +8,7 @@ import puzzletester.model.ReflectionType;
 import puzzletester.model.elements.Piece;
 import puzzletester.model.elements.Tile;
 import puzzletester.model.elements.actors.Crate;
+import puzzletester.model.elements.actors.GlassTank;
 import puzzletester.model.elements.actors.Protagonist;
 import puzzletester.interfaces.Activatable;
 import puzzletester.interfaces.ActivatableHolder;
@@ -115,6 +116,9 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                     } else if (dynamicPieceId == Constants.TILE_ID_CRATE) {
                         Crate crate = new Crate(x, y);
                         pieces.add(crate);
+                    } else if (dynamicPieceId == Constants.TILE_ID_GLASSTANK) {
+                        GlassTank glasstank = new GlassTank(x, y);
+                        pieces.add(glasstank);
                     } else if (dynamicPieceId == Constants.TILE_ID_EMP) {
                         Emp emp = new Emp(x, y);
                         pieces.add(emp);

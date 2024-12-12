@@ -40,6 +40,7 @@ public class Constants {
     public static final int TILE_ID_CONVEYOR_SOUTH = 35;
 
     public static final int TILE_ID_CRATE = 20;
+    public static final int TILE_ID_GLASSTANK = 25;
 
     public static final int TILE_ID_PROTAGONIST = 6;
 
