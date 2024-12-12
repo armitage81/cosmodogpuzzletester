@@ -26,7 +26,7 @@ public class Sensor extends DynamicPiece implements ActivatableHolder, PresenceD
 
     @Override
     public boolean passable(Actor actor, DirectionType directionType) {
-        return actor instanceof Protagonist;
+        return true;
     }
 
     @Override

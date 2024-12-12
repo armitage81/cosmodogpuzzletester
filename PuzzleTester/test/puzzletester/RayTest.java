@@ -1,7 +1,7 @@
 package puzzletester;
 
 import org.junit.jupiter.api.Test;
-import puzzletester.elements.*;
+import puzzletester.model.elements.*;
 import puzzletester.model.DirectionType;
 import puzzletester.model.Map;
 import puzzletester.model.Ray;

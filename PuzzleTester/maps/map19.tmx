@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="8">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="9">
  <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="81" columns="9">
   <image source="tiles.png" width="144" height="144"/>
  </tileset>
  <layer id="1" name="tiles" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3XwQbAMBBF0aks8gX5/1+NoY8sqiRRueVdhnR3yBCNcM45btfDkEpPG8a+uf7i05nsq8H16W7JPvL+2beWdo7sq/eZ6pOJ6svI95tRfdq9EkyfPOmjvm9lGKLv7ft09u1F/z/6sg43A7BawBIAAA==
+   H4sIAAAAAAAACu2XQQrAIAwEt3hIP9D/f7XkIARRiz3oCA4ExFyGKLJKh0Od66NW4w5Po2h+FvaJfvT57eAn8f1MXL8dzpf8/jkmth95fvT7d/zGqOUVql/OB1S/8qwpfvT7F9cxIxD8ykyawprgF2fmuB8tv6RGUfz+9GZhnR7BLzvcnd5K6P/zGbwvAKI2wBIAAA==
   </data>
  </layer>
  <layer id="2" name="pieces" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3UIQ7AIBREwR+uUASG+1+ztqrIDTCTrH9qqwCAPz0dwLWezyDB/5Ey0gEHaOmAhZkOYDsvyNSrSsASAAA=
+   H4sIAAAAAAAACu3TMQoAIAhGYekKNTR0/3M2O0SIxI/xPnB/aJkBALKGOgBPcd8c9hfXD4M43h/gVfkTUx3wgaYOuFjqAJSzASzRqO/AEgAA
   </data>
  </layer>
  <layer id="6" name="pieces2" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3OMQ0AIBAAsXeBf6esbAw3EJJWQWcAgJ+t14ELv8av8Wv8Gr/GDzhtZS2Um8ASAAA=
+   H4sIAAAAAAAACu3OIQHAMAAEsXcx/05LywYOlCQKsgFs3+vAD7/Gr/Fr/Bq/xq/xa/waP+B2AAb1C8XAEgAA
   </data>
  </layer>
  <layer id="7" name="pieces3" width="40" height="30">
@@ -25,7 +25,7 @@
  </layer>
  <layer id="3" name="actors" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3OMQ0AAAgDsF34l4yIHSSkVdAEgO/mOgAAAFBYaElks8ASAAA=
+   H4sIAAAAAAAACu3OQQkAAAgEsHvZP7IlDgTZEiwB4Ku5DgAAABQssCCtK8ASAAA=
   </data>
  </layer>
  <objectgroup id="5" name="connectors">
