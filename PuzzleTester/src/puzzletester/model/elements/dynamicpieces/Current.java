@@ -1,6 +1,7 @@
 package puzzletester.model.elements.dynamicpieces;
 
 import puzzletester.*;
+import puzzletester.interfaces.Activatable;
 import puzzletester.model.DirectionType;
 import puzzletester.model.Map;
 import puzzletester.model.elements.Actor;
@@ -10,13 +11,15 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
-public class Current extends DynamicPiece implements Switchable {
+public class Current extends DynamicPiece implements Switchable, Activatable {
 
+    private final DirectionType initialDirectionType;
     private DirectionType directionType;
 
     public Current(int x, int y, DirectionType directionType) {
         super(x, y);
         this.directionType = directionType;
+        this.initialDirectionType = directionType;
     }
 
     public DirectionType getDirectionType() {
@@ -64,5 +67,30 @@ public class Current extends DynamicPiece implements Switchable {
     @Override
     public void render(GameContainer gc, Graphics g, Map map) {
         getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+    }
+
+    @Override
+    public void activate() {
+        this.directionType = DirectionType.reverse(initialDirectionType);
+    }
+
+    @Override
+    public void deactivate() {
+        this.directionType = initialDirectionType;
+    }
+
+    @Override
+    public boolean isActive() {
+        return this.directionType == DirectionType.reverse(initialDirectionType);
+    }
+
+    @Override
+    public boolean canActivate(Map map) {
+        return true;
+    }
+
+    @Override
+    public boolean canDeactivate(Map map) {
+        return true;
     }
 }
