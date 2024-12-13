@@ -39,10 +39,6 @@ public class Jammer extends DynamicPiece implements Pressable {
 
     @Override
     public void render(GameContainer gc, Graphics g, Map map) {
-        long time = System.currentTimeMillis() / 250;
-        int phase = (int)(time % 5);
-        if (phase <= 2) {
-            getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
-        }
+        getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 }

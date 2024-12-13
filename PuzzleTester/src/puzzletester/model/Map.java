@@ -163,6 +163,18 @@ public class Map {
         return Entrance.instance(envisionedPosition, envisionedPositionEntrance);
     }
 
+    public <T extends Element> Optional<T> element(int x, int y, Class<T> clazz) {
+        return element(Position.fromCoordinates(x, y), clazz);
+    }
+
+    public <T extends Element> Optional<T> element(Position position, Class<T> clazz) {
+        Set<Piece> elements = piecesAtPosition((int)position.getX(), (int)position.getY());
+        if (protagonist.positionX == position.getX() && protagonist.positionY == position.getY()) {
+            elements.add(protagonist);
+        }
+        return elements.stream().filter(p -> clazz.isAssignableFrom(p.getClass())).map(p -> (T)p).findFirst();
+    }
+
     public <T extends Piece> Optional<T> piece(int x, int y, Class<T> clazz) {
         return piece(Position.fromCoordinates(x, y), clazz);
     }

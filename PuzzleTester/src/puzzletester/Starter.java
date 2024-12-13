@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -99,12 +100,12 @@ public class Starter extends BasicGame {
                     List<Piece> presenceDetectors = map.getPieces().stream().filter(p -> p instanceof PresenceDetector).toList();
 
                     for (Piece presenceDetectorAsPiece : presenceDetectors) {
-                        boolean presenceDetected = actors.stream().anyMatch(p -> p.positionX == presenceDetectorAsPiece.positionX && p.positionY == presenceDetectorAsPiece.positionY);
-                        ActivatableHolder activatableHolder = (ActivatableHolder) presenceDetectorAsPiece;
-                        if (presenceDetected) {
-                            activatableHolder.getActivatables().forEach(Activatable::activate);
+                        Optional<Actor> optPresence = actors.stream().filter(p -> p.positionX == presenceDetectorAsPiece.positionX && p.positionY == presenceDetectorAsPiece.positionY).findFirst();
+                        PresenceDetector presenceDetector = (PresenceDetector) presenceDetectorAsPiece;
+                        if (optPresence.isPresent()) {
+                            presenceDetector.presenceDetected(map, optPresence.get());
                         } else {
-                            activatableHolder.getActivatables().forEach(Activatable::deactivate);
+                            presenceDetector.presenceLost(map);
                         }
                     }
 
@@ -161,6 +162,9 @@ public class Starter extends BasicGame {
 
     @Override
     public void render(GameContainer gc, Graphics g) throws SlickException {
+
+        long timestamp = System.currentTimeMillis();
+
         Map map = maps.getFirst();
 
         RenderingUtils.translateToOffset(gc, g);
@@ -172,8 +176,19 @@ public class Starter extends BasicGame {
             }
         }
 
+        java.util.Map<Position, List<Piece>> piecesPerPosition = new HashMap<>();
+
         for (Piece piece : map.getPieces()) {
-            piece.render(gc, g, map);
+            Position piecePosition = Position.fromCoordinates(piece.positionX, piece.positionY);
+            List<Piece> piecesAtPosition = piecesPerPosition.computeIfAbsent(piecePosition, k -> new ArrayList<>());
+            piecesAtPosition.add(piece);
+        }
+
+        for (Position position : piecesPerPosition.keySet()) {
+            List<Piece> piecesAtPosition = piecesPerPosition.get(position);
+            long timestampPhase = timestamp / 500;
+            int pieceNumberToRender = (int) (timestampPhase % piecesAtPosition.size());
+            piecesAtPosition.get(pieceNumberToRender).render(gc, g, map);
         }
 
         map.getProtagonist().render(gc, g, map);

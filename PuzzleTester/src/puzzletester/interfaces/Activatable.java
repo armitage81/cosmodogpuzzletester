@@ -1,5 +1,7 @@
 package puzzletester.interfaces;
 
+import puzzletester.model.Map;
+
 public interface Activatable {
 
         void activate();
@@ -7,4 +9,8 @@ public interface Activatable {
         void deactivate();
 
         boolean isActive();
+
+        boolean canActivate(Map map);
+
+        boolean canDeactivate(Map map);
 }

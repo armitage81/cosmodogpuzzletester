@@ -10,6 +10,7 @@ import puzzletester.interfaces.Switchable;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import puzzletester.model.elements.MoveableActor;
 
 public class Hatch extends DynamicPiece implements Switchable, Activatable {
 
@@ -73,5 +74,15 @@ public class Hatch extends DynamicPiece implements Switchable, Activatable {
     @Override
     public boolean isActive() {
         return false;
+    }
+
+    @Override
+    public boolean canActivate(Map map) {
+        return true;
+    }
+
+    @Override
+    public boolean canDeactivate(Map map) {
+        return map.element(positionX, positionY, Actor.class).isEmpty();
     }
 }

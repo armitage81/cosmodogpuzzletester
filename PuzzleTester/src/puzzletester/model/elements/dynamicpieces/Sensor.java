@@ -55,12 +55,20 @@ public class Sensor extends DynamicPiece implements ActivatableHolder, PresenceD
     }
 
     @Override
-    public void presenceDetected(Actor presence) {
-        activatables.forEach(Activatable::activate);
+    public void presenceDetected(Map map, Actor presence) {
+        for (Activatable activatable : activatables) {
+            if (activatable.canActivate(map)) {
+                activatable.activate();
+            }
+        }
     }
 
     @Override
-    public void presenceLost() {
-        activatables.forEach(Activatable::deactivate);
+    public void presenceLost(Map map) {
+        for (Activatable activatable : activatables) {
+            if (activatable.canDeactivate(map)) {
+                activatable.deactivate();
+            }
+        }
     }
 }
