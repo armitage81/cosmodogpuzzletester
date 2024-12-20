@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="17">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="11">
  <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="81" columns="9">
   <image source="tiles.png" width="144" height="144"/>
  </tileset>
  <layer id="1" name="tiles" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu2X7QqFIAyGDX9Y93/Dp6BAOnvdV9MCH5Biru11E6WUJhEs+yjnM3pY9V1k4IPsGp8ik/PHUj2p9UpsPep3/56yI99IUM6rH3XfMvCN5Mi1ETmpvnh7ZWFEzzRo9fWuoUWfxt+C98zooe8NMbjYXH1G14/KweXn9BfwrrlXWhpKY65lt7Am+l6OrF89lxt+1vpx55tnbVI8cUbq855/PfRpY9xtGcxpQHtMuqeRvjfwFX2Sf5IRcOfPZDJ5nh/KkM/nwBIAAA==
+   H4sIAAAAAAAACu2WwQoAIQgF7bT9/xd3WlgEMbQtgxnokCIO76QIgE0Lvp1+Xv+Run6a13UXM/l9M6uaH372Xr3bqp3y82re/0/wy4FfDvxyzNwnle+XVTNRbvbrgZnV3JBf5fseAMBiAEcbgKzAEgAA
   </data>
  </layer>
  <layer id="2" name="pieces" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACmNgGAWjAAKYKFAjAaUl0fijYBSMgsEB2AfaAQSAJGElVAXCdLZvuANi6o/BDIZinSUCpSXQ+CDAhAVTAlgp0DvYw3bUfZSBgXbfUC97RgH1gMxAO2AUYABZCvWPxukowAYAzkdz1sASAAA=
+   H4sIAAAAAAAACu3OqQ0AIBAAQQx98PTfIxgSHEHAmZlk/aYE/JK3ljJrITd3avTAQY8eAAAA4JkBx60TL8ASAAA=
   </data>
  </layer>
  <layer id="6" name="pieces2" width="40" height="30">
@@ -25,39 +25,21 @@
  </layer>
  <layer id="3" name="actors" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3OMQkAAAwDsF7zL3kySiFRkAQAAKDj2gEAJjz28Me0wBIAAA==
+   H4sIAAAAAAAACu3OIQEAAAjAsCv6RyYBGrMlWAHUfAcAAADgsP1s3uXAEgAA
   </data>
  </layer>
  <objectgroup id="5" name="connectors">
-  <object id="7" x="424" y="249">
-   <polyline points="0,0 144,0.5"/>
+  <object id="7" x="329" y="88">
+   <polyline points="0,0 111.5,15.5"/>
   </object>
-  <object id="8" x="423.5" y="264">
-   <polyline points="0,0 130,-18.5"/>
+  <object id="8" x="325" y="89.5">
+   <polyline points="0,0 115,31.5"/>
   </object>
-  <object id="9" x="425" y="281">
-   <polyline points="0,0 111,-30.5"/>
+  <object id="9" x="345" y="86.5">
+   <polyline points="0,0 64.5,0.5"/>
   </object>
-  <object id="10" x="425" y="295">
-   <polyline points="0,0 96,-48"/>
-  </object>
-  <object id="11" x="425" y="311.5">
-   <polyline points="0,0 78.5,-66"/>
-  </object>
-  <object id="12" x="311.5" y="232.5">
-   <polyline points="0,0 -125.5,-16"/>
-  </object>
-  <object id="13" x="184.5" y="263.5">
-   <polyline points="0,0 -3.5,-46.5"/>
-  </object>
-  <object id="14" x="184" y="268">
-   <polyline points="0,0 113,60.5"/>
-  </object>
-  <object id="15" x="487.5" y="57.5">
-   <polyline points="0,0 -160,0.5"/>
-  </object>
-  <object id="16" x="426" y="52.5">
-   <polyline points="0,0 -244.5,3"/>
+  <object id="10" x="346" y="90.5">
+   <polyline points="0,0 80.5,-1.5"/>
   </object>
  </objectgroup>
 </map>
