@@ -64,7 +64,7 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                 } else if (tileId == Constants.TILE_ID_INTERSTICE) {
                     tile = new Interstice(x, y);
                 } else {
-                    throw new RuntimeException();
+                    throw  new RuntimeException();
                 }
 
                 tiles.add(tile);
