@@ -10,11 +10,12 @@ import puzzletester.model.DirectionType;
 import puzzletester.model.Map;
 import puzzletester.model.elements.Actor;
 import puzzletester.model.elements.DynamicPiece;
+import puzzletester.model.elements.actors.Plasma;
 
 public class Emitter extends DynamicPiece {
 
     private final DirectionType directionType;
-    private boolean preparingEmission;
+    private Plasma plasma;
 
     public Emitter(int x, int y, DirectionType directionType) {
         super(x, y);
@@ -37,7 +38,7 @@ public class Emitter extends DynamicPiece {
 
     @Override
     public Image getImage() {
-        if (preparingEmission) {
+        if (plasma == null) {
             if (getDirectionType() == DirectionType.WEST) {
                 return Constants.SPRITE_SHEET.getSprite(5, 4);
             } else if (getDirectionType() == DirectionType.NORTH) {
@@ -65,7 +66,11 @@ public class Emitter extends DynamicPiece {
         getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
-    public boolean isPreparingEmission() {
-        return preparingEmission;
+    public Plasma getPlasma() {
+        return plasma;
+    }
+
+    public void setPlasma(Plasma plasma) {
+        this.plasma = plasma;
     }
 }

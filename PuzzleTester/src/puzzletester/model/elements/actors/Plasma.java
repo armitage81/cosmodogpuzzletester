@@ -4,14 +4,18 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import puzzletester.Constants;
+import puzzletester.interfaces.Rotational;
 import puzzletester.model.DirectionType;
 import puzzletester.model.Map;
 import puzzletester.model.elements.Actor;
 
-public class Plasma extends Actor {
+public class Plasma extends Actor implements Rotational {
 
-    public Plasma(int x, int y) {
+    private DirectionType direction;
+
+    public Plasma(int x, int y, DirectionType direction) {
         super(x, y);
+        this.direction = direction;
     }
 
     @Override
@@ -32,5 +36,15 @@ public class Plasma extends Actor {
     @Override
     public void render(GameContainer gc, Graphics g, Map map) {
         getImage().draw(positionX * Constants.TILE_SIZE, positionY * Constants.TILE_SIZE, Constants.TILE_SIZE, Constants.TILE_SIZE);
+    }
+
+    @Override
+    public DirectionType getDirection() {
+        return this.direction;
+    }
+
+    @Override
+    public void setDirection(DirectionType direction) {
+        this.direction = direction;
     }
 }

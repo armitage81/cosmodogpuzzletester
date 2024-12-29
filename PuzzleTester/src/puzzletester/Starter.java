@@ -20,6 +20,7 @@ import puzzletester.model.elements.Actor;
 import puzzletester.model.elements.Piece;
 import puzzletester.model.elements.Tile;
 import puzzletester.model.elements.actors.Crate;
+import puzzletester.model.elements.actors.Plasma;
 import puzzletester.model.elements.actors.Protagonist;
 import puzzletester.model.elements.dynamicpieces.Emp;
 import puzzletester.model.elements.tiles.Exit;
@@ -89,18 +90,28 @@ public class Starter extends BasicGame {
         if (movementAttempt) {
                 Position originalPosition = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
                 map.moveProtagonist();
+
                 Position position = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
 
                 if (!position.equals(originalPosition)) {
 
+                    map.updatePlasma();
+
                     //Go through all presence detectors and update their activatables.
-                    List<Actor> actors = new ArrayList<>(map.getPieces().stream().filter(p -> p instanceof MoveableActor).map(p -> (Actor) p).toList());
+                    List<Actor> actors = new ArrayList<>(map.getPieces()
+                            .stream()
+                            .filter(p -> p instanceof MoveableActor || p instanceof Plasma)
+                            .map(p -> (Actor) p)
+                            .toList());
                     actors.add(protagonist);
 
                     List<Piece> presenceDetectors = map.getPieces().stream().filter(p -> p instanceof PresenceDetector).toList();
 
                     for (Piece presenceDetectorAsPiece : presenceDetectors) {
-                        Optional<Actor> optPresence = actors.stream().filter(p -> p.positionX == presenceDetectorAsPiece.positionX && p.positionY == presenceDetectorAsPiece.positionY).findFirst();
+                        Optional<Actor> optPresence = actors
+                                .stream()
+                                .filter(p -> p.positionX == presenceDetectorAsPiece.positionX && p.positionY == presenceDetectorAsPiece.positionY)
+                                .findFirst();
                         PresenceDetector presenceDetector = (PresenceDetector) presenceDetectorAsPiece;
                         if (optPresence.isPresent()) {
                             presenceDetector.presenceDetected(map, optPresence.get());

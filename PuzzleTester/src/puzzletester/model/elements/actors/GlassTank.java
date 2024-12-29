@@ -17,7 +17,7 @@ public class GlassTank extends MoveableActor {
 
     @Override
     public boolean passable(Actor actor, DirectionType directionType) {
-        return !(actor instanceof MoveableActor);
+        return (actor instanceof Protagonist);
     }
 
     @Override

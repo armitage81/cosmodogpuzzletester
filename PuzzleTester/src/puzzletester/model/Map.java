@@ -8,7 +8,9 @@ import puzzletester.model.elements.Actor;
 import puzzletester.model.elements.Piece;
 import puzzletester.model.elements.Tile;
 import puzzletester.model.elements.actors.Crate;
+import puzzletester.model.elements.actors.Plasma;
 import puzzletester.model.elements.actors.Protagonist;
+import puzzletester.model.elements.dynamicpieces.Emitter;
 import tiled.Position;
 
 import java.util.ArrayList;
@@ -119,7 +121,43 @@ public class Map {
                 protagonist.positionY = (int)protagonistsTargetEntrance.getPosition().getY();
             }
         }
+    }
 
+    public void updatePlasma() {
+        List<Emitter> emitters = getPieces().stream().filter(p -> p instanceof Emitter).map(p -> (Emitter)p).toList();
+        for (Emitter emitter : emitters) {
+            Plasma plasma = emitter.getPlasma();
+            if (plasma == null) {
+                plasma = new Plasma(emitter.positionX, emitter.positionY, emitter.getDirectionType());
+                Entrance targetEntrance = targetEntrance(plasma, plasma.getDirection());
+                if (passable(plasma, targetEntrance)) {
+                    emitter.setPlasma(plasma);
+                    getPieces().add(plasma);
+                    plasma.positionX = (int)targetEntrance.getPosition().getX();
+                    plasma.positionY = (int)targetEntrance.getPosition().getY();
+                    plasma.setDirection(targetEntrance.getEntranceDirection());
+                }
+            } else {
+                Entrance targetEntrance = targetEntrance(plasma, plasma.getDirection());
+                if (passable(plasma, targetEntrance)) {
+                    plasma.positionX = (int)targetEntrance.getPosition().getX();
+                    plasma.positionY = (int)targetEntrance.getPosition().getY();
+                    plasma.setDirection(targetEntrance.getEntranceDirection());
+                } else {
+                    plasma.setDirection(DirectionType.reverse(plasma.getDirection()));
+                    targetEntrance = targetEntrance(plasma, plasma.getDirection());
+                    if (passable(plasma, targetEntrance)) {
+                        plasma.positionX = (int)targetEntrance.getPosition().getX();
+                        plasma.positionY = (int)targetEntrance.getPosition().getY();
+                        plasma.setDirection(targetEntrance.getEntranceDirection());
+                    } else {
+                        emitter.setPlasma(null);
+                        getPieces().remove(plasma);
+                    }
+                }
+            }
+
+        }
     }
 
     private Entrance protagonistsTargetEntrance() {
