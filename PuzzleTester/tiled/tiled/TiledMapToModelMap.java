@@ -125,6 +125,18 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                     } else if (dynamicPieceId == Constants.TILE_ID_SENSOR) {
                         Sensor sensor = new Sensor(x, y);
                         pieces.add(sensor);
+                    } else if (dynamicPieceId == Constants.TILE_ID_EMITTER_WEST) {
+                        Emitter emitter = new Emitter(x, y, DirectionType.WEST);
+                        pieces.add(emitter);
+                    } else if (dynamicPieceId == Constants.TILE_ID_EMITTER_NORTH) {
+                        Emitter emitter = new Emitter(x, y, DirectionType.NORTH);
+                        pieces.add(emitter);
+                    } else if (dynamicPieceId == Constants.TILE_ID_EMITTER_EAST) {
+                        Emitter emitter = new Emitter(x, y, DirectionType.EAST);
+                        pieces.add(emitter);
+                    } else if (dynamicPieceId == Constants.TILE_ID_EMITTER_SOUTH) {
+                        Emitter emitter = new Emitter(x, y, DirectionType.SOUTH);
+                        pieces.add(emitter);
                     }
                 }
 

@@ -39,6 +39,11 @@ public class Constants {
     public static final int TILE_ID_CONVEYOR_EAST = 34;
     public static final int TILE_ID_CONVEYOR_SOUTH = 35;
 
+    public static final int TILE_ID_EMITTER_WEST = 38;
+    public static final int TILE_ID_EMITTER_NORTH = 39;
+    public static final int TILE_ID_EMITTER_EAST = 40;
+    public static final int TILE_ID_EMITTER_SOUTH = 41;
+
     public static final int TILE_ID_CRATE = 20;
     public static final int TILE_ID_GLASSTANK = 25;
 
