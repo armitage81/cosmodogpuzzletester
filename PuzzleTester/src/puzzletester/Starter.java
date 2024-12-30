@@ -69,6 +69,7 @@ public class Starter extends BasicGame {
         Input input = gc.getInput();
 
         boolean movementAttempt = false;
+        boolean waiting = false;
 
         if (input.isKeyPressed(Input.KEY_RIGHT)) {
             protagonist.setDirection(DirectionType.EAST);
@@ -82,59 +83,70 @@ public class Starter extends BasicGame {
         } else if (input.isKeyPressed(Input.KEY_UP)) {
             movementAttempt = true;
             protagonist.setDirection(DirectionType.NORTH);
+        } else if (input.isKeyPressed(Input.KEY_ENTER)) {
+            waiting = true;
         }
+
+        boolean turnPassed = false;
 
         if (movementAttempt) {
-                Position originalPosition = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
-                map.moveProtagonist();
-
-                Position position = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
-
-                if (!position.equals(originalPosition)) {
-
-                    map.updatePlasma();
-
-                    //Go through all presence detectors and update their activatables.
-                    List<Actor> actors = new ArrayList<>(map.getPieces()
-                            .stream()
-                            .filter(p -> p instanceof MoveableActor || p instanceof Plasma)
-                            .map(p -> (Actor) p)
-                            .toList());
-                    actors.add(protagonist);
-
-                    List<Piece> presenceDetectors = map.getPieces().stream().filter(p -> p instanceof PresenceDetector).toList();
-
-                    for (Piece presenceDetectorAsPiece : presenceDetectors) {
-                        Optional<Actor> optPresence = actors
-                                .stream()
-                                .filter(p -> p.positionX == presenceDetectorAsPiece.positionX && p.positionY == presenceDetectorAsPiece.positionY)
-                                .findFirst();
-                        PresenceDetector presenceDetector = (PresenceDetector) presenceDetectorAsPiece;
-                        if (optPresence.isPresent()) {
-                            presenceDetector.presenceDetected(map, optPresence.get());
-                        } else {
-                            presenceDetector.presenceLost(map);
-                        }
-                    }
-
-                    Optional<Pressable> pressable = map.piecesAtPosition(position)
-                            .stream()
-                            .filter(p -> p instanceof  Pressable)
-                            .map(p -> (Pressable)p)
-                            .findFirst();
-                    if (pressable.isPresent()) {
-                        pressable.get().press(map, protagonist);
-                    }
-                    Tile tile = map.tileAtPosition(protagonist.positionX, protagonist.positionY);
-                    if (tile instanceof Exit) {
-                        maps.removeFirst();
-                        if (maps.isEmpty()) {
-                            System.exit(0);
-                        }
-                        map = maps.getFirst();
-                    }
-                }
+            Position originalPosition = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
+            map.moveProtagonist();
+            Position position = Position.fromCoordinates(protagonist.positionX, protagonist.positionY);
+            if (!position.equals(originalPosition)) {
+                turnPassed = true;
+            }
         }
+
+        if (waiting) {
+            turnPassed = true;
+        }
+
+        if (turnPassed) {
+
+            map.updatePlasma();
+
+            //Go through all presence detectors and update their activatables.
+            List<Actor> actors = new ArrayList<>(map.getPieces()
+                    .stream()
+                    .filter(p -> p instanceof MoveableActor || p instanceof Plasma)
+                    .map(p -> (Actor) p)
+                    .toList());
+            actors.add(protagonist);
+
+            List<Piece> presenceDetectors = map.getPieces().stream().filter(p -> p instanceof PresenceDetector).toList();
+
+            for (Piece presenceDetectorAsPiece : presenceDetectors) {
+                Optional<Actor> optPresence = actors
+                        .stream()
+                        .filter(p -> p.positionX == presenceDetectorAsPiece.positionX && p.positionY == presenceDetectorAsPiece.positionY)
+                        .findFirst();
+                PresenceDetector presenceDetector = (PresenceDetector) presenceDetectorAsPiece;
+                if (optPresence.isPresent()) {
+                    presenceDetector.presenceDetected(map, optPresence.get());
+                } else {
+                    presenceDetector.presenceLost(map);
+                }
+            }
+
+            Optional<Pressable> pressable = map.piecesAtPosition(protagonist.getPosition())
+                    .stream()
+                    .filter(p -> p instanceof  Pressable)
+                    .map(p -> (Pressable)p)
+                    .findFirst();
+            if (pressable.isPresent()) {
+                pressable.get().press(map, protagonist);
+            }
+            Tile tile = map.tileAtPosition(protagonist.positionX, protagonist.positionY);
+            if (tile instanceof Exit) {
+                maps.removeFirst();
+                if (maps.isEmpty()) {
+                    System.exit(0);
+                }
+                map = maps.getFirst();
+            }
+        }
+
         if (input.isKeyPressed(Input.KEY_ESCAPE)) {
             maps.removeFirst();
             if (maps.isEmpty()) {

@@ -1,7 +1,6 @@
 package tiled;
 
 import puzzletester.*;
-import puzzletester.model.elements.*;
 import puzzletester.model.DirectionType;
 import puzzletester.model.Map;
 import puzzletester.model.ReflectionType;

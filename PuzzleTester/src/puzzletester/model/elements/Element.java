@@ -5,6 +5,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import puzzletester.model.Map;
 import puzzletester.model.DirectionType;
+import tiled.Position;
 
 public abstract class Element {
 
@@ -29,4 +30,7 @@ public abstract class Element {
 
     public abstract void render(GameContainer gc, Graphics g, Map map);
 
+    public Position getPosition() {
+        return Position.fromCoordinates(positionX, positionY);
+    }
 }
