@@ -36,22 +36,19 @@ public class Starter extends BasicGame {
 
     private final List<Map> maps = new ArrayList<>();
 
-    public Starter(String name) throws SlickException {
+    public Starter(String name) throws SlickException, IOException, TiledMapIoException {
         super(name);
         TiledMapReader mapReader = new XmlTiledMapReader();
 
-        Path mapDir = Path.of("maps");
-        try (Stream<Path> stream = Files.list(mapDir).filter(e -> e.getFileName().toString().endsWith(".tmx"))) {
+        Path mapDir = Path.of("maps/maps.conf");
 
-            List<Path> mapPaths = stream.toList();
-            for (Path mapPath : mapPaths) {
-                CustomTiledMap tiledMap = mapReader.readTiledMap(mapPath.toString());
-                Map map = TiledMapToModelMap.instance().apply(tiledMap);
-                maps.add(map);
-            }
+        List<String> mapFileNames = Files.readAllLines(mapDir);
 
-        } catch (IOException | TiledMapIoException e) {
-            throw new RuntimeException(e);
+        for (String mapFileName : mapFileNames) {
+            Path mapPath = mapDir.getParent().resolve(mapFileName);
+            CustomTiledMap tiledMap = mapReader.readTiledMap(mapPath.toString());
+            Map map = TiledMapToModelMap.instance().apply(tiledMap);
+            maps.add(map);
         }
 
     }
@@ -219,7 +216,7 @@ public class Starter extends BasicGame {
             appgc.setDisplayMode(1600, 900, false);
             appgc.start();
         }
-        catch (SlickException ex) {
+        catch (SlickException | IOException | TiledMapIoException ex) {
             Logger.getLogger(Starter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
