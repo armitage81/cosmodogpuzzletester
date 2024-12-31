@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="7">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="9">
+ <editorsettings>
+  <export target="../../../../Users/User/Desktop/001..tmx" format="tmx"/>
+ </editorsettings>
  <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="81" columns="9">
   <image source="tiles.png" width="144" height="144"/>
  </tileset>
  <layer id="1" name="tiles" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3TQQrAIAxE0UgX1gP0/lctguBgRdyURPgPhoCbDIpmAAD8K23EU93/TJJkeqr7yzDpt++kfmOvaP2yff9LhH7XIhH66X3dbRbr9+pJ31WT5RwAgAheERv168ASAAA=
+   H4sIAAAAAAAACu2VUQqAMAxDJ37UHmD3v6oUHJSgbILQCHkQmPnZw3WsNSGEECtsL1Ph1xcjP/l9jZH7xZ77Yqr8/Eo49PSNXfX8hUs+b4eOwS/Pm0NX5Tf+D/phZ0V+2YXxfjydL3ZMfnh/2fzGvDH4zeaO4X072v38Mbxvs1haC/FnTpEBccDAEgAA
   </data>
  </layer>
  <layer id="2" name="pieces" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3BMQEAAADCoPVPbQ0PoAAAAADg1wAW4j6/wBIAAA==
+   H4sIAAAAAAAACu3RMQoAIAwEwRDw/1+2SWlhlYjMlFsdXAQAAPxvTQ8oedk4e+VHAHptlm0Z38ASAAA=
   </data>
  </layer>
  <layer id="6" name="pieces2" width="40" height="30">
@@ -25,8 +28,15 @@
  </layer>
  <layer id="3" name="actors" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3OIQEAAAjAsCv6RyYBGrMlWAEAl/kOAAAALasBql3AEgAA
+   H4sIAAAAAAAACu3OMQkAAAwDsF7zL3kySiFRkAQAWHDtAAAAlDzFkVRpwBIAAA==
   </data>
  </layer>
- <objectgroup id="5" name="connectors"/>
+ <objectgroup id="5" name="connectors">
+  <object id="7" name="001" x="361.5" y="281.5">
+   <polyline points="0,0 -98.75,13.25"/>
+  </object>
+  <object id="8" name="002" x="263.75" y="328.5">
+   <polyline points="0,0 80.25,-31.75"/>
+  </object>
+ </objectgroup>
 </map>
