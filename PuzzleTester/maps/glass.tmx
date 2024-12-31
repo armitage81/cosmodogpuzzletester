@@ -5,12 +5,12 @@
  </tileset>
  <layer id="1" name="tiles" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3WMQoAIAwEwbPzA/n/V8XCTiSS5pQduH4JCEoAgIx2mIPZEZvRl0NfzQt9ayHe7y36al7q6/Luc72f8/8AAH4xADCsOBHAEgAA
+   H4sIAAAAAAAACu1WQQrAIAxzeNkH/P9XN28ibVrBVA8N5FIZjakpKyWRSCTO4SFyl772sw5sQ60BVoG9/hL0eXtLtfk+dbM+TYfHu1kXU5+nvzR/6VvWfJGX0py1t8DIB5ql5dl8zsyvRSs/LH0oDxaj9K34iDLM1Ife3wn/vFld8THCP++ujsivtf80fzUfT+UX6Yzcf1pv7z126rv5/y+RSNyJD+/VZhTAEgAA
   </data>
  </layer>
  <layer id="2" name="pieces" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3OsQ0AAAQAMJH4/2U3WBi0FzQCAPbVdYC38joAAMBYA9vNlwjAEgAA
+   H4sIAAAAAAAACu3BMQEAAADCoPVPbQ0PoAAAAADg1wAW4j6/wBIAAA==
   </data>
  </layer>
  <layer id="6" name="pieces2" width="40" height="30">
@@ -25,12 +25,8 @@
  </layer>
  <layer id="3" name="actors" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3OMQkAAAwDsF7zL3kySiFRkAQAWHDtAAAAlDzFkVRpwBIAAA==
+   H4sIAAAAAAAACu3OIQEAAAgDsCv6R6bBLYItwRIAmrkOAAAAPLf/rUfwwBIAAA==
   </data>
  </layer>
- <objectgroup id="5" name="connectors">
-  <object id="6" name="001" x="263.5" y="167.5">
-   <polyline points="0,0 -18,64.5"/>
-  </object>
- </objectgroup>
+ <objectgroup id="5" name="connectors"/>
 </map>
