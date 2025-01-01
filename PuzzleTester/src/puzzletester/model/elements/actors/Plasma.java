@@ -10,6 +10,7 @@ import puzzletester.interfaces.Small;
 import puzzletester.model.DirectionType;
 import puzzletester.model.Map;
 import puzzletester.model.elements.Actor;
+import puzzletester.model.elements.MoveableActor;
 
 public class Plasma extends Actor implements Rotational, Small, Immaterial {
 
@@ -22,7 +23,8 @@ public class Plasma extends Actor implements Rotational, Small, Immaterial {
 
     @Override
     public boolean passable(Actor actor, DirectionType directionType) {
-        return true;
+
+        return !(actor instanceof MoveableActor);
     }
 
     @Override
