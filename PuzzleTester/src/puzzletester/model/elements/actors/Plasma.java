@@ -4,12 +4,14 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import puzzletester.Constants;
+import puzzletester.interfaces.Immaterial;
 import puzzletester.interfaces.Rotational;
+import puzzletester.interfaces.Small;
 import puzzletester.model.DirectionType;
 import puzzletester.model.Map;
 import puzzletester.model.elements.Actor;
 
-public class Plasma extends Actor implements Rotational {
+public class Plasma extends Actor implements Rotational, Small, Immaterial {
 
     private DirectionType direction;
 

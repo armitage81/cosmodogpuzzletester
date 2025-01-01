@@ -1,5 +1,6 @@
 package puzzletester.model.elements.actors;
 
+import puzzletester.interfaces.Small;
 import puzzletester.model.Map;
 import puzzletester.model.elements.Actor;
 import puzzletester.interfaces.Rotational;
@@ -9,7 +10,7 @@ import org.newdawn.slick.Image;
 import puzzletester.Constants;
 import puzzletester.model.DirectionType;
 
-public class Protagonist extends Actor implements Rotational {
+public class Protagonist extends Actor implements Rotational, Small {
 
     private DirectionType direction;
 

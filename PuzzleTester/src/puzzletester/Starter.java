@@ -116,6 +116,22 @@ public class Starter extends BasicGame {
 
             List<Piece> presenceDetectors = map.getPieces().stream().filter(p -> p instanceof PresenceDetector).toList();
 
+            //Need to iterate twice. Example: Two sensors control the same door. Presence jumps from sensor B to sensor A.
+            //If A would be handled first it would activate the door. Then B would be handled and it would deactivate
+            //the door, ignoring the effect of sensor A. Hence, we first deactivate everything, where the presence is lost
+            //and then activate everything where the presence is detected.
+
+            for (Piece presenceDetectorAsPiece : presenceDetectors) {
+                Optional<Actor> optPresence = actors
+                        .stream()
+                        .filter(p -> p.positionX == presenceDetectorAsPiece.positionX && p.positionY == presenceDetectorAsPiece.positionY)
+                        .findFirst();
+                PresenceDetector presenceDetector = (PresenceDetector) presenceDetectorAsPiece;
+                if (optPresence.isEmpty()) {
+                    presenceDetector.presenceLost(map);
+                }
+            }
+
             for (Piece presenceDetectorAsPiece : presenceDetectors) {
                 Optional<Actor> optPresence = actors
                         .stream()
@@ -124,8 +140,6 @@ public class Starter extends BasicGame {
                 PresenceDetector presenceDetector = (PresenceDetector) presenceDetectorAsPiece;
                 if (optPresence.isPresent()) {
                     presenceDetector.presenceDetected(map, optPresence.get());
-                } else {
-                    presenceDetector.presenceLost(map);
                 }
             }
 
@@ -148,11 +162,19 @@ public class Starter extends BasicGame {
         }
 
         if (input.isKeyPressed(Input.KEY_ESCAPE)) {
-            maps.removeFirst();
-            if (maps.isEmpty()) {
-                System.exit(0);
+            int mapsToSkip = 1;
+
+            if (input.isKeyDown(Input.KEY_LSHIFT) || input.isKeyDown(Input.KEY_RSHIFT)) {
+                mapsToSkip = 10;
             }
-            map = maps.getFirst();
+            for (int k = 0; k < mapsToSkip; k++) {
+                maps.removeFirst();
+                if (maps.isEmpty()) {
+                    System.exit(0);
+                }
+                map = maps.getFirst();
+            }
+
         }
 
         if (input.isKeyPressed(Input.KEY_SPACE)) {

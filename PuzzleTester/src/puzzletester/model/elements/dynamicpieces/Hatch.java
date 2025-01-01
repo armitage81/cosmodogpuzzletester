@@ -15,10 +15,12 @@ import puzzletester.model.elements.MoveableActor;
 public class Hatch extends DynamicPiece implements Switchable, Activatable {
 
     public boolean open;
+    public boolean initialOpen;
 
     public Hatch(int x, int y, boolean open) {
         super(x, y);
         this.open = open;
+        this.initialOpen = open;
     }
 
     @Override
@@ -63,17 +65,17 @@ public class Hatch extends DynamicPiece implements Switchable, Activatable {
 
     @Override
     public void activate() {
-        this.open = true;
+        this.open = !initialOpen;
     }
 
     @Override
     public void deactivate() {
-        this.open = false;
+        this.open = initialOpen;
     }
 
     @Override
     public boolean isActive() {
-        return false;
+        return open != initialOpen;
     }
 
     @Override

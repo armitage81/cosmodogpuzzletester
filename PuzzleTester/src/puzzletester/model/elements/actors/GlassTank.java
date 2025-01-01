@@ -4,6 +4,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import puzzletester.Constants;
+import puzzletester.interfaces.Immaterial;
 import puzzletester.model.DirectionType;
 import puzzletester.model.Map;
 import puzzletester.model.elements.Actor;
@@ -17,7 +18,7 @@ public class GlassTank extends MoveableActor {
 
     @Override
     public boolean passable(Actor actor, DirectionType directionType) {
-        return (actor instanceof Protagonist);
+        return (actor instanceof Protagonist || actor instanceof Immaterial);
     }
 
     @Override
