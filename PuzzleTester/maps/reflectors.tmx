@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="9">
+ <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="81" columns="9">
+  <image source="tiles.png" width="144" height="144"/>
+ </tileset>
+ <layer id="1" name="tiles" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu2TOwoAIQwFIxbuBfb+V3ULQRH8rIV5xQw8ItgML8QMAECD8CWV+Sc3/d5mjhK6t5pf76rmp9DfM/FLAn6q/UUb32n759nfKp77XcV7vzv9RXE/z/5OAgAAAJUMcJPnwMASAAA=
+  </data>
+ </layer>
+ <layer id="2" name="pieces" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3RsQ0AIQwDQBrGAPbf8ht6FMErQtw1aVxYTikA7OjzjtQW/KVlF+CYyC/7OvKcGshm7BfpBwDc5wOfeuNewBIAAA==
+  </data>
+ </layer>
+ <layer id="6" name="pieces2" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3BMQEAAADCoPVPbQ0PoAAAAADg1wAW4j6/wBIAAA==
+  </data>
+ </layer>
+ <layer id="7" name="pieces3" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3BMQEAAADCoPVPbQ0PoAAAAADg1wAW4j6/wBIAAA==
+  </data>
+ </layer>
+ <layer id="3" name="actors" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3OIQEAAAgDsCv6R6bCHYItwRIAWnMdAAAAeGgB8k/LmsASAAA=
+  </data>
+ </layer>
+ <objectgroup id="5" name="connectors">
+  <object id="7" x="215.156" y="264.536">
+   <polyline points="0,0 179.884,-32.92"/>
+  </object>
+  <object id="8" x="215.156" y="280.408">
+   <polyline points="0,0 175.181,-17.0479"/>
+  </object>
+ </objectgroup>
+</map>
