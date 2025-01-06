@@ -10,6 +10,7 @@ import puzzletester.model.elements.Tile;
 import puzzletester.model.elements.actors.Crate;
 import puzzletester.model.elements.actors.Plasma;
 import puzzletester.model.elements.actors.Protagonist;
+import puzzletester.model.elements.dynamicpieces.Absorber;
 import puzzletester.model.elements.dynamicpieces.Emitter;
 import tiled.Position;
 
@@ -138,21 +139,31 @@ public class Map {
                     plasma.setDirection(targetEntrance.getEntranceDirection());
                 }
             } else {
-                Entrance targetEntrance = targetEntrance(plasma, plasma.getDirection());
+                final Entrance targetEntrance = targetEntrance(plasma, plasma.getDirection());
                 if (passable(plasma, targetEntrance)) {
                     plasma.positionX = (int)targetEntrance.getPosition().getX();
                     plasma.positionY = (int)targetEntrance.getPosition().getY();
                     plasma.setDirection(targetEntrance.getEntranceDirection());
                 } else {
-                    plasma.setDirection(DirectionType.reverse(plasma.getDirection()));
-                    targetEntrance = targetEntrance(plasma, plasma.getDirection());
-                    if (passable(plasma, targetEntrance)) {
-                        plasma.positionX = (int)targetEntrance.getPosition().getX();
-                        plasma.positionY = (int)targetEntrance.getPosition().getY();
-                        plasma.setDirection(targetEntrance.getEntranceDirection());
-                    } else {
+
+                    boolean targetEntranceHasAbsorber = piecesAtPosition(targetEntrance.getPosition())
+                            .stream()
+                            .anyMatch(e -> (e instanceof Absorber) && ((Absorber)e).getDirectionType() == DirectionType.reverse(targetEntrance.getEntranceDirection()));
+
+                    if (targetEntranceHasAbsorber) {
                         emitter.setPlasma(null);
                         getPieces().remove(plasma);
+                    } else {
+                        plasma.setDirection(DirectionType.reverse(plasma.getDirection()));
+                        Entrance targetEntranceReverse = targetEntrance(plasma, plasma.getDirection());
+                        if (passable(plasma, targetEntranceReverse)) {
+                            plasma.positionX = (int) targetEntranceReverse.getPosition().getX();
+                            plasma.positionY = (int) targetEntranceReverse.getPosition().getY();
+                            plasma.setDirection(targetEntranceReverse.getEntranceDirection());
+                        } else {
+                            emitter.setPlasma(null);
+                            getPieces().remove(plasma);
+                        }
                     }
                 }
             }

@@ -136,7 +136,20 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                     } else if (dynamicPieceId == Constants.TILE_ID_EMITTER_SOUTH) {
                         Emitter emitter = new Emitter(x, y, DirectionType.SOUTH);
                         pieces.add(emitter);
+                    } else if (dynamicPieceId == Constants.TILE_ID_ABSORBER_WEST) {
+                        Absorber absorber = new Absorber(x, y, DirectionType.WEST);
+                        pieces.add(absorber);
+                    } else if (dynamicPieceId == Constants.TILE_ID_ABSORBER_NORTH) {
+                        Absorber absorber = new Absorber(x, y, DirectionType.NORTH);
+                        pieces.add(absorber);
+                    } else if (dynamicPieceId == Constants.TILE_ID_ABSORBER_EAST) {
+                        Absorber absorber = new Absorber(x, y, DirectionType.EAST);
+                        pieces.add(absorber);
+                    } else if (dynamicPieceId == Constants.TILE_ID_ABSORBER_SOUTH) {
+                        Absorber absorber = new Absorber(x, y, DirectionType.SOUTH);
+                        pieces.add(absorber);
                     }
+
                 }
 
                 int protagonistTileId = tiledMap.getTileId(Position.fromCoordinates(x, y), Constants.LAYER_INDEX_ACTORS);
