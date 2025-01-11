@@ -4,6 +4,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import puzzletester.*;
+import puzzletester.interfaces.Immaterial;
 import puzzletester.model.DirectionType;
 import puzzletester.model.Map;
 import puzzletester.model.elements.Actor;
@@ -17,7 +18,7 @@ public class Glass extends Tile {
 
     @Override
     public boolean passable(Actor actor, DirectionType directionType) {
-        return false;
+        return actor instanceof Immaterial;
     }
 
     @Override
