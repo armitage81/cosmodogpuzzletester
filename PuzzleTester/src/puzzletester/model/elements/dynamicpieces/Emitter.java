@@ -12,14 +12,18 @@ import puzzletester.model.elements.Actor;
 import puzzletester.model.elements.DynamicPiece;
 import puzzletester.model.elements.actors.Plasma;
 
-public class Emitter extends DynamicPiece {
+public class Emitter extends DynamicPiece implements Activatable, Switchable {
 
     private final DirectionType directionType;
     private Plasma plasma;
+    private final boolean initiallyOnNotOff;
+    private boolean onNotOff;
 
-    public Emitter(int x, int y, DirectionType directionType) {
+    public Emitter(int x, int y, DirectionType directionType, boolean initiallyOnNotOff) {
         super(x, y);
         this.directionType = directionType;
+        this.initiallyOnNotOff = initiallyOnNotOff;
+        this.onNotOff = initiallyOnNotOff;
     }
 
     public DirectionType getDirectionType() {
@@ -72,5 +76,45 @@ public class Emitter extends DynamicPiece {
 
     public void setPlasma(Plasma plasma) {
         this.plasma = plasma;
+    }
+
+    @Override
+    public void activate() {
+        this.onNotOff = !initiallyOnNotOff;
+    }
+
+    @Override
+    public void deactivate() {
+        this.onNotOff = initiallyOnNotOff;
+    }
+
+    @Override
+    public boolean isActive() {
+        return onNotOff != initiallyOnNotOff;
+    }
+
+    @Override
+    public boolean canActivate(Map map) {
+        return true;
+    }
+
+    @Override
+    public boolean canDeactivate(Map map) {
+        return true;
+    }
+
+    @Override
+    public int numberOfStates() {
+        return 2;
+    }
+
+    @Override
+    public int currentState() {
+        return onNotOff == initiallyOnNotOff ? 0 : 1;
+    }
+
+    @Override
+    public void switchToNextState() {
+        onNotOff = !onNotOff;
     }
 }

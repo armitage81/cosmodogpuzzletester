@@ -208,9 +208,7 @@ public class Starter extends BasicGame {
         long timestamp = System.currentTimeMillis();
 
         Map map = maps.getFirst();
-
         RenderingUtils.translateToOffset(gc, g);
-
         for (int i = 0; i < Constants.FIELD_WIDTH ; i++) {
             for (int j = 0 ; j < Constants.FIELD_HEIGHT ; j++) {
                 Tile tile = map.tileAtPosition(i, j);
@@ -238,6 +236,10 @@ public class Starter extends BasicGame {
         Ray ray = Ray.create(map);
         ray.render(gc, g, map);
 
+        g.setColor(Color.black);
+        g.fillRect(10, 10, 600, 20);
+        g.setColor(Color.red);
+        g.drawString("Arrow keys to move, Enter to wait, Space to shoot.", 10, 10);
 
         RenderingUtils.resetTranslation(gc, g);
     }

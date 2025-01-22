@@ -125,16 +125,16 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                         Sensor sensor = new Sensor(x, y);
                         pieces.add(sensor);
                     } else if (dynamicPieceId == Constants.TILE_ID_EMITTER_WEST) {
-                        Emitter emitter = new Emitter(x, y, DirectionType.WEST);
+                        Emitter emitter = new Emitter(x, y, DirectionType.WEST, true);
                         pieces.add(emitter);
                     } else if (dynamicPieceId == Constants.TILE_ID_EMITTER_NORTH) {
-                        Emitter emitter = new Emitter(x, y, DirectionType.NORTH);
+                        Emitter emitter = new Emitter(x, y, DirectionType.NORTH, true);
                         pieces.add(emitter);
                     } else if (dynamicPieceId == Constants.TILE_ID_EMITTER_EAST) {
-                        Emitter emitter = new Emitter(x, y, DirectionType.EAST);
+                        Emitter emitter = new Emitter(x, y, DirectionType.EAST, true);
                         pieces.add(emitter);
                     } else if (dynamicPieceId == Constants.TILE_ID_EMITTER_SOUTH) {
-                        Emitter emitter = new Emitter(x, y, DirectionType.SOUTH);
+                        Emitter emitter = new Emitter(x, y, DirectionType.SOUTH, true);
                         pieces.add(emitter);
                     } else if (dynamicPieceId == Constants.TILE_ID_ABSORBER_WEST) {
                         Absorber absorber = new Absorber(x, y, DirectionType.WEST);
