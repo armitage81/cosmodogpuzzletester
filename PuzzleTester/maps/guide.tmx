@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="14">
+ <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="81" columns="9">
+  <image source="tiles.png" width="144" height="144"/>
+ </tileset>
+ <layer id="1" name="tiles" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu2UQQqAMAwEEzzo/18sPQg1IJgIcdEZ2Eub0iGhNavhUxQZXpvp+cW+eSJdfpHlInP9235xX9UvruF35gt+bnp+yu/3Tn2nX+Y/Pmat2r+n5yr3ZPu3NvtlGLPt9qsGAAAA4A/sWXe1vsASAAA=
+  </data>
+ </layer>
+ <layer id="2" name="pieces" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3TQQoAIAhEUQm6Q4fo/ueLttG0ChX5b6UrZVAzRGnRC3wyHGdN07mpPbxz7s7zqsmc3+v+ttsNVvlz5DNEjbt59E3UAAAAyGkB5WRwCcASAAA=
+  </data>
+ </layer>
+ <layer id="6" name="pieces2" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3BMQEAAADCoPVPbQ0PoAAAAADg1wAW4j6/wBIAAA==
+  </data>
+ </layer>
+ <layer id="7" name="pieces3" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3BMQEAAADCoPVPbQ0PoAAAAADg1wAW4j6/wBIAAA==
+  </data>
+ </layer>
+ <layer id="3" name="actors" width="40" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACu3OMQkAAAwDsF7zL3kySiFRkAQAWHDtAAAAlDzFkVRpwBIAAA==
+  </data>
+ </layer>
+ <objectgroup id="5" name="connectors">
+  <object id="7" x="264.421" y="201.544">
+   <polyline points="0,0 -1.12281,32"/>
+  </object>
+  <object id="8" x="311.018" y="200.421">
+   <polyline points="0,0 1.12281,29.7544"/>
+  </object>
+  <object id="9" x="327.86" y="136.421">
+   <polyline points="0,0 79.1579,-1.12281"/>
+  </object>
+  <object id="10" x="312.14" y="73.5439">
+   <polyline points="0,0 94.8772,-1.12281"/>
+  </object>
+  <object id="11" x="407.579" y="53.8947">
+   <polyline points="0,0 -158.316,-12.9123"/>
+  </object>
+  <object id="12" x="216.14" y="121.263">
+   <polyline points="0,0 0.561404,14.5965"/>
+  </object>
+  <object id="13" x="217.825" y="88.7018">
+   <polyline points="0,0 -3.92982,-16.2807"/>
+  </object>
+ </objectgroup>
+</map>

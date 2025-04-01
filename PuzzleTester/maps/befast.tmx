@@ -10,7 +10,7 @@
  </layer>
  <layer id="2" name="pieces" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3UMQoAIQxEUVnwBGk8gp33v91uYbGIEUwzCv9BSBGUgYgpAQA8WR3gco86QJB9VXo/kQ39NPYrhRo8N3uvpfcWvPNW3g5tMVOY5fNmiv9oJx8AAFh7AdfmjzbAEgAA
+   H4sIAAAAAAAACu3UMQrAIAyFYSn0BFk8hPc/Xzs4SEkC2uEp/B+EDCHwIGIpAIDIrQ5wuEsdYJG9VXvfkX36bmwohba4573X+ifIwaIbWjJT8PJFM8V/NJMPAADkHivzS3bAEgAA
   </data>
  </layer>
  <layer id="6" name="pieces2" width="40" height="30">

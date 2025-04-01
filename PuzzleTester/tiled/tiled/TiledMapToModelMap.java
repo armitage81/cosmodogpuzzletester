@@ -125,29 +125,29 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                         Sensor sensor = new Sensor(x, y);
                         pieces.add(sensor);
                     } else if (dynamicPieceId == Constants.TILE_ID_EMITTER_WEST) {
-                        Emitter emitter = new Emitter(x, y, DirectionType.WEST);
+                        Emitter emitter = new Emitter(x, y, DirectionType.WEST, false);
                         pieces.add(emitter);
                     } else if (dynamicPieceId == Constants.TILE_ID_EMITTER_NORTH) {
-                        Emitter emitter = new Emitter(x, y, DirectionType.NORTH);
+                        Emitter emitter = new Emitter(x, y, DirectionType.NORTH, false);
                         pieces.add(emitter);
                     } else if (dynamicPieceId == Constants.TILE_ID_EMITTER_EAST) {
-                        Emitter emitter = new Emitter(x, y, DirectionType.EAST);
+                        Emitter emitter = new Emitter(x, y, DirectionType.EAST, false);
                         pieces.add(emitter);
                     } else if (dynamicPieceId == Constants.TILE_ID_EMITTER_SOUTH) {
-                        Emitter emitter = new Emitter(x, y, DirectionType.SOUTH);
+                        Emitter emitter = new Emitter(x, y, DirectionType.SOUTH, false);
                         pieces.add(emitter);
-                    } else if (dynamicPieceId == Constants.TILE_ID_ABSORBER_WEST) {
-                        Absorber absorber = new Absorber(x, y, DirectionType.WEST);
-                        pieces.add(absorber);
-                    } else if (dynamicPieceId == Constants.TILE_ID_ABSORBER_NORTH) {
-                        Absorber absorber = new Absorber(x, y, DirectionType.NORTH);
-                        pieces.add(absorber);
-                    } else if (dynamicPieceId == Constants.TILE_ID_ABSORBER_EAST) {
-                        Absorber absorber = new Absorber(x, y, DirectionType.EAST);
-                        pieces.add(absorber);
-                    } else if (dynamicPieceId == Constants.TILE_ID_ABSORBER_SOUTH) {
-                        Absorber absorber = new Absorber(x, y, DirectionType.SOUTH);
-                        pieces.add(absorber);
+                    } else if (dynamicPieceId == Constants.TILE_ID_WEAK_EMITTER_WEST) {
+                        Emitter emitter = new Emitter(x, y, DirectionType.WEST, true);
+                        pieces.add(emitter);
+                    } else if (dynamicPieceId == Constants.TILE_ID_WEAK_EMITTER_NORTH) {
+                        Emitter emitter = new Emitter(x, y, DirectionType.NORTH, true);
+                        pieces.add(emitter);
+                    } else if (dynamicPieceId == Constants.TILE_ID_WEAK_EMITTER_EAST) {
+                        Emitter emitter = new Emitter(x, y, DirectionType.EAST, true);
+                        pieces.add(emitter);
+                    } else if (dynamicPieceId == Constants.TILE_ID_WEAK_EMITTER_SOUTH) {
+                        Emitter emitter = new Emitter(x, y, DirectionType.SOUTH, true);
+                        pieces.add(emitter);
                     }
 
                 }

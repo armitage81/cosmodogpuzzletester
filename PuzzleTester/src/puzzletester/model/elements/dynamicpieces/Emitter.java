@@ -15,15 +15,21 @@ import puzzletester.model.elements.actors.Plasma;
 public class Emitter extends DynamicPiece {
 
     private final DirectionType directionType;
+    private boolean weak;
     private Plasma plasma;
 
-    public Emitter(int x, int y, DirectionType directionType) {
+    public Emitter(int x, int y, DirectionType directionType, boolean weak) {
         super(x, y);
         this.directionType = directionType;
+        this.weak = weak;
     }
 
     public DirectionType getDirectionType() {
         return directionType;
+    }
+
+    public boolean isWeak() {
+        return weak;
     }
 
     @Override
@@ -38,7 +44,7 @@ public class Emitter extends DynamicPiece {
 
     @Override
     public Image getImage() {
-        if (plasma == null) {
+        if (weak) {
             if (getDirectionType() == DirectionType.WEST) {
                 return Constants.SPRITE_SHEET.getSprite(5, 4);
             } else if (getDirectionType() == DirectionType.NORTH) {

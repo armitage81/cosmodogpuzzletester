@@ -10,7 +10,7 @@
  </layer>
  <layer id="2" name="pieces" width="40" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACu3OsQkAIAxE0cMp3EDsxP2HS5NSMAiigf/gikCKLwFS39wAcGoEfub1CmCtvg4IyNCYQfEhrvkAAPiBATNreSDAEgAA
+   H4sIAAAAAAAACu3OsQkAIBBD0eAUbiAi7r+eFldZXWU4+A9SpPsSIO3nT0sFAAB/dXdAQoXGCloMeeNuuSMAAAgHXnhxC8ASAAA=
   </data>
  </layer>
  <layer id="6" name="pieces2" width="40" height="30">

@@ -44,10 +44,10 @@ public class Constants {
     public static final int TILE_ID_EMITTER_EAST = 40;
     public static final int TILE_ID_EMITTER_SOUTH = 41;
 
-    public static final int TILE_ID_ABSORBER_WEST = 47;
-    public static final int TILE_ID_ABSORBER_NORTH = 48;
-    public static final int TILE_ID_ABSORBER_EAST = 49;
-    public static final int TILE_ID_ABSORBER_SOUTH = 50;
+    public static final int TILE_ID_WEAK_EMITTER_WEST = 42;
+    public static final int TILE_ID_WEAK_EMITTER_NORTH = 43;
+    public static final int TILE_ID_WEAK_EMITTER_EAST = 44;
+    public static final int TILE_ID_WEAK_EMITTER_SOUTH = 45;
 
     public static final int TILE_ID_CRATE = 20;
     public static final int TILE_ID_GLASSTANK = 25;

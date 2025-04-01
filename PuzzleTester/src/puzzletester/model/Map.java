@@ -7,10 +7,8 @@ import puzzletester.model.elements.*;
 import puzzletester.model.elements.Actor;
 import puzzletester.model.elements.Piece;
 import puzzletester.model.elements.Tile;
-import puzzletester.model.elements.actors.Crate;
 import puzzletester.model.elements.actors.Plasma;
 import puzzletester.model.elements.actors.Protagonist;
-import puzzletester.model.elements.dynamicpieces.Absorber;
 import puzzletester.model.elements.dynamicpieces.Emitter;
 import tiled.Position;
 
@@ -129,7 +127,7 @@ public class Map {
         for (Emitter emitter : emitters) {
             Plasma plasma = emitter.getPlasma();
             if (plasma == null) {
-                plasma = new Plasma(emitter.positionX, emitter.positionY, emitter.getDirectionType());
+                plasma = new Plasma(emitter.positionX, emitter.positionY, emitter.getDirectionType(), emitter.isWeak());
                 Entrance targetEntrance = targetEntrance(plasma, plasma.getDirection());
                 if (passable(plasma, targetEntrance)) {
                     emitter.setPlasma(plasma);
@@ -146,11 +144,9 @@ public class Map {
                     plasma.setDirection(targetEntrance.getEntranceDirection());
                 } else {
 
-                    boolean targetEntranceHasAbsorber = piecesAtPosition(targetEntrance.getPosition())
-                            .stream()
-                            .anyMatch(e -> (e instanceof Absorber) && ((Absorber)e).getDirectionType() == DirectionType.reverse(targetEntrance.getEntranceDirection()));
+                    boolean weakPlasma = plasma.isWeak();
 
-                    if (targetEntranceHasAbsorber) {
+                    if (weakPlasma) {
                         emitter.setPlasma(null);
                         getPieces().remove(plasma);
                     } else {

@@ -15,10 +15,12 @@ import puzzletester.model.elements.MoveableActor;
 public class Plasma extends Actor implements Rotational, Small, Immaterial {
 
     private DirectionType direction;
+    private boolean weak;
 
-    public Plasma(int x, int y, DirectionType direction) {
+    public Plasma(int x, int y, DirectionType direction, boolean weak) {
         super(x, y);
         this.direction = direction;
+        this.weak = weak;
     }
 
     @Override
@@ -50,5 +52,9 @@ public class Plasma extends Actor implements Rotational, Small, Immaterial {
     @Override
     public void setDirection(DirectionType direction) {
         this.direction = direction;
+    }
+
+    public boolean isWeak() {
+        return weak;
     }
 }
