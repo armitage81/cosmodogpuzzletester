@@ -62,7 +62,6 @@ public class Reflector extends DynamicPiece implements Switchable {
             return Constants.SPRITE_SHEET.getSprite(3, 3);
         }
 
-
     }
 
     @Override

@@ -125,6 +125,7 @@ public class TiledMapToModelMap implements Function<CustomTiledMap, Map> {
                         Sensor sensor = new Sensor(x, y);
                         pieces.add(sensor);
                     } else if (dynamicPieceId == Constants.TILE_ID_EMITTER_WEST) {
+<<<<<<< HEAD
                         Emitter emitter = new Emitter(x, y, DirectionType.WEST, false);
                         pieces.add(emitter);
                     } else if (dynamicPieceId == Constants.TILE_ID_EMITTER_NORTH) {
